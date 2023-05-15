@@ -9,10 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 groundCheckOffset;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] private float jumpButtonGracePeriod;
-    [SerializeField] bool isAttacking;
     [SerializeField] private float jumpSpeed;
 
-
+    private bool isAttacking;
     float ySpeed;
     private float originalStepOffset;
     private float? lastGroundedTime;
@@ -44,6 +43,10 @@ public class PlayerController : MonoBehaviour
         var moveDir = cameraController.PlanarRotation * moveInput;
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
+        if (moveAmount <= 0)
+        {
+            transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
+        }
         if (characterController.isGrounded)
         {
             animator.SetBool("Grounded", true);
@@ -52,15 +55,19 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Grounded", false);
         }
-        if (Input.GetMouseButton(0) && characterController.isGrounded)
+        if (Input.GetMouseButton(0) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle"))
         {
             animator.SetBool("Attack", true);
             isAttacking = true;
         }
-        else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
         {
             animator.SetBool("Attack", false);
             isAttacking = false;
+        }
+        if (isAttacking)
+        {
+            transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
         }
 
 
@@ -88,6 +95,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Jump", true);
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
                 {
+                    animator.SetBool("Attack", false);
+                    isAttacking = false;
                     ySpeed = jumpSpeed;
                     isJumping = true;
                     jumpButtonPressedTime = null;
@@ -118,22 +127,12 @@ public class PlayerController : MonoBehaviour
             characterController.Move(Vector3.zero);
         }
 
-        if (moveAmount > 0)
+        if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
         {
             targetRotation = Quaternion.LookRotation(moveDir);
-        }
-        if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }   
+        }
+
         animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
     }
-
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(0, 1, 0, 0.5f);
-        Gizmos.DrawSphere(transform.TransformPoint(groundCheckOffset), groundCheckRadius);
-    }
-
 }
