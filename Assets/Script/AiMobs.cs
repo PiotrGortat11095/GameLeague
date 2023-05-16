@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class AiMobs : MonoBehaviour
 {
@@ -17,12 +20,14 @@ public class AiMobs : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    private bool death;
 
     public float health = 2;
     private float currentHealth;
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    Animator animator;
     private void Start()
     {
         currentHealth = health;
@@ -32,15 +37,29 @@ public class AiMobs : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if(playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+            animator.SetFloat("Speed", 0.5f);
+        }
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            animator.SetFloat("Speed", 1f);
+        }
+        if (playerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
+            animator.SetFloat("Speed", 0f);
+        }
         healthbar.UpdateHealthBar(health, currentHealth);
+
     }
     private void Patroling()
     {
@@ -67,33 +86,44 @@ public class AiMobs : MonoBehaviour
     {
         agent.SetDestination(player.position);
     }
-    private void AttackPlayer() 
-    { 
+    public void FireProjectile()
+    {
+        Rigidbody rb = Instantiate(projectile, transform.position + transform.forward, Quaternion.LookRotation(-transform.forward)).GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 6f, ForceMode.Impulse);
+    }
+    private void AttackPlayer()
+    {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-        if(!alreadyAttacked)
+
+        if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
         {
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            animator.SetTrigger("Attack");
+
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-
+        else
+        {
+            animator.SetBool("Attack", false);
+        }
     }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
+
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
+        if (currentHealth <= 0)
+        {
+            death = true;
+            animator.SetBool("Death", true);
+        }
     }
     private void DestroyEnemy()
     {

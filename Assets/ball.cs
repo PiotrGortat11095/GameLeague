@@ -26,7 +26,7 @@ public class ball : MonoBehaviour
 }
 public class FireDestroyer : MonoBehaviour
 {
-    private int damage = 1;
+    private int damage = 3;
     private void OnCollisionEnter(Collision collision)
     {
         AiMobs enemy = collision.gameObject.GetComponent<AiMobs>();
@@ -34,7 +34,6 @@ public class FireDestroyer : MonoBehaviour
         {
             enemy.TakeDamage(damage);
             Destroy(gameObject);
-            Debug.Log(enemy.GetCurrentHealth());
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {

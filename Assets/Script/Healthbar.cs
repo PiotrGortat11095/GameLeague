@@ -7,13 +7,13 @@ public class Healthbar : MonoBehaviour
 {
     [SerializeField] private Image _healthbarSprite;
 
-    public Transform target; // The target object to look at
+    public Transform target; 
 
     void Update()
     {
-        if (target != null) // Check if the target is not null
+        if (target != null)
         {
-            // Rotate this object to look at the target
+            
             transform.LookAt(target);
         }
     }
