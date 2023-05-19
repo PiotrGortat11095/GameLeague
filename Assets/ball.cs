@@ -14,19 +14,23 @@ public class ball : MonoBehaviour
     {
         Rigidbody fireInstance;
         fireInstance = Instantiate(fire, spawnPoint.position, fire.transform.rotation) as Rigidbody;
-        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + Screen.height / 10));
 
-        fireInstance.AddForce(ray.direction * multipiler);
+        Vector3 mousePosition = Input.mousePosition;
+
+        Vector3 worldMousePosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y + 10, mainCamera.transform.position.z));
+
+        Vector3 direction = worldMousePosition - spawnPoint.position;
+
+        fireInstance.AddForce(direction.normalized * multipiler);
 
         fireInstance.gameObject.AddComponent<FireDestroyer>();
-
-
     }
-
 }
+
 public class FireDestroyer : MonoBehaviour
 {
     private int damage = 3;
+
     private void OnCollisionEnter(Collision collision)
     {
         AiMobs enemy = collision.gameObject.GetComponent<AiMobs>();
@@ -41,4 +45,3 @@ public class FireDestroyer : MonoBehaviour
         }
     }
 }
-

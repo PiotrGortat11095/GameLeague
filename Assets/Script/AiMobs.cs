@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,9 +29,12 @@ public class AiMobs : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     Animator animator;
+    public AiCloning aiCloning;
+
     private void Start()
     {
         currentHealth = health;
+        aiCloning.CloneAI();
     }
 
     private void Awake()
@@ -88,14 +92,17 @@ public class AiMobs : MonoBehaviour
     }
     public void FireProjectile()
     {
-        Rigidbody rb = Instantiate(projectile, transform.position + transform.forward, Quaternion.LookRotation(-transform.forward)).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(transform.up * 6f, ForceMode.Impulse);
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Rigidbody rb = Instantiate(projectile, transform.position + directionToPlayer, Quaternion.LookRotation(-directionToPlayer)).GetComponent<Rigidbody>();
+        rb.AddForce(directionToPlayer * 32f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 5f, ForceMode.Impulse);
+        
     }
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
+        transform.LookAt(playerPositionSameY);
 
         if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
         {

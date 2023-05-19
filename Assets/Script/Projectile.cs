@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    private int AIdamage = 1;
+    private int AIdamage = 7;
     private void OnCollisionEnter(Collision collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
