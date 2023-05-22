@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private float PcurrentHealth;
     public float PcurrentMana;
     public float HealthRegeneration = 5f;
-    private float ManaRegeneration = 5f;
+    public float ManaRegeneration = 5f;
 
     private void Start()
     {

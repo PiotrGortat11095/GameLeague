@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
 {
     [SerializeField] private Image _healthbarSprite;
+    [SerializeField] private Text _healthbarText;
 
     public Transform target; 
 
@@ -21,5 +22,6 @@ public class Healthbar : MonoBehaviour
 public void UpdateHealthBar(float health, float currentHealth)
     {
         _healthbarSprite.fillAmount = currentHealth / health;
+        _healthbarText.text = "Health: " + currentHealth;
     }
 }

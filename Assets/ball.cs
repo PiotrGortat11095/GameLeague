@@ -11,7 +11,6 @@ public class ball : MonoBehaviour
     public Transform player;
     public Camera mainCamera;
     public float magmaLifetime = 5f;
-    public float meteorLifetime = 10f;
     private Player playerScript;
     public LayerMask ThisLayers;
     public bool Enemy;
@@ -79,7 +78,7 @@ public class ball : MonoBehaviour
                 mana = 10;
                 playerScript.Mana(mana);
                 Vector3 targetPosition = hit.point;
-                targetPosition.y += 15f;
+                targetPosition.y += 11f;
 
                 if (Vector3.Distance(targetPosition, player.position) > maxMeteorDistance)
                 {
@@ -90,10 +89,12 @@ public class ball : MonoBehaviour
                 Rigidbody meteorInstance;
                 meteorInstance = Instantiate(meteor, targetPosition, meteor.transform.rotation) as Rigidbody;
                 meteorInstance.gameObject.AddComponent<FireDestroyer2>();
-                meteorInstance.AddForce(0, -900000000, 0);
-                Destroy(meteorInstance.gameObject, meteorLifetime);
+                meteorInstance.AddForce(0, -1500000000, 0);
+                Destroy(meteorInstance.gameObject, magmaLifetime);
             }
+
         }
+
     }
 }
 
@@ -129,3 +130,5 @@ public class FireDestroyer2 : MonoBehaviour
         }
     }
 }
+
+
