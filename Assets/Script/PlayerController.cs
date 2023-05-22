@@ -5,26 +5,31 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 500f;
-    [SerializeField] float groundCheckRadius = 0.2f;
+
     [SerializeField] Vector3 groundCheckOffset;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] private float jumpButtonGracePeriod;
     [SerializeField] private float jumpSpeed;
-
+    private Player playerScript;
+    private ball skillScript;
     private bool isAttacking;
     float ySpeed;
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
     private bool isJumping;
-    private bool isGrounded;
-
+    public Transform player;
     Quaternion targetRotation;
 
     CameraController cameraController;
     Animator animator;
     CharacterController characterController;
 
+    private void Start()
+    {
+        playerScript = player.GetComponent<Player>();
+        skillScript = player.GetComponent <ball>();
+    }
     private void Awake()
     {
         cameraController = Camera.main.GetComponent<CameraController>();
@@ -54,6 +59,29 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("Grounded", false);
+        }
+        if (Input.GetButton("Ultimate") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
+        {
+            if (skillScript.Enemy) 
+            {
+            animator.SetBool("Ultimate", true);
+            isAttacking = true;
+            }
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
+        {
+            animator.SetBool("Ultimate", false);
+            isAttacking = false;
+        }
+        if (Input.GetButton("Skill1") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 5)
+        {
+            animator.SetBool("Skill1", true);
+            isAttacking = true;
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall"))
+        {
+            animator.SetBool("Skill1", false);
+            isAttacking = false;
         }
         if (Input.GetMouseButton(0) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle"))
         {
@@ -85,7 +113,6 @@ public class PlayerController : MonoBehaviour
         {
             characterController.stepOffset = originalStepOffset;
             animator.SetBool("Grounded", true);
-            isGrounded = true;
             animator.SetBool("Jump", false);
             isJumping = false;
             animator.SetBool("FreeFall", false);
@@ -108,7 +135,6 @@ public class PlayerController : MonoBehaviour
         {
             characterController.stepOffset = 0;
             animator.SetBool("Grounded", false);
-            isGrounded = false;
 
             if ((isJumping && ySpeed < 0) || ySpeed < -2)
             {
@@ -116,7 +142,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
+        if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
         {
             var velocity = moveDir * moveSpeed;
             velocity.y = ySpeed;
@@ -127,7 +153,7 @@ public class PlayerController : MonoBehaviour
             characterController.Move(Vector3.zero);
         }
 
-        if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
+        if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
         {
             targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

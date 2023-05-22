@@ -131,6 +131,10 @@ public class AiMobs : MonoBehaviour
             death = true;
             animator.SetBool("Death", true);
         }
+        else if (currentHealth < -20) 
+        {
+            Destroy(gameObject);
+        }
     }
     private void DestroyEnemy()
     {

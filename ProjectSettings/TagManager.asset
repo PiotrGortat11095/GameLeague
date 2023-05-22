@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - meteor
   - Water
   - UI
   - WhatIsEnemy
@@ -19,7 +19,7 @@ TagManager:
   - PostProcessing
   - AreaVolume
   - ProjectileAI
-  - 
+  - MagmaWall
   - 
   - 
   - Terrain
