@@ -7,15 +7,18 @@ public class Player : MonoBehaviour
     [SerializeField] HealthbarP Phealthbar;
     [SerializeField] ManabarPp Pmanabar;
     [SerializeField] Expbar Pexpbar;
-    public float Phealth = 10;
-    public float Pmana = 10;
+    public float Phealth = 100;
+    public float Pmana = 100;
     public float exp = 5;
-    public float lvl = 1;
-    public float currentexp = 0;
+    [HideInInspector]public int damageboost = 0;
+    [HideInInspector]public float lvl = 1;
+    private float expp;
+    [HideInInspector]public float currentexp = 0;
     private float PcurrentHealth;
+    private int i = 1;
     public float PcurrentMana;
-    public float HealthRegeneration = 5f;
-    public float ManaRegeneration = 5f;
+    [HideInInspector]public float HealthRegeneration = 2f;
+    [HideInInspector]public float ManaRegeneration = 1f;
 
     private void Start()
     {
@@ -32,11 +35,28 @@ public class Player : MonoBehaviour
         Pexpbar.UpdateLevel(lvl);
         if (currentexp == exp)
         {
-            exp = exp * 2;
+            exp = exp * 4 / 3;
             currentexp = 0;
             lvl++;
-
         }
+        else if(currentexp > exp) 
+        {
+            expp = currentexp - exp;
+            expp = Mathf.Round(expp * 100f) / 100f;
+            exp = exp * 4 / 3;
+            currentexp = expp;
+            lvl++;
+        }
+        if(i < lvl)
+        {
+            Phealth += 5;
+            Pmana += 2;
+            i++;
+            PcurrentHealth = Phealth;
+            PcurrentMana = Pmana;
+            damageboost += 1;
+        }
+        exp = Mathf.Round(exp * 100f) / 100f;
     }
     public void TakeDamage(int AIdamage)
     {

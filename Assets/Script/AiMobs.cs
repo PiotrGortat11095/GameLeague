@@ -139,18 +139,13 @@ public class AiMobs : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !death)
         {
             death = true;
+            player1.currentexp += 5;
             animator.SetBool("Death", true);
             aiCloning.cloneCount--;
-            player1.currentexp += 5;
-        }
-        else if (currentHealth < -20) 
-        {
-            Destroy(gameObject);
-            aiCloning.cloneCount--;
-            player1.currentexp += 5;
+            agent.enabled = false;
         }
     }
     private void DestroyEnemy()

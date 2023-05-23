@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class ball : MonoBehaviour
@@ -100,7 +102,14 @@ public class ball : MonoBehaviour
 
 public class FireDestroyer : MonoBehaviour
 {
-    private int damage = 3;
+    private Player playerScript;
+    private int damage;
+
+    private void Start()
+    {
+        playerScript = FindObjectOfType<Player>();
+        damage = 10 + playerScript.damageboost * 2;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -119,7 +128,13 @@ public class FireDestroyer : MonoBehaviour
 
 public class FireDestroyer2 : MonoBehaviour
 {
-    private int damage = 100;
+    private Player playerScript;
+    private int damage;
+    private void Start()
+    {
+        playerScript = FindObjectOfType<Player>();
+        damage = 25 + playerScript.damageboost * 4;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
