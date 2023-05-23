@@ -7,7 +7,7 @@ public class AiCloning : MonoBehaviour
 {
     public AiMobs aiPrefab;
     public int maxClones = 5;
-    private int cloneCount = 0;
+    [HideInInspector]public int cloneCount = 0;
     public float spawnRadius = 5f;
     private Vector3 randomPosition;
 

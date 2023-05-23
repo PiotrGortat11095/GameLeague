@@ -13,7 +13,6 @@ public class AiMobs : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -30,11 +29,17 @@ public class AiMobs : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     Animator animator;
     public AiCloning aiCloning;
+    private Player player1;
+    private float cloningTimer;
+    private float cloningInterval = 60f;
+
 
     private void Start()
     {
         currentHealth = health;
+        cloningTimer = cloningInterval;
         aiCloning.CloneAI();
+        player1 = player.GetComponent<Player>();
     }
 
     private void Awake()
@@ -45,19 +50,25 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
+        cloningTimer -= Time.deltaTime;
+        if (cloningTimer <= 0f && aiCloning.cloneCount < aiCloning.maxClones)
+        {
+            aiCloning.CloneAI();
+            cloningTimer = cloningInterval;
+        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (!playerInSightRange && !playerInAttackRange)
+        if (!playerInSightRange && !playerInAttackRange && !death)
         {
             Patroling();
             animator.SetFloat("Speed", 0.5f);
         }
-        if (playerInSightRange && !playerInAttackRange)
+        if (playerInSightRange && !playerInAttackRange && !death)
         {
             ChasePlayer();
             animator.SetFloat("Speed", 1f);
         }
-        if (playerInSightRange && playerInAttackRange)
+        if (playerInSightRange && playerInAttackRange && !death)
         {
             AttackPlayer();
             animator.SetFloat("Speed", 0f);
@@ -88,7 +99,7 @@ public class AiMobs : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+            agent.SetDestination(player.position);
     }
     public void FireProjectile()
     {
@@ -100,21 +111,23 @@ public class AiMobs : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
-        Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
-        transform.LookAt(playerPositionSameY);
 
-        if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
-        {
-            animator.SetTrigger("Attack");
+            agent.SetDestination(transform.position);
+            Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
+            transform.LookAt(playerPositionSameY);
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-        }
+            if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
+            {
+                animator.SetTrigger("Attack");
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+            else
+            {
+                animator.SetBool("Attack", false);
+            }
+        
     }
 
     private void ResetAttack()
@@ -130,10 +143,14 @@ public class AiMobs : MonoBehaviour
         {
             death = true;
             animator.SetBool("Death", true);
+            aiCloning.cloneCount--;
+            player1.currentexp += 5;
         }
         else if (currentHealth < -20) 
         {
             Destroy(gameObject);
+            aiCloning.cloneCount--;
+            player1.currentexp += 5;
         }
     }
     private void DestroyEnemy()

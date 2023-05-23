@@ -6,8 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] HealthbarP Phealthbar;
     [SerializeField] ManabarPp Pmanabar;
+    [SerializeField] Expbar Pexpbar;
     public float Phealth = 10;
     public float Pmana = 10;
+    public float exp = 5;
+    public float lvl = 1;
+    public float currentexp = 0;
     private float PcurrentHealth;
     public float PcurrentMana;
     public float HealthRegeneration = 5f;
@@ -24,6 +28,15 @@ public class Player : MonoBehaviour
     {
         Phealthbar.UpdateHealthBar(Phealth, PcurrentHealth);
         Pmanabar.UpdateManaBar(Pmana, PcurrentMana);
+        Pexpbar.UpdateExpBar(exp, currentexp);
+        Pexpbar.UpdateLevel(lvl);
+        if (currentexp == exp)
+        {
+            exp = exp * 2;
+            currentexp = 0;
+            lvl++;
+
+        }
     }
     public void TakeDamage(int AIdamage)
     {
