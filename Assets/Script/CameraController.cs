@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertX;
     [SerializeField] bool invertY;
     [SerializeField] LayerMask obstacleMask;
+    private NPCInteractable interactable;
+    public Transform NPC;
 
     float distance2 = 4;
     float rotationY;
@@ -25,6 +27,7 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        interactable = NPC.GetComponent<NPCInteractable>();
     }
     private void Update()
     {
@@ -59,9 +62,11 @@ public class CameraController : MonoBehaviour
             distance = distance2;
         }
 
-
-        transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
-        transform.rotation = targetRotation;
+        if (!interactable.InteractNow)
+        {
+            transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
+            transform.rotation = targetRotation;
+        }
     }
     public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);
     public Quaternion GetPlanarRotation()

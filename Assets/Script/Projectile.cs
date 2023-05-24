@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
     private int AIdamage = 7;
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+
+        Player player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
             player.TakeDamage(AIdamage);
             Destroy(gameObject);
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") || other.gameObject.layer == LayerMask.NameToLayer("MagmaWall"))
         {
             Destroy(gameObject);
         }

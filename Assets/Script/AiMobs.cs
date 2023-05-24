@@ -11,11 +11,13 @@ public class AiMobs : MonoBehaviour
 {
     [SerializeField] Healthbar healthbar;
     public NavMeshAgent agent;
+    
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    private NPCInteractable interactable;
 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -28,34 +30,27 @@ public class AiMobs : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     Animator animator;
-    public AiCloning aiCloning;
     private Player player1;
-    private float cloningTimer;
-    private float cloningInterval = 60f;
+    public Transform NPC;
+    public static int Bandyci = 0;
 
 
     private void Start()
     {
         currentHealth = health;
-        cloningTimer = cloningInterval;
-        aiCloning.CloneAI();
         player1 = player.GetComponent<Player>();
+        interactable = NPC.GetComponent<NPCInteractable>();
     }
 
     private void Awake()
     {
+        AiMobs.Bandyci = 0;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
     private void Update()
     {
-        cloningTimer -= Time.deltaTime;
-        if (cloningTimer <= 0f && aiCloning.cloneCount < aiCloning.maxClones)
-        {
-            aiCloning.CloneAI();
-            cloningTimer = cloningInterval;
-        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         if (!playerInSightRange && !playerInAttackRange && !death)
@@ -105,8 +100,8 @@ public class AiMobs : MonoBehaviour
     {
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         Rigidbody rb = Instantiate(projectile, transform.position + directionToPlayer, Quaternion.LookRotation(-directionToPlayer)).GetComponent<Rigidbody>();
-        rb.AddForce(directionToPlayer * 32f, ForceMode.Impulse);
-        rb.AddForce(transform.up * 5f, ForceMode.Impulse);
+        rb.AddForce(directionToPlayer * 3.2f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 0.5f, ForceMode.Impulse);
         
     }
     private void AttackPlayer()
@@ -144,8 +139,19 @@ public class AiMobs : MonoBehaviour
             death = true;
             player1.currentexp += 5;
             animator.SetBool("Death", true);
-            aiCloning.cloneCount--;
             agent.enabled = false;
+            if (player1.Activequest)
+            {
+                if (AiMobs.Bandyci < 10)
+                {
+                    AiMobs.Bandyci++;
+                }
+                
+            }
+            else if (!player1.Activequest)
+            {
+                AiMobs.Bandyci = 0;
+            }
         }
     }
     private void DestroyEnemy()

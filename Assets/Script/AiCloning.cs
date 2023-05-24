@@ -5,39 +5,57 @@ using UnityEngine.AI;
 
 public class AiCloning : MonoBehaviour
 {
-    public AiMobs aiPrefab;
-    public int maxClones = 5;
-    [HideInInspector]public int cloneCount = 0;
-    public float spawnRadius = 5f;
-    private Vector3 randomPosition;
+    public GameObject aiPrefab;
+    private int numberOfAIs = 1;
+    private float spawnInterval = 0.5f;
+    public int max = 0;
+    private int ile = 0;
+    public Transform maincamera;
 
-    public void CloneAI()
+    private void Start()
     {
-        if (cloneCount >= maxClones)
-        {
-            return;
-        }
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        if (spawnPosition != Vector3.zero) // zero vector indicates failed navmesh sample
-        {
-            AiMobs clonedAI = Instantiate(aiPrefab, spawnPosition, Quaternion.identity);
-            cloneCount++;
-        }
+        // Rozpocznij tworzenie klonów po starcie
+        InvokeRepeating("SpawnAi", 0f, spawnInterval);
     }
+
+    private void SpawnAi()
+    {
+
+            for (int i = 0; i < numberOfAIs; i++)
+            {
+            if (ile < max)
+            {
+                Vector3 spawnPosition = GetRandomSpawnPosition();
+                GameObject aiInstance = Instantiate(aiPrefab, spawnPosition, Quaternion.identity);
+
+                // Pobierz komponent Healthbar z klonowanego obiektu Ai
+                Healthbar healthbar = aiInstance.GetComponentInChildren<Healthbar>();
+
+                if (healthbar != null)
+                {
+                    // Ustaw obiekt gracza jako cel dla paska zdrowia
+                    healthbar.SetTarget(maincamera);
+                }
+                ile++;
+            }
+            }
+
+    }
+
 
     private Vector3 GetRandomSpawnPosition()
     {
-        NavMeshHit hit;
-        for (int i = 0; i < 30; i++)
-        {
-            Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
-            Vector3 spawnPosition = transform.position + randomOffset;
+        float spawnRadius = 10f;
+        Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPosition = new Vector3(randomCircle.x, 0f, randomCircle.y) + transform.position;
 
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
-            {
-                return hit.position;
-            }
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
+        {
+            spawnPosition = hit.position;
         }
-        return Vector3.zero; // Return zero vector if no valid navmesh location found
+
+        return spawnPosition;
     }
+
 }

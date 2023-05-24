@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float Phealth = 100;
     public float Pmana = 100;
     public float exp = 5;
+    public bool Activequest = false;
     [HideInInspector]public int damageboost = 0;
     [HideInInspector]public float lvl = 1;
     private float expp;
