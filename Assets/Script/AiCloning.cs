@@ -7,9 +7,10 @@ public class AiCloning : MonoBehaviour
 {
     public GameObject aiPrefab;
     private int numberOfAIs = 1;
-    private float spawnInterval = 0.5f;
+    private float spawnInterval = 0.1f;
     public int max = 0;
-    private int ile = 0;
+    public float RespawnTime;
+    [HideInInspector] public int ile = 0;
     public Transform maincamera;
 
     private void Start()
@@ -17,8 +18,7 @@ public class AiCloning : MonoBehaviour
         // Rozpocznij tworzenie klonów po starcie
         InvokeRepeating("SpawnAi", 0f, spawnInterval);
     }
-
-    private void SpawnAi()
+    public void SpawnAi()
     {
 
             for (int i = 0; i < numberOfAIs; i++)
@@ -37,9 +37,18 @@ public class AiCloning : MonoBehaviour
                     healthbar.SetTarget(maincamera);
                 }
                 ile++;
+                aiInstance.AddComponent<AiDestroyHandler>().aiCloning = this;
             }
             }
 
+    }
+    public void DecreaseIleCD()
+    {
+        Invoke(nameof(DecreaseIle), RespawnTime);
+    }
+    public void DecreaseIle()
+    {
+        ile--;
     }
 
 
@@ -58,4 +67,16 @@ public class AiCloning : MonoBehaviour
         return spawnPosition;
     }
 
+}
+public class AiDestroyHandler : MonoBehaviour
+{
+    public AiCloning aiCloning;
+
+    private void OnDestroy()
+    {
+        if (aiCloning != null)
+        {
+            aiCloning.DecreaseIleCD();
+        }
+    }
 }

@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthbarSprite: {fileID: 5820516491500333289}
   _healthbarText: {fileID: 5820516492763497147}
+  target: {fileID: 0}
 --- !u!1 &5820516491093728237
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5820516491061293239}
+  AI: {fileID: 5820516491322460506}
   agent: {fileID: 5820516491322460510}
+  AIdamage: 40
   player: {fileID: 5380933372777712371, guid: 59c12df534814c34ebf6d4b1cdd9360d, type: 3}
   whatIsGround:
     serializedVersion: 2

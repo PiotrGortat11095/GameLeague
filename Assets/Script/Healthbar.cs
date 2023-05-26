@@ -8,7 +8,7 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private Image _healthbarSprite;
     [SerializeField] private Text _healthbarText;
 
-    private Transform target;
+    public Transform target;
 
     public void SetTarget(Transform newTarget)
     {

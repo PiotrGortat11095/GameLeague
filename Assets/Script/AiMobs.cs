@@ -6,21 +6,24 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class AiMobs : MonoBehaviour
 {
     [SerializeField] Healthbar healthbar;
     public NavMeshAgent agent;
-    
+    public int AIdamage = 40;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public Vector3 walkPoint;
+    private Vector3 walkPoint;
     bool walkPointSet;
+
+    private AiCloning aicloning;
     public float walkPointRange;
     private NPCInteractable interactable;
-
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public bool Triggernow = false;
     public GameObject projectile;
     private bool death;
 
@@ -32,14 +35,18 @@ public class AiMobs : MonoBehaviour
     Animator animator;
     private Player player1;
     public Transform NPC;
+
     public static int Bandyci = 0;
 
+    private Rigidbody rb;
 
     private void Start()
     {
+        aicloning = FindObjectOfType<AiCloning>();
         currentHealth = health;
         player1 = player.GetComponent<Player>();
         interactable = NPC.GetComponent<NPCInteractable>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Awake()
@@ -48,9 +55,13 @@ public class AiMobs : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        
+
     }
     private void Update()
     {
+
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         if (!playerInSightRange && !playerInAttackRange && !death)
@@ -94,7 +105,10 @@ public class AiMobs : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MutantAttack"))
+        {
             agent.SetDestination(player.position);
+        }
     }
     public void FireProjectile()
     {
@@ -106,23 +120,48 @@ public class AiMobs : MonoBehaviour
     }
     private void AttackPlayer()
     {
-
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MutantAttack"))
+        {
             agent.SetDestination(transform.position);
+        }
             Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
             transform.LookAt(playerPositionSameY);
 
             if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
             {
-                animator.SetTrigger("Attack");
+                animator.SetBool("Attack", true);
 
                 alreadyAttacked = true;
+            
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             else
             {
+
                 animator.SetBool("Attack", false);
             }
         
+    }
+    private void AttackTrigger()
+    {
+        Triggernow = true;
+    }
+    private void EndAttackTrigger()
+    {
+        Triggernow = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            if (alreadyAttacked && Triggernow)
+            {
+                player.TakeDamage(AIdamage);
+            }
+        }
+
     }
 
     private void ResetAttack()
@@ -158,6 +197,7 @@ public class AiMobs : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
