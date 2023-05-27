@@ -14,6 +14,7 @@ public class AiMobs : MonoBehaviour
     public NavMeshAgent agent;
     public int AIdamage = 40;
     public Transform player;
+    public float exp;
     public LayerMask whatIsGround, whatIsPlayer;
     private Vector3 walkPoint;
     bool walkPointSet;
@@ -26,7 +27,7 @@ public class AiMobs : MonoBehaviour
     public bool Triggernow = false;
     public GameObject projectile;
     private bool death;
-
+    private float DeathTime = 5f;
     public float health = 2;
     private float currentHealth;
 
@@ -51,7 +52,6 @@ public class AiMobs : MonoBehaviour
 
     private void Awake()
     {
-        AiMobs.Bandyci = 0;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -176,7 +176,7 @@ public class AiMobs : MonoBehaviour
         if (currentHealth <= 0 && !death)
         {
             death = true;
-            player1.currentexp += 5;
+            player1.currentexp += exp;
             animator.SetBool("Death", true);
             agent.enabled = false;
             if (player1.Activequest)
@@ -194,6 +194,10 @@ public class AiMobs : MonoBehaviour
         }
     }
     private void DestroyEnemy()
+    {
+        Invoke(nameof(DestroyE), DeathTime);
+    }
+    private void DestroyE()
     {
         Destroy(gameObject);
     }

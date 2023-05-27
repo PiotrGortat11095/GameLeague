@@ -41,6 +41,15 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (interactable.InteractNow)
+        {
+            animator.SetFloat("moveAmount", 0f);
+            animator.SetBool("Grounded", true);
+            animator.SetBool("FreeFall", false);
+            animator.SetBool("Jump", false);
+            animator.SetBool("Attack", false);
+            characterController.Move(Vector3.zero);
+        }
         if (!interactable.InteractNow)
         {
             float h = Input.GetAxis("Horizontal");
@@ -166,5 +175,6 @@ public class PlayerController : MonoBehaviour
 
             animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
+        
     }
 }
