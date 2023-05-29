@@ -839,7 +839,7 @@ MonoBehaviour:
   healthbar: {fileID: 5820516491061293239}
   agent: {fileID: 5820516491322460510}
   AIdamage: 40
-  player: {fileID: 5380933372777712371, guid: 59c12df534814c34ebf6d4b1cdd9360d, type: 3}
+  player: {fileID: 1745932691398220519, guid: 9c7d0415ee5dae143b5dc1d21a0640fb, type: 3}
   exp: 5
   whatIsGround:
     serializedVersion: 2

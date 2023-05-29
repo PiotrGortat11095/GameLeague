@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float Phealth = 100;
     public float Pmana = 100;
     public float exp = 5;
+    public bool alreadyattack = false;
     public bool Activequest = false;
     [HideInInspector]public int damageboost = 0;
     [HideInInspector]public float lvl = 1;
@@ -58,6 +59,14 @@ public class Player : MonoBehaviour
             damageboost += 1;
         }
         exp = Mathf.Round(exp * 100f) / 100f;
+    }
+    public void AttackStart()
+    {
+        alreadyattack = true;
+    }
+    public void AttackEnd()
+    {
+        alreadyattack = false;
     }
     public void TakeDamage(int AIdamage)
     {
