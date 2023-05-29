@@ -10,6 +10,8 @@ public class NPCInteractable : MonoBehaviour
     public GameObject questcomplete;
     public GameObject questlist;
     public GameObject questend;
+    public GameObject quest1;
+    public GameObject quest2;
     [SerializeField] private Text QuestText;
     private Player player;
     private AiMobs aimobs;
@@ -18,14 +20,29 @@ public class NPCInteractable : MonoBehaviour
     public Transform Ai;
 
     public bool InteractNow = false;
+    public Transform target;
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
     public void Start()
     {
         aimobs = Ai.GetComponent<AiMobs>();
         player = playerTransform.GetComponent<Player>();
+        quest1.SetActive(true);
     }
     public void Update()
     {
         QuestText.text = "Pokonaj Bandytów " + "Pokonano: " + AiMobs.Bandyci + "/" + "10";
+        if (AiMobs.Bandyci >= 10)
+        {
+            quest2.SetActive(true);
+        }
+        if (target != null)
+        {
+            transform.LookAt(target);
+        }
     }
 
     public void YesButton()
@@ -37,6 +54,7 @@ public class NPCInteractable : MonoBehaviour
         player.Activequest = true;
         if (player.Activequest)
         {
+            quest1.SetActive(false);
             questlist.SetActive(true);
         }
     }
@@ -82,6 +100,7 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Rewards()
     {
+        quest2.SetActive(false);
         questcomplete.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
