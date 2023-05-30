@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 736251621405029787}
+  FloatingTextPrefab: {fileID: 8083161676229528290, guid: 87e0a8cd6611a46408f42a3bde30c4dd,
+    type: 3}
   agent: {fileID: 736251620915002060}
   AIdamage: 40
   player: {fileID: 0}
@@ -304,6 +306,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   NPC: {fileID: 6447961078831995095, guid: 6fd24939cd2c6d24790e696d716cb2a7, type: 3}
+  maincamera: {fileID: 0}
 --- !u!1 &736251621176311028
 GameObject:
   m_ObjectHideFlags: 0

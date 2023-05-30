@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 public class AiMobs : MonoBehaviour
 {
     [SerializeField] Healthbar healthbar;
+    public GameObject FloatingTextPrefab;
     public NavMeshAgent agent;
     public int AIdamage = 40;
     public Transform player;
@@ -27,7 +28,7 @@ public class AiMobs : MonoBehaviour
     public bool Triggernow = false;
     public GameObject projectile;
     private bool death;
-    private float DeathTime = 5f;
+    private float DeathTime = 1f;
     public float health = 2;
     private float currentHealth;
 
@@ -36,6 +37,10 @@ public class AiMobs : MonoBehaviour
     Animator animator;
     private Player player1;
     public Transform NPC;
+    public Transform maincamera;
+    private Menu menu;
+    public Transform MEnu1;
+
 
     public static int Bandyci = 0;
 
@@ -43,6 +48,15 @@ public class AiMobs : MonoBehaviour
 
     private void Start()
     {
+        maincamera = GameObject.Find("MainCamera").transform;
+        if (menu.wizard1)
+        {
+            player = GameObject.Find("Wizard(Clone)").transform;
+        }
+        if (menu.warrior1)
+        {
+            player = GameObject.Find("Warrior(Clone)").transform;
+        }
         aicloning = FindObjectOfType<AiCloning>();
         currentHealth = health;
         player1 = player.GetComponent<Player>();
@@ -52,7 +66,8 @@ public class AiMobs : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        MEnu1 = GameObject.Find("Player").transform;
+        menu = MEnu1.GetComponent<Menu>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
@@ -60,7 +75,6 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
-
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -172,7 +186,23 @@ public class AiMobs : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if (!death)
+        {
+            currentHealth -= damage;
+            if (FloatingTextPrefab)
+            {
+                Vector3 pop = new Vector3(transform.position.x, transform.position.y +2, transform.position.z);
+                var go = Instantiate(FloatingTextPrefab, pop, Quaternion.identity, transform);
+                go.GetComponent<TextMesh>().text = damage.ToString();
+                go.transform.LookAt(maincamera);
+                go.transform.Rotate(0, 180, 0);
+                go.transform.position += new Vector3(Random.Range(-0.2f, 0.2f),
+                Random.Range(0, 0),
+                Random.Range(0, 0));
+
+
+            }
+        }
         if (currentHealth <= 0 && !death)
         {
             death = true;
@@ -193,6 +223,7 @@ public class AiMobs : MonoBehaviour
             }
         }
     }
+
     private void DestroyEnemy()
     {
         Invoke(nameof(DestroyE), DeathTime);

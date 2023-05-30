@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     public Transform player;
     Quaternion targetRotation;
-    private NPCInteractable interactable;
-    public Transform NPC;
 
     CameraController cameraController;
     Animator animator;
@@ -31,27 +29,16 @@ public class PlayerController : MonoBehaviour
     {
         playerScript = player.GetComponent<Player>();
         skillScript = player.GetComponent <ball>();
-        interactable = NPC.GetComponent<NPCInteractable>();
-    }
-    private void Awake()
-    {
+
         cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
+
     private void Update()
     {
-        if (interactable.InteractNow)
-        {
-            animator.SetFloat("moveAmount", 0f);
-            animator.SetBool("Grounded", true);
-            animator.SetBool("FreeFall", false);
-            animator.SetBool("Jump", false);
-            animator.SetBool("Attack", false);
-            characterController.Move(Vector3.zero);
-        }
-        if (!interactable.InteractNow)
-        {
+
+
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
@@ -118,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 lastGroundedTime = Time.time;
             }
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isJumping)
             {
                 jumpButtonPressedTime = Time.time;
             }
@@ -133,7 +120,10 @@ public class PlayerController : MonoBehaviour
 
                 if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
                 {
+                if (!isJumping)
+                {
                     animator.SetBool("Jump", true);
+                }
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
                     {
                         animator.SetBool("Attack", false);
@@ -174,7 +164,7 @@ public class PlayerController : MonoBehaviour
             }
 
             animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
-        }
+        
         
     }
 }

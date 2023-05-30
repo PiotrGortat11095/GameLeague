@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] Transform followTarget;
+    public Transform followTarget;
     [SerializeField] float distance = 5;
     [SerializeField] float rotationSpeed = 2f;
     [SerializeField] float minVerticalAngle = -45;
@@ -22,11 +22,13 @@ public class CameraController : MonoBehaviour
 
     float invertXVal;
     float invertYVal;
-
+    public void SetTarget(Transform newTarget)
+    {
+        followTarget = newTarget;
+    }
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
         interactable = NPC.GetComponent<NPCInteractable>();
     }
     private void Update()

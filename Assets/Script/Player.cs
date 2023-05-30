@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] HealthbarP Phealthbar;
-    [SerializeField] ManabarPp Pmanabar;
-    [SerializeField] Expbar Pexpbar;
+    public HealthbarP Phealthbar;
+    public ManabarPp Pmanabar;
+    public Expbar Pexpbar;
     public float Phealth = 100;
     public float Pmana = 100;
     public float exp = 5;
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
         PcurrentHealth = Phealth;
         PcurrentMana = Pmana;
         InvokeRepeating("RegenerateMana", ManaRegeneration, ManaRegeneration);

@@ -12,6 +12,7 @@ public class NPCInteractable : MonoBehaviour
     public GameObject questend;
     public GameObject quest1;
     public GameObject quest2;
+    public GameObject NPC;
     [SerializeField] private Text QuestText;
     private Player player;
     private AiMobs aimobs;
@@ -25,6 +26,10 @@ public class NPCInteractable : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+    }
+    public void Awake()
+    {
+        NPC.SetActive(false);
     }
     public void Start()
     {

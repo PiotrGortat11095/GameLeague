@@ -837,6 +837,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5820516491061293239}
+  FloatingTextPrefab: {fileID: 8083161676229528290, guid: 87e0a8cd6611a46408f42a3bde30c4dd,
+    type: 3}
   agent: {fileID: 5820516491322460510}
   AIdamage: 40
   player: {fileID: 1745932691398220519, guid: 9c7d0415ee5dae143b5dc1d21a0640fb, type: 3}
