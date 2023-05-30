@@ -75,6 +75,15 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
+        if (menu.wizard1)
+        {
+            player = GameObject.Find("Wizard(Clone)").transform;
+        }
+        if (menu.warrior1)
+        {
+            player = GameObject.Find("Warrior(Clone)").transform;
+        }
+        player1 = player.GetComponent<Player>();
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
