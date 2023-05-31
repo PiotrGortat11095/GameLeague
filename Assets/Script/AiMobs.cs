@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 public class AiMobs : MonoBehaviour
 {
     [SerializeField] Healthbar healthbar;
+    public GameObject healthbarr;
     public GameObject FloatingTextPrefab;
     public NavMeshAgent agent;
     public int AIdamage = 40;
@@ -31,6 +32,7 @@ public class AiMobs : MonoBehaviour
     private float DeathTime = 1f;
     public float health = 2;
     private float currentHealth;
+    public bool Boss;
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -42,12 +44,17 @@ public class AiMobs : MonoBehaviour
     public Transform MEnu1;
 
 
+
     public static int Bandyci = 0;
 
     private Rigidbody rb;
 
     private void Start()
     {
+        if (Boss)
+        {
+            healthbarr.SetActive(false);
+        }
         maincamera = GameObject.Find("MainCamera").transform;
         if (menu.wizard1)
         {
@@ -75,6 +82,15 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
+        player1 = player.GetComponent<Player>();
+        if (Boss && player1.visible)
+        {
+            healthbarr.SetActive(true);
+        }
+        if (Boss && !player1.visible)
+        {
+            healthbarr.SetActive(false);
+        }
         if (menu.wizard1)
         {
             player = GameObject.Find("Wizard(Clone)").transform;
@@ -83,7 +99,7 @@ public class AiMobs : MonoBehaviour
         {
             player = GameObject.Find("Warrior(Clone)").transform;
         }
-        player1 = player.GetComponent<Player>();
+        
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -143,14 +159,14 @@ public class AiMobs : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MutantAttack"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("MutantAttack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
         {
             agent.SetDestination(transform.position);
         }
-            Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
-            transform.LookAt(playerPositionSameY);
+        Vector3 playerPositionSameY = new Vector3(player.position.x, transform.position.y, player.position.z);
+        transform.LookAt(playerPositionSameY);
 
-            if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
+        if (!alreadyAttacked && playerInSightRange && playerInAttackRange && !death)
             {
                 animator.SetBool("Attack", true);
 
@@ -217,7 +233,7 @@ public class AiMobs : MonoBehaviour
             death = true;
             player1.currentexp += exp;
             animator.SetBool("Death", true);
-            agent.enabled = false;
+            agent.SetDestination(transform.position);
             if (player1.Activequest)
             {
                 if (AiMobs.Bandyci < 10)

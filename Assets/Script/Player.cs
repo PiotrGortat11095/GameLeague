@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public float PcurrentMana;
     [HideInInspector]public float HealthRegeneration = 2f;
     [HideInInspector]public float ManaRegeneration = 1f;
+    public Camera mainCamera;
+    public LayerMask ThisLayers;
+    public bool visible;
 
     private void Start()
     {
@@ -32,6 +35,23 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100, ThisLayers))
+        {
+            AiMobs enemy = hit.collider.GetComponent<AiMobs>();
+            if (enemy != null)
+            {
+                if (enemy.Boss)
+                {
+                    visible = true;
+                }
+            }
+            
+        }
+        else
+        {
+            visible = false;
+        }
         Phealthbar.UpdateHealthBar(Phealth, PcurrentHealth);
         Pmanabar.UpdateManaBar(Pmana, PcurrentMana);
         Pexpbar.UpdateExpBar(exp, currentexp);

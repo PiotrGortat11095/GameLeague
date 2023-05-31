@@ -822,7 +822,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &5820516491322460504
 MonoBehaviour:
@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5820516491061293239}
+  healthbarr: {fileID: 0}
   FloatingTextPrefab: {fileID: 8083161676229528290, guid: 87e0a8cd6611a46408f42a3bde30c4dd,
     type: 3}
   agent: {fileID: 5820516491322460510}
@@ -855,11 +856,14 @@ MonoBehaviour:
   projectile: {fileID: 3939855499279931978, guid: 1a24719c1161f634abdc52254d6c6e74,
     type: 3}
   health: 50
+  Boss: 0
   sightRange: 30
   attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
   NPC: {fileID: 6447961078831995095, guid: 6fd24939cd2c6d24790e696d716cb2a7, type: 3}
+  maincamera: {fileID: 0}
+  MEnu1: {fileID: 0}
 --- !u!95 &5820516491322460505
 Animator:
   serializedVersion: 5

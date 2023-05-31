@@ -48,6 +48,14 @@ public class NPCInteractable : MonoBehaviour
         {
             transform.LookAt(target);
         }
+        if (player.Activequest)
+        {
+            questlist.SetActive(true);
+        }
+        else if (!player.Activequest)
+        {
+            questlist.SetActive(false);
+        }
     }
 
     public void YesButton()

@@ -22,7 +22,6 @@ public class ball : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         playerScript = player.GetComponent<Player>();
     }
     private void Update()
@@ -111,15 +110,15 @@ public class FireDestroyer : MonoBehaviour
         damage = 10 + playerScript.damageboost * 2;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        AiMobs enemy = collision.gameObject.GetComponent<AiMobs>();
+        AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
             Destroy(gameObject);
         }
@@ -136,9 +135,9 @@ public class FireDestroyer2 : MonoBehaviour
         damage = 25 + playerScript.damageboost * 4;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        AiMobs enemy = collision.gameObject.GetComponent<AiMobs>();
+        AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);

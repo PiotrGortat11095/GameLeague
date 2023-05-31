@@ -28,12 +28,12 @@ public class AiCloning : MonoBehaviour
                 Vector3 spawnPosition = GetRandomSpawnPosition();
                 GameObject aiInstance = Instantiate(aiPrefab, spawnPosition, Quaternion.identity);
 
-                // Pobierz komponent Healthbar z klonowanego obiektu Ai
+
                 Healthbar healthbar = aiInstance.GetComponentInChildren<Healthbar>();
 
                 if (healthbar != null)
                 {
-                    // Ustaw obiekt gracza jako cel dla paska zdrowia
+
                     healthbar.SetTarget(maincamera);
                 }
                 ile++;

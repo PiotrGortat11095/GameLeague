@@ -1850,6 +1850,11 @@ MonoBehaviour:
   PcurrentMana: 1
   HealthRegeneration: 2
   ManaRegeneration: 1
+  mainCamera: {fileID: 0}
+  ThisLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  visible: 0
 --- !u!114 &1956316618093041721
 MonoBehaviour:
   m_ObjectHideFlags: 0

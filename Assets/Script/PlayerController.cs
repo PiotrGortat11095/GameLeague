@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     public Transform player;
     Quaternion targetRotation;
+    
 
     CameraController cameraController;
     Animator animator;
@@ -34,12 +35,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
-
     private void Update()
     {
+       
 
-
-            float h = Input.GetAxis("Horizontal");
+        float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
