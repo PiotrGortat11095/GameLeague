@@ -1101,6 +1101,7 @@ MonoBehaviour:
   visible: 0
   questlist: {fileID: 1621888407}
   Allquest: {fileID: 1473528235}
+  questactive: 0
 --- !u!4 &446144272
 Transform:
   m_ObjectHideFlags: 0
@@ -5932,6 +5933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490458749398971663, guid: 82a9b11a6c8d20b4e8d18764d88ed342,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 3237986303
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a9b11a6c8d20b4e8d18764d88ed342, type: 3}

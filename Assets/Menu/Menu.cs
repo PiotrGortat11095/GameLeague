@@ -29,6 +29,7 @@ public class Menu : MonoBehaviour
     private bool firstEsc = false;
     public GameObject questlist;
     public GameObject Allquest;
+    public bool questactive;
 
     private void Awake()
     {
@@ -39,6 +40,32 @@ public class Menu : MonoBehaviour
     }
     void Update()
     {
+        if (wizardInstance != null)
+        {
+            Player player = wizardInstance.GetComponentInChildren<Player>();
+            if (player.Activequest)
+            {
+                questactive = true;
+            }
+            else
+            {
+                questactive= false;
+            }
+
+        }
+        if (warriorInstance != null)
+        {
+            Player player = warriorInstance.GetComponentInChildren<Player>();
+            if (player.Activequest)
+            {
+                questactive = true;
+            }
+            else
+            {
+                questactive = false;
+            }
+
+        }
         if (firstEsc)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,12 +79,20 @@ public class Menu : MonoBehaviour
                 }
                 else if (!visible)
                 {
+                    if (questactive)
+                    {
+                        questlist.SetActive(true);
+                    }
+                    else if (!questactive)
+                    {
+                        questlist.SetActive(false);
+                    }
                     Cursor.lockState = CursorLockMode.Locked;
-                    questlist.SetActive(true);
                 }
                 Menu1.SetActive(visible);
             }
         }
+
     }
     public void wizard ()
     {
@@ -103,7 +138,6 @@ public class Menu : MonoBehaviour
         else
         {
             Debug.Log("Aktualnie grasz t¹ klas¹");
-            questlist.SetActive(false);
         }
     }
     public void warrior()
@@ -133,6 +167,14 @@ public class Menu : MonoBehaviour
             player.Phealthbar = Phealthbar;
             player.Pmanabar = Pmanabar;
             player.Pexpbar = Pexpbar;
+            if (player.Activequest)
+            {
+                questactive = true;
+            }
+            else if (!player.Activequest)
+            {
+                questactive = false;
+            }
             animator = warriorInstance.GetComponent<Animator>();
             animator.enabled = true;
             PlayerController controller = warriorInstance.GetComponentInChildren<PlayerController>();
@@ -148,7 +190,6 @@ public class Menu : MonoBehaviour
         else
         {
             Debug.Log("Aktualnie grasz t¹ klas¹");
-            questlist.SetActive(false);
         }
     }
 
