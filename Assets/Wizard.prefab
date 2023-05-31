@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d967e6e4401e69742871eaf7176b67ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 9
   rotationSpeed: 500
   groundCheckOffset: {x: 0, y: 0.1, z: 0.07}
   groundLayer:
