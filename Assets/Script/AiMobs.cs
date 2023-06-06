@@ -195,9 +195,13 @@ public class AiMobs : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            if (alreadyAttacked && Triggernow)
+            if (alreadyAttacked && Triggernow && !player.alreadyblock)
             {
                 player.TakeDamage(AIdamage);
+            }
+            else if (alreadyAttacked && Triggernow && player.alreadyblock)
+            {
+                player.Mana(AIdamage/3);
             }
         }
 

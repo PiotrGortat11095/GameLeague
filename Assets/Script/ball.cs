@@ -52,9 +52,9 @@ public class ball : MonoBehaviour
 
     public void MagmaWall()
     {
-        if (playerScript.PcurrentMana >= 5)
+        if (playerScript.PcurrentMana >= 10)
         {
-            mana = 5;
+            mana = 10;
         playerScript.Mana(mana);
 
             Rigidbody magmaInstance;
@@ -68,7 +68,7 @@ public class ball : MonoBehaviour
 
     public void Meteor()
     {
-        if (playerScript.PcurrentMana >= 10)
+        if (playerScript.PcurrentMana >= 30)
         {
 
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -76,7 +76,7 @@ public class ball : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxMeteorDistance, ThisLayers))
             {
-                mana = 10;
+                mana = 30;
                 playerScript.Mana(mana);
                 Vector3 targetPosition = hit.point;
                 targetPosition.y += 11f;

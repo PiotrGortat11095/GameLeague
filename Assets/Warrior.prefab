@@ -630,8 +630,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5089741687300320075}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.05
   m_Height: 0.7
   m_Direction: 2
@@ -643,10 +652,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5089741687300320075}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1973,6 +1993,7 @@ MonoBehaviour:
     m_Bits: 0
   jumpButtonGracePeriod: 300
   jumpSpeed: 6
+  block: 0
   player: {fileID: 5089741688525690075}
 --- !u!143 &5089741688525690052
 CharacterController:
@@ -1982,9 +2003,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5089741688525690077}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 1.75
   m_Radius: 0.2
   m_SlopeLimit: 45
@@ -2007,10 +2036,11 @@ MonoBehaviour:
   Phealthbar: {fileID: 0}
   Pmanabar: {fileID: 0}
   Pexpbar: {fileID: 0}
-  Phealth: 11111111
+  Phealth: 150
   Pmana: 100
   exp: 5
   alreadyattack: 0
+  alreadyblock: 0
   Activequest: 0
   damageboost: 0
   lvl: 1

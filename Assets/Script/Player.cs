@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float Pmana = 100;
     public float exp = 5;
     public bool alreadyattack = false;
+    public bool alreadyblock = false;
     public bool Activequest = false;
     [HideInInspector]public int damageboost = 0;
     [HideInInspector]public float lvl = 1;
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
             expp = currentexp - exp;
             expp = Mathf.Round(expp * 100f) / 100f;
             exp = exp * 4 / 3;
-            currentexp = expp;
+            currentexp = Mathf.Round(expp * 100f) / 100f;
             lvl++;
         }
         if(i < lvl)
@@ -80,6 +81,10 @@ public class Player : MonoBehaviour
             damageboost += 1;
         }
         exp = Mathf.Round(exp * 100f) / 100f;
+        if (!Input.GetMouseButton(1) || PcurrentMana < 1)
+        {
+            alreadyblock = false;
+        }
     }
     public void AttackStart()
     {
@@ -89,6 +94,11 @@ public class Player : MonoBehaviour
     {
         alreadyattack = false;
     }
+    public void BlockStart()
+    {
+        alreadyblock = true;
+    }
+
     public void TakeDamage(int AIdamage)
     {
         PcurrentHealth -= AIdamage;
@@ -96,6 +106,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(209, 112, 396);
             PcurrentHealth = Phealth;
+            PcurrentMana = Pmana;
         }
     }
     public void Mana(int mana)
