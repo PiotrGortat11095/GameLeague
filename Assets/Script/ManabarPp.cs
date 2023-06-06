@@ -20,7 +20,7 @@ public class ManabarPp : MonoBehaviour
         if (menu.wizard1)
         {
             manabarText.text = "Mana: " + PcurrentMana;
-            manabarSprite.color = Color.blue;
+            manabarSprite.color = Color.cyan;
         }
         else if (menu.warrior1)
         {

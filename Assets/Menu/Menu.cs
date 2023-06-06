@@ -64,7 +64,6 @@ public class Menu : MonoBehaviour
             {
                 questactive = false;
             }
-
         }
         if (firstEsc)
         {
@@ -76,9 +75,11 @@ public class Menu : MonoBehaviour
                 {
                     Cursor.lockState = CursorLockMode.Confined;
                     questlist.SetActive(false);
+                    Allquest.SetActive(false);
                 }
                 else if (!visible)
                 {
+                    Allquest.SetActive(true);
                     if (questactive)
                     {
                         questlist.SetActive(true);
@@ -104,6 +105,8 @@ public class Menu : MonoBehaviour
             Destroy(warriorInstance) ;
             warrior1 = false;
             WarriorIMG.SetActive(false);
+            Player player = warriorInstance.GetComponentInChildren<Player>();
+            player.Activequest = false;
         }
         if (!wizard1)
         {
@@ -122,6 +125,14 @@ public class Menu : MonoBehaviour
             player.Phealthbar = Phealthbar;
             player.Pmanabar = Pmanabar;
             player.Pexpbar = Pexpbar;
+            if (player.Activequest)
+            {
+                questactive = true;
+            }
+            else if (!player.Activequest)
+            {
+                questactive = false;
+            }
             animator = wizardInstance.GetComponent<Animator>();
             animator.enabled = true;
             PlayerController controller = wizardInstance.GetComponentInChildren<PlayerController>();
@@ -150,6 +161,8 @@ public class Menu : MonoBehaviour
             Destroy(wizardInstance);
             wizard1 = false;
             WizardIMG.SetActive(false);
+            Player player = wizardInstance.GetComponentInChildren<Player>();
+            player.Activequest = false;
         }
         if (!warrior1)
         {

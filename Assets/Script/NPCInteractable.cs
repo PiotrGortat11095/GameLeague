@@ -44,10 +44,6 @@ public class NPCInteractable : MonoBehaviour
         {
             quest2.SetActive(true);
         }
-        if (target != null)
-        {
-            transform.LookAt(target);
-        }
     }
 
     public void YesButton()

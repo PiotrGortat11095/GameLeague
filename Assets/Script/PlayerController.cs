@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     public Transform player;
     Quaternion targetRotation;
+    public Transform NPC;
+    private NPCInteractable npcInteractable;
     
 
     CameraController cameraController;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        NPC = GameObject.Find("Ch34_nonPBR").transform;
+        npcInteractable = NPC.GetComponent<NPCInteractable>();
         playerScript = player.GetComponent<Player>();
         skillScript = player.GetComponent <ball>();
 
@@ -39,9 +43,10 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-       
+        if (!npcInteractable.InteractNow)
+        {
 
-        float h = Input.GetAxis("Horizontal");
+            float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
@@ -99,20 +104,20 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButton(1) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
             {
                 animator.SetBool("BlockStart", true);
-                isAttacking = true;;
+                isAttacking = true; ;
             }
             else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && !Input.GetMouseButton(1))
             {
                 animator.SetBool("BlockStart", false);
-            isAttacking = false;
-            
+                isAttacking = false;
+
             }
-            else if(animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && playerScript.PcurrentMana < 1)
-        {
-            animator.SetBool("BlockStart", false);
-            isAttacking = false;
-        }
-        if (isAttacking)
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && playerScript.PcurrentMana < 1)
+            {
+                animator.SetBool("BlockStart", false);
+                isAttacking = false;
+            }
+            if (isAttacking)
             {
                 transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
             }
@@ -138,10 +143,10 @@ public class PlayerController : MonoBehaviour
 
                 if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
                 {
-                if (!isJumping)
-                {
-                    animator.SetBool("Jump", true);
-                }
+                    if (!isJumping)
+                    {
+                        animator.SetBool("Jump", true);
+                    }
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
                     {
                         animator.SetBool("Attack", false);
@@ -182,7 +187,8 @@ public class PlayerController : MonoBehaviour
             }
 
             animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
-        
-        
+        }
+
+
     }
 }
