@@ -85,11 +85,13 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Skill1", true);
                 isAttacking = true;
+
             }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall"))
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") || animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 animator.SetBool("Skill1", false);
                 isAttacking = false;
+
             }
             if (Input.GetMouseButton(0) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle"))
             {
@@ -169,7 +171,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
+            if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 var velocity = moveDir * moveSpeed;
                 velocity.y = ySpeed;
@@ -180,7 +182,7 @@ public class PlayerController : MonoBehaviour
                 characterController.Move(Vector3.zero);
             }
 
-            if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
+            if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 targetRotation = Quaternion.LookRotation(moveDir);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

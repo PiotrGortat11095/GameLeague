@@ -29,7 +29,14 @@ public class Sword : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null && playerScript.alreadyattack)
         {
-            enemy.TakeDamage(damage);
+            if (!playerScript.skill1)
+            {
+                enemy.TakeDamage(damage);
+            }
+            else if (playerScript.skill1)
+            {
+                enemy.TakeDamage(damage+damage/2);
+            }
 
         }
 

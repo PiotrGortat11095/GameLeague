@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public Camera mainCamera;
     public LayerMask ThisLayers;
     public bool visible;
+    public bool skill1;
 
     private void Start()
     {
@@ -89,6 +90,14 @@ public class Player : MonoBehaviour
     public void AttackStart()
     {
         alreadyattack = true;
+    }
+    public void Skill1()
+    {
+        skill1 = true;
+    }
+    public void EndSkill1()
+    {
+        skill1 = false;
     }
     public void AttackEnd()
     {
