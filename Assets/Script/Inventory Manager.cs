@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -57,6 +58,18 @@ public class InventoryManager : MonoBehaviour
     }
     void UpdateSlots()
     {
-
+        for (int i = 0; i < Inventory.transform.childCount; i++)
+        {
+            if(i < ItemsDatabase.Instance.PlayerItems.Count)
+            {
+                Inventory.transform.GetChild(i).Find("Icon").gameObject.SetActive(true);
+                Inventory.transform.GetChild(i).Find("Icon").GetComponent<Image>().sprite = ItemsDatabase.Instance.PlayerItems[i].Icon;
+            }
+            else
+            {
+                Inventory.transform.GetChild(i).Find("Icon").gameObject.SetActive(false);
+                Inventory.transform.GetChild(i).Find("Icon").GetComponent<Image>().sprite = null;
+            }
+        }
     }
 }
