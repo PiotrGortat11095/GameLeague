@@ -44,10 +44,12 @@ public class Menu : MonoBehaviour
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         visible = true;
+
     }
 
     void Update()
     {
+        NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
         if (wizardInstance != null)
         {
             Player player = wizardInstance.GetComponentInChildren<Player>();
@@ -78,7 +80,7 @@ public class Menu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        if (!inventoryManager.IsOpen && !visible)
+        if (!inventoryManager.IsOpen && !visible && !npc.InteractNow)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -107,6 +109,8 @@ public class Menu : MonoBehaviour
                     {
                         questlist.SetActive(false);
                     }
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
 
                 }
                 Menu1.SetActive(visible); 

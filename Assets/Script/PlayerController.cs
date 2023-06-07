@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        
         NPC = GameObject.Find("Ch34_nonPBR").transform;
         npcInteractable = NPC.GetComponent<NPCInteractable>();
         playerScript = player.GetComponent<Player>();
@@ -52,7 +53,6 @@ public class PlayerController : MonoBehaviour
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
 
             var moveInput = (new Vector3(h, 0, v)).normalized;
-
             var moveDir = cameraController.PlanarRotation * moveInput;
 
             ySpeed += Physics.gravity.y * Time.deltaTime;

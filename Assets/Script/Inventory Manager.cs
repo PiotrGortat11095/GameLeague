@@ -7,6 +7,18 @@ public class InventoryManager : MonoBehaviour
 {
     GameObject Inventory;
     public bool IsOpen;
+    public static InventoryManager Instance;
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     void Start()
     {
         Inventory = transform.Find("Inventory").gameObject;
@@ -42,18 +54,7 @@ public class InventoryManager : MonoBehaviour
 
             }
             UpdateSlots();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            ItemsDatabase.Instance.PlayerItems.Add(ItemsDatabase.Instance.Items[0]);
-
-            UpdateSlots();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            ItemsDatabase.Instance.PlayerItems.Add(ItemsDatabase.Instance.Items[1]);
-            UpdateSlots();
-
+            
         }
     }
     void UpdateSlots()

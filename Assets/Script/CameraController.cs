@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertY;
     [SerializeField] LayerMask obstacleMask;
     private NPCInteractable interactable;
+    InventoryManager inventoryManager;
     public Transform NPC;
 
     float distance2 = 4;
@@ -29,6 +30,7 @@ public class CameraController : MonoBehaviour
     }
     private void Start()
     {
+        inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         interactable = NPC.GetComponent<NPCInteractable>();
     }
     private void Update()
@@ -66,8 +68,10 @@ public class CameraController : MonoBehaviour
 
         if (!interactable.InteractNow)
         {
+            
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
             transform.rotation = targetRotation;
+
         }
     }
     public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);
