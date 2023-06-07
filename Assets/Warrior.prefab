@@ -641,7 +641,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.12
   m_Height: 0.7
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -1995,6 +1995,7 @@ MonoBehaviour:
   jumpSpeed: 6
   block: 0
   player: {fileID: 5089741688525690075}
+  NPC: {fileID: 0}
 --- !u!143 &5089741688525690052
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2053,6 +2054,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   visible: 0
+  skill1: 0
 --- !u!114 &6365391372574788192
 MonoBehaviour:
   m_ObjectHideFlags: 0

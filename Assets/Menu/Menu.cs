@@ -22,6 +22,8 @@ public class Menu : MonoBehaviour
     public GameObject MutantBoss;
     private GameObject wizardInstance;
     private GameObject warriorInstance;
+    InventoryManager inventoryManager;
+
     public bool wizard1;
     public bool warrior1;
     public bool visible;
@@ -38,6 +40,12 @@ public class Menu : MonoBehaviour
         Menu1.SetActive(true);
         Allquest.SetActive(false);
     }
+    private void Start()
+    {
+        inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
+        visible = true;
+    }
+
     void Update()
     {
         if (wizardInstance != null)
@@ -65,15 +73,26 @@ public class Menu : MonoBehaviour
                 questactive = false;
             }
         }
+        if (inventoryManager.IsOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (!inventoryManager.IsOpen && !visible)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         if (firstEsc)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 visible = !visible;
-                Cursor.visible = visible;
+
                 if (visible)
                 {
-                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
                     questlist.SetActive(false);
                     Allquest.SetActive(false);
                 }
@@ -88,11 +107,14 @@ public class Menu : MonoBehaviour
                     {
                         questlist.SetActive(false);
                     }
-                    Cursor.lockState = CursorLockMode.Locked;
+
                 }
-                Menu1.SetActive(visible);
+                Menu1.SetActive(visible); 
+                
             }
         }
+
+
 
     }
     public void wizard ()

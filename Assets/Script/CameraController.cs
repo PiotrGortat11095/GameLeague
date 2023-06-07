@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform followTarget;
+
     [SerializeField] float distance = 5;
     [SerializeField] float rotationSpeed = 2f;
     [SerializeField] float minVerticalAngle = -45;
@@ -28,7 +29,6 @@ public class CameraController : MonoBehaviour
     }
     private void Start()
     {
-
         interactable = NPC.GetComponent<NPCInteractable>();
     }
     private void Update()

@@ -197,7 +197,15 @@ public class AiMobs : MonoBehaviour
         {
             if (alreadyAttacked && Triggernow && !player.alreadyblock)
             {
-                player.TakeDamage(AIdamage);
+                if (!player.skill1)
+                {
+                    player.TakeDamage(AIdamage);
+                }
+                else if (player.skill1)
+                {
+                    player.TakeDamage(AIdamage / 2);
+                }
+
             }
             else if (alreadyAttacked && Triggernow && player.alreadyblock)
             {
