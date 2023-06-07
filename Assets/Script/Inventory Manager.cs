@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    GameObject Inventory;
+    private GameObject inventory;
+    public Slot[] slots;
     public bool IsOpen;
     public static InventoryManager Instance;
+
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -19,57 +21,60 @@ public class InventoryManager : MonoBehaviour
             Destroy(this);
         }
     }
-    void Start()
+
+    private void Start()
     {
-        Inventory = transform.Find("Inventory").gameObject;
+        inventory = transform.Find("Inventory").gameObject;
         IsOpen = false;
-        Inventory.SetActive(false);
+        inventory.SetActive(false);
     }
 
-
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Inventory.SetActive(!Inventory.activeInHierarchy);
+            inventory.SetActive(!inventory.activeInHierarchy);
             IsOpen = !IsOpen;
 
-            for (int i = 0; i < Inventory.transform.childCount; i++)
+            foreach (Slot slot in slots)
             {
-                Slot slot = Inventory.transform.GetChild(i).GetComponent<Slot>();
-
-                if (slot != null)
+                if (slot != null && slot.Target != null)
                 {
-
-                    if (slot.Target != null)
-                    {
-                        slot.Target.color = slot.NormalColor;
-                    }
-                    else
-                    {
-                        return;
-                    }
-
+                    slot.Target.color = slot.NormalColor;
                 }
-
             }
-            UpdateSlots();
-            
+
+            if (IsOpen)
+            {
+                UpdateSlots();
+            }
         }
     }
-    void UpdateSlots()
+
+    private void UpdateSlots()
     {
-        for (int i = 0; i < Inventory.transform.childCount; i++)
+        for (int i = 0; i < inventory.transform.childCount; i++)
         {
-            if(i < ItemsDatabase.Instance.PlayerItems.Count)
+            if (i < ItemsDatabase.Instance.PlayerItems.Count)
             {
-                Inventory.transform.GetChild(i).Find("Icon").gameObject.SetActive(true);
-                Inventory.transform.GetChild(i).Find("Icon").GetComponent<Image>().sprite = ItemsDatabase.Instance.PlayerItems[i].Icon;
-            }
-            else
-            {
-                Inventory.transform.GetChild(i).Find("Icon").gameObject.SetActive(false);
-                Inventory.transform.GetChild(i).Find("Icon").GetComponent<Image>().sprite = null;
+                Slot slot = inventory.transform.GetChild(i).GetComponent<Slot>();
+                if (slot != null)
+                {
+                    Item item = ItemsDatabase.Instance.PlayerItems[i];
+                    if (!slot.przedmiotwslocie)
+                    {
+                        slot.AddItem(item);
+                        GameObject itemObject = slot.przedmiotwslocie;
+                        if (itemObject != null)
+                        {
+                            Image itemImage = itemObject.GetComponent<Image>();
+                            if (itemImage != null)
+                            {
+                                itemImage.sprite = item.Icon;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

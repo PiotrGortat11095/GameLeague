@@ -11,6 +11,18 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     [HideInInspector] public Image Target;
     public Color32 NormalColor;
     public Color32 EnterColor;
+    public GameObject przedmiotwslocie
+    {
+        get
+        {
+            if (transform.childCount > 0)
+            {
+                return transform.GetChild(0).gameObject;
+            }
+            return null;
+        }
+    }
+    public GameObject prefabItem;
     public void OnPointerClick(PointerEventData eventData)
     {
 
@@ -33,6 +45,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         Target = GetComponent<Image>();
         Target.color = NormalColor;
     }
-    
+    public void AddItem(Item przedmiot)
+    {
+
+        GameObject newitem = Instantiate(prefabItem);
+        newitem.transform.SetParent(this.transform);
+        newitem.GetComponent<ItemPrefab>().item = przedmiot;
+        newitem.GetComponent<Image>().sprite = przedmiot.Icon;
+    }
 
 }

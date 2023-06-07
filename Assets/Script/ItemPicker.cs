@@ -14,9 +14,9 @@ public class ItemPicker : MonoBehaviour
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, MaxDistance))
         {
-            if(hit.transform.TryGetComponent<ItemObject>(out ItemObject item)) 
+            if (hit.transform.TryGetComponent<ItemObject>(out ItemObject item))
             {
-                if(Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1))
                 {
                     ItemsDatabase.Instance.PlayerItems.Add(ItemsDatabase.Instance.Items[item.ItemID]);
                     Destroy(item.gameObject);
