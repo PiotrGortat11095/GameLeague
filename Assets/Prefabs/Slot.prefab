@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2590444207923541980}
   - component: {fileID: 7244776717637816792}
   - component: {fileID: 349948058183325121}
+  - component: {fileID: 7437687972043746534}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -96,5 +97,29 @@ MonoBehaviour:
   EnterColor:
     serializedVersion: 2
     rgba: 4282006074
-  prefabItem: {fileID: 14847570676182830, guid: a769cd6b4147d494fa6251c7ca92387b,
+  prefabItem: {fileID: 6293211858709583142, guid: a769cd6b4147d494fa6251c7ca92387b,
     type: 3}
+--- !u!114 &7437687972043746534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325644317338149018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 90, y: 90}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2

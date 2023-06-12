@@ -24,6 +24,7 @@ public class CameraController : MonoBehaviour
 
     float invertXVal;
     float invertYVal;
+    
     public void SetTarget(Transform newTarget)
     {
         followTarget = newTarget;
@@ -35,6 +36,7 @@ public class CameraController : MonoBehaviour
     }
     private void Update()
     {
+        
         invertXVal = (invertX) ? -1 : 1;
         invertYVal = (invertY) ? -1 : 1;
 
@@ -44,7 +46,6 @@ public class CameraController : MonoBehaviour
         rotationY -= Input.GetAxis("Mouse X") * invertXVal * rotationSpeed;
 
         var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
-
         var focusPosition = followTarget.position + new Vector3(framingOffset.x, framingOffset.y);
 
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
@@ -66,13 +67,15 @@ public class CameraController : MonoBehaviour
             distance = distance2;
         }
 
-        if (!interactable.InteractNow)
+        if (!interactable.InteractNow && !inventoryManager.IsOpen)
         {
             
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
             transform.rotation = targetRotation;
 
+
         }
+
     }
     public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);
     public Quaternion GetPlanarRotation()

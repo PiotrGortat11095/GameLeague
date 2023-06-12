@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     private GameObject inventory;
-    public Slot[] slots;
+    public Slot[] slotyEkwipunku;
+    private PlayerController pc;
     public bool IsOpen;
     public static InventoryManager Instance;
 
@@ -24,6 +25,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        slotyEkwipunku = GetComponentsInChildren<Slot>();
         inventory = transform.Find("Inventory").gameObject;
         IsOpen = false;
         inventory.SetActive(false);
@@ -36,7 +38,7 @@ public class InventoryManager : MonoBehaviour
             inventory.SetActive(!inventory.activeInHierarchy);
             IsOpen = !IsOpen;
 
-            foreach (Slot slot in slots)
+            foreach (Slot slot in slotyEkwipunku)
             {
                 if (slot != null && slot.Target != null)
                 {
@@ -44,38 +46,19 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            if (IsOpen)
+        }
+    }
+    public void DodajPrzedmiot(Item przedmiot)
+    {
+        for(int i = 0; i < slotyEkwipunku.Length; i++)
+        {
+            if (slotyEkwipunku[i].przedmiotWslocie == null)
             {
-                UpdateSlots();
+                slotyEkwipunku[i].DodajPrzedmiotDoSlotu(przedmiot);
+                break;
             }
         }
     }
 
-    private void UpdateSlots()
-    {
-        for (int i = 0; i < inventory.transform.childCount; i++)
-        {
-            if (i < ItemsDatabase.Instance.PlayerItems.Count)
-            {
-                Slot slot = inventory.transform.GetChild(i).GetComponent<Slot>();
-                if (slot != null)
-                {
-                    Item item = ItemsDatabase.Instance.PlayerItems[i];
-                    if (!slot.przedmiotwslocie)
-                    {
-                        slot.AddItem(item);
-                        GameObject itemObject = slot.przedmiotwslocie;
-                        if (itemObject != null)
-                        {
-                            Image itemImage = itemObject.GetComponent<Image>();
-                            if (itemImage != null)
-                            {
-                                itemImage.sprite = item.Icon;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+   
 }

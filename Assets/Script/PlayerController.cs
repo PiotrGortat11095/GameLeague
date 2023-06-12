@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour
     public Transform player;
     Quaternion targetRotation;
     public Transform NPC;
+    private InventoryManager inventoryManager;
     private NPCInteractable npcInteractable;
-    
+    public Transform ekwipunek;
 
     CameraController cameraController;
     Animator animator;
@@ -32,7 +33,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
+        ekwipunek = GameObject.Find("Canvas").transform;
+        inventoryManager = ekwipunek.GetComponent<InventoryManager>();
         NPC = GameObject.Find("Ch34_nonPBR").transform;
         npcInteractable = NPC.GetComponent<NPCInteractable>();
         playerScript = player.GetComponent<Player>();
@@ -49,11 +51,18 @@ public class PlayerController : MonoBehaviour
 
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-
+            if (inventoryManager.IsOpen)
+            {
+                h = 0;
+                v = 0;
+            }
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
 
-            var moveInput = (new Vector3(h, 0, v)).normalized;
-            var moveDir = cameraController.PlanarRotation * moveInput;
+
+                var moveInput = (new Vector3(h, 0, v)).normalized;
+                var moveDir = cameraController.PlanarRotation * moveInput;
+
+
 
             ySpeed += Physics.gravity.y * Time.deltaTime;
             if (moveAmount <= 0)
@@ -68,60 +77,63 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Grounded", false);
             }
-            if (Input.GetButton("Ultimate") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)
+            if (!inventoryManager.IsOpen)
             {
-                if (skillScript.Enemy)
+                if (Input.GetButton("Ultimate") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)
                 {
-                    animator.SetBool("Ultimate", true);
+                    if (skillScript.Enemy)
+                    {
+                        animator.SetBool("Ultimate", true);
+                        isAttacking = true;
+                    }
+                }
+                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
+                {
+                    animator.SetBool("Ultimate", false);
+                    isAttacking = false;
+                }
+                if (Input.GetButton("Skill1") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
+                {
+                    animator.SetBool("Skill1", true);
+                    isAttacking = true;
+
+                }
+                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") || animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
+                {
+                    animator.SetBool("Skill1", false);
+                    isAttacking = false;
+
+                }
+                if (Input.GetMouseButton(0) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle"))
+                {
+                    animator.SetBool("Attack", true);
                     isAttacking = true;
                 }
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor"))
-            {
-                animator.SetBool("Ultimate", false);
-                isAttacking = false;
-            }
-            if (Input.GetButton("Skill1") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
-            {
-                animator.SetBool("Skill1", true);
-                isAttacking = true;
+                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
+                {
+                    animator.SetBool("Attack", false);
+                    isAttacking = false;
+                }
+                if (Input.GetMouseButton(1) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
+                {
+                    animator.SetBool("BlockStart", true);
+                    isAttacking = true; ;
+                }
+                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && !Input.GetMouseButton(1))
+                {
+                    animator.SetBool("BlockStart", false);
+                    isAttacking = false;
 
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") || animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
-            {
-                animator.SetBool("Skill1", false);
-                isAttacking = false;
-
-            }
-            if (Input.GetMouseButton(0) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle"))
-            {
-                animator.SetBool("Attack", true);
-                isAttacking = true;
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk"))
-            {
-                animator.SetBool("Attack", false);
-                isAttacking = false;
-            }
-            if (Input.GetMouseButton(1) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
-            {
-                animator.SetBool("BlockStart", true);
-                isAttacking = true; ;
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && !Input.GetMouseButton(1))
-            {
-                animator.SetBool("BlockStart", false);
-                isAttacking = false;
-
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && playerScript.PcurrentMana < 1)
-            {
-                animator.SetBool("BlockStart", false);
-                isAttacking = false;
-            }
-            if (isAttacking)
-            {
-                transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
+                }
+                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block") && playerScript.PcurrentMana < 1)
+                {
+                    animator.SetBool("BlockStart", false);
+                    isAttacking = false;
+                }
+                if (isAttacking)
+                {
+                    transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
+                }
             }
 
 
@@ -130,7 +142,7 @@ public class PlayerController : MonoBehaviour
                 lastGroundedTime = Time.time;
             }
 
-            if (Input.GetButtonDown("Jump") && !isJumping)
+            if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen)
             {
                 jumpButtonPressedTime = Time.time;
             }
@@ -175,7 +187,7 @@ public class PlayerController : MonoBehaviour
             {
                 var velocity = moveDir * moveSpeed;
                 velocity.y = ySpeed;
-                characterController.Move(velocity * Time.deltaTime);
+                    characterController.Move(velocity * Time.deltaTime);
             }
             else
             {

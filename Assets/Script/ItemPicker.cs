@@ -6,19 +6,19 @@ public class ItemPicker : MonoBehaviour
 {
     public float MaxDistance;
     public Camera Cam;
+    public InventoryManager ekwipunek;
 
     private void Update()
     {
-        if (InventoryManager.Instance.IsOpen) return;
         RaycastHit hit;
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, MaxDistance))
         {
-            if (hit.transform.TryGetComponent<ItemObject>(out ItemObject item))
+            if (hit.transform.TryGetComponent<ThisItem>(out ThisItem item))
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    ItemsDatabase.Instance.PlayerItems.Add(ItemsDatabase.Instance.Items[item.ItemID]);
+                    ekwipunek.DodajPrzedmiot(hit.transform.GetComponent<ThisItem>().przedmiotDoDodania);
                     Destroy(item.gameObject);
                 }
             }
