@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NPCInteractable : MonoBehaviour
 {
     public GameObject questWindow;
+    public Text questDescription;
     public GameObject questactive;
+    public Text questDescriptionActive;
     public GameObject questcomplete;
+    public Text questDescriptionComplete;
     public GameObject questlist;
     public GameObject questend;
+    public Text questDescriptionend;
     public GameObject quest1;
     public GameObject quest2;
     public GameObject NPC;
+    public string questDescription1;
+    public string questDescriptionComplete1;
+    public string questDescriptionEnd1;
+    public string questDescriptionList1;
+    public string questDescriptionList2;
+    public string MonsterName;
     [SerializeField] private Text QuestText;
     private Player player;
     private AiMobs aimobs;
@@ -36,14 +48,20 @@ public class NPCInteractable : MonoBehaviour
         aimobs = Ai.GetComponent<AiMobs>();
         player = playerTransform.GetComponent<Player>();
         quest1.SetActive(true);
+        questDescription.text = questDescription1;
+        questDescriptionActive.text = questDescription1;
+        questDescriptionComplete.text = questDescriptionComplete1;
+        questDescriptionend.text = questDescriptionEnd1;
     }
     public void Update()
     {
-        QuestText.text = "Pokonaj Bandytów " + "Pokonano: " + AiMobs.Bandyci + "/" + "10";
-        if (AiMobs.Bandyci >= 10)
+        
+        QuestText.text = questDescriptionList1 + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
+        if (AiMobs.Monster >= Int32.Parse(questDescriptionList2))
         {
             quest2.SetActive(true);
         }
+    
     }
 
     public void YesButton()
@@ -77,14 +95,14 @@ public class NPCInteractable : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (player.Activequest && AiMobs.Bandyci < 10 && !questended)
+        else if (player.Activequest && AiMobs.Monster < Int32.Parse(questDescriptionList2) && !questended)
         {
             questactive.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (player.Activequest && AiMobs.Bandyci >= 10 && !questended)
+        else if (player.Activequest && AiMobs.Monster >= Int32.Parse(questDescriptionList2) && !questended)
         {
             questcomplete.SetActive(true);
             Cursor.visible = true;
@@ -106,7 +124,7 @@ public class NPCInteractable : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         InteractNow = false;
-        AiMobs.Bandyci = 0;
+        AiMobs.Monster = 0;
         player.Activequest = false;
         player.currentexp += 100;
         questended = true;

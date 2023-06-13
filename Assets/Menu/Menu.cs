@@ -44,7 +44,7 @@ public class Menu : MonoBehaviour
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         visible = true;
-
+        
     }
 
     void Update()
@@ -52,6 +52,7 @@ public class Menu : MonoBehaviour
         NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
         if (wizardInstance != null)
         {
+            inventoryManager.Player = wizardInstance.transform;
             Player player = wizardInstance.GetComponentInChildren<Player>();
             if (player.Activequest)
             {
@@ -65,6 +66,7 @@ public class Menu : MonoBehaviour
         }
         if (warriorInstance != null)
         {
+            inventoryManager.Player = warriorInstance.transform;
             Player player = warriorInstance.GetComponentInChildren<Player>();
             if (player.Activequest)
             {
@@ -218,6 +220,7 @@ public class Menu : MonoBehaviour
             animator.enabled = true;
             PlayerController controller = warriorInstance.GetComponentInChildren<PlayerController>();
             controller.player = warriorInstance.transform;
+
             player.mainCamera = maincamera;
             Crosshair.SetActive(true);
             HP.SetActive(true);
@@ -225,6 +228,7 @@ public class Menu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
             npc.playerTransform = warriorInstance.transform;
+
         }
         else
         {

@@ -20,6 +20,7 @@ public class AiMobs : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
     private Vector3 walkPoint;
     bool walkPointSet;
+    public string MonsterName;
 
     private AiCloning aicloning;
     public float walkPointRange;
@@ -45,7 +46,7 @@ public class AiMobs : MonoBehaviour
 
 
 
-    public static int Bandyci = 0;
+    public static int Monster = 0;
 
     private Rigidbody rb;
 
@@ -67,7 +68,7 @@ public class AiMobs : MonoBehaviour
         aicloning = FindObjectOfType<AiCloning>();
         currentHealth = health;
         player1 = player.GetComponent<Player>();
-        interactable = NPC.GetComponent<NPCInteractable>();
+        
         rb = GetComponent<Rigidbody>();
     }
 
@@ -77,11 +78,12 @@ public class AiMobs : MonoBehaviour
         menu = MEnu1.GetComponent<Menu>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        
 
     }
     private void Update()
     {
+        NPC = GameObject.Find("Ch34_nonPBR").transform;
+        interactable = NPC.GetComponent<NPCInteractable>();
         player1 = player.GetComponent<Player>();
         if (Boss && player1.visible)
         {
@@ -246,17 +248,13 @@ public class AiMobs : MonoBehaviour
             player1.currentexp += exp;
             animator.SetBool("Death", true);
             agent.SetDestination(transform.position);
-            if (player1.Activequest)
+            if (player1.Activequest && MonsterName == interactable.MonsterName)
             {
-                if (AiMobs.Bandyci < 10)
-                {
-                    AiMobs.Bandyci++;
-                }
-                
+                AiMobs.Monster++;     
             }
-            else if (!player1.Activequest)
+            if (!player1.Activequest)
             {
-                AiMobs.Bandyci = 0;
+                AiMobs.Monster = 0;
             }
         }
     }

@@ -591,6 +591,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
+  MonsterName: Mutant(Boss)
   walkPointRange: 30
   timeBetweenAttacks: 1
   Triggernow: 0

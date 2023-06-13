@@ -6,13 +6,18 @@ public class ItemPicker : MonoBehaviour
 {
     public float MaxDistance;
     public Camera Cam;
+    public Transform Camera;
+    public CameraController Controller;
     public InventoryManager ekwipunek;
+
 
     private void Update()
     {
+        Camera = GameObject.Find("MainCamera").transform;
+        Controller = Camera.GetComponent<CameraController>();
         RaycastHit hit;
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, MaxDistance))
+        if (Physics.Raycast(ray, out hit, MaxDistance + Controller.distance))
         {
             if (hit.transform.TryGetComponent<ThisItem>(out ThisItem item))
             {

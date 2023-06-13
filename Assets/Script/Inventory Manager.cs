@@ -7,20 +7,15 @@ public class InventoryManager : MonoBehaviour
 {
     private GameObject inventory;
     public Slot[] slotyEkwipunku;
-    private PlayerController pc;
+    public PlayerController pc;
+    CharacterController characterController;
+    public Transform Player;
     public bool IsOpen;
-    public static InventoryManager Instance;
+
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+
     }
 
     private void Start()
@@ -33,19 +28,25 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Player != null)
         {
-            inventory.SetActive(!inventory.activeInHierarchy);
-            IsOpen = !IsOpen;
+            pc = Player.GetComponent<PlayerController>();
+            characterController = Player.GetComponent<CharacterController>();
 
-            foreach (Slot slot in slotyEkwipunku)
+            if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
-                if (slot != null && slot.Target != null)
-                {
-                    slot.Target.color = slot.NormalColor;
-                }
-            }
+                inventory.SetActive(!inventory.activeInHierarchy);
+                IsOpen = !IsOpen;
 
+                foreach (Slot slot in slotyEkwipunku)
+                {
+                    if (slot != null && slot.Target != null)
+                    {
+                        slot.Target.color = slot.NormalColor;
+                    }
+                }
+
+            }
         }
     }
     public void DodajPrzedmiot(Item przedmiot)
