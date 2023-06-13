@@ -13,11 +13,6 @@ public class InventoryManager : MonoBehaviour
     public bool IsOpen;
 
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         slotyEkwipunku = GetComponentsInChildren<Slot>();

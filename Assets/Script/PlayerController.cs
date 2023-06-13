@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private InventoryManager inventoryManager;
     private NPCInteractable npcInteractable;
     public Transform ekwipunek;
+    public Transform MEnu1;
+    Menu menu;
 
     CameraController cameraController;
     Animator animator;
@@ -36,16 +39,19 @@ public class PlayerController : MonoBehaviour
         ekwipunek = GameObject.Find("Canvas").transform;
         inventoryManager = ekwipunek.GetComponent<InventoryManager>();
         NPC = GameObject.Find("Ch34_nonPBR").transform;
-        npcInteractable = NPC.GetComponent<NPCInteractable>();
+        npcInteractable = NPC.GetComponentInChildren<NPCInteractable>();
         playerScript = player.GetComponent<Player>();
-        skillScript = player.GetComponent <ball>();
+        skillScript = player.GetComponent<ball>();
 
         cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        MEnu1 = GameObject.Find("Player").transform;
+        menu = MEnu1.GetComponent<Menu>();
     }
     private void Update()
     {
+
         if (!npcInteractable.InteractNow)
         {
 
@@ -59,8 +65,8 @@ public class PlayerController : MonoBehaviour
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
 
 
-                var moveInput = (new Vector3(h, 0, v)).normalized;
-                var moveDir = cameraController.PlanarRotation * moveInput;
+            var moveInput = (new Vector3(h, 0, v)).normalized;
+            var moveDir = cameraController.PlanarRotation * moveInput;
 
 
 
@@ -114,7 +120,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("Attack", false);
                     isAttacking = false;
                 }
-                if (Input.GetMouseButton(1) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10)
+                if (Input.GetMouseButton(1) && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 10 && menu.warrior1)
                 {
                     animator.SetBool("BlockStart", true);
                     isAttacking = true; ;
@@ -187,7 +193,7 @@ public class PlayerController : MonoBehaviour
             {
                 var velocity = moveDir * moveSpeed;
                 velocity.y = ySpeed;
-                    characterController.Move(velocity * Time.deltaTime);
+                characterController.Move(velocity * Time.deltaTime);
             }
             else
             {
