@@ -213,7 +213,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -721,7 +721,7 @@ PrefabInstance:
     - target: {fileID: -4728426434207774260, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4332706925441422008, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 3948933247560734027, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4237274458221626025, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
@@ -860,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 8817898888258712963, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8953972740105248388, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     [HideInInspector] public Image Target;
     public Color32 NormalColor;
     public Color32 EnterColor;
+    public string Name;
+
     public GameObject przedmiotWslocie
     {
         get
@@ -30,12 +33,24 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
 
         Target.color = EnterColor;
+        if(przedmiotWslocie != null)
+        {
+            Transform ramkaTransform = przedmiotWslocie.transform.Find("Ramka");
+            ramkaTransform.gameObject.SetActive(true);
+
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
 
         Target.color = NormalColor;
+        if (przedmiotWslocie != null)
+        {
+            Transform ramkaTransform = przedmiotWslocie.transform.Find("Ramka");
+            ramkaTransform.gameObject.SetActive(false);
+
+        }
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
     {
@@ -49,6 +64,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         Target = GetComponent<Image>();
         Target.color = NormalColor;
+
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -58,6 +74,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             ItemPrefab.itemInSlot.transform.SetParent(this.transform, false);
             ItemPrefab.ifDrop = true;
             ItemPrefab.itemInSlot.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+
         }
     }
     public void UseItem()

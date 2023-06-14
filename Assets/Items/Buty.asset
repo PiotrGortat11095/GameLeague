@@ -10,10 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f8f3ab6126300c4a9531fe21be75440, type: 3}
-  m_Name: Jablko
+  m_Name: Buty
   m_EditorClassIdentifier: 
-  Name: "Jab\u0142ko"
-  Description: "czerwone jab\u0142ko"
-  ID: 0
-  Type: 1
-  Icon: {fileID: 21300000, guid: 6aff142a1db5f0a48a668bc24ddd6ec0, type: 3}
+  Name: Stalowe buty
+  Description: 'Typ przedmiotu: Buty <br>Dodatkowe Bonusy:<br> Armor +2'
+  ID: 3
+  Type: 5
+  Icon: {fileID: 21300000, guid: e20bfc830cb8a92418c98aff81db4f08, type: 3}
+  weaponType: 0
+  AttackDamage: 0
+  NutritionValue: 0
+  armorType: 3
+  ArmorValue: 2
+  accessoryType: 0
+  strength: 0
+  intellect: 0

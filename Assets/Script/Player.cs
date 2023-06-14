@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     [HideInInspector]public float lvl = 1;
     private float expp;
     [HideInInspector]public float currentexp = 0;
-    private float PcurrentHealth;
+    public float PcurrentHealth;
+    public int Armor = 0;
     private int i = 1;
     public float PcurrentMana;
     [HideInInspector]public float HealthRegeneration = 2f;
@@ -110,7 +111,16 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int AIdamage)
     {
-        PcurrentHealth -= AIdamage;
+        if (AIdamage <= Armor / 2)
+        {
+            AIdamage = 1;
+            PcurrentHealth -= AIdamage;
+        }
+        else if (AIdamage  >= Armor / 2)
+        {
+            AIdamage -= Armor / 2;
+            PcurrentHealth -= AIdamage;
+        }
         if (PcurrentHealth <= 0)
         {
             transform.position = new Vector3(209, 112, 396);

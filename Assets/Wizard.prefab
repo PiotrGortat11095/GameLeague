@@ -1758,7 +1758,12 @@ MonoBehaviour:
     m_Bits: 32768
   jumpButtonGracePeriod: 300
   jumpSpeed: 8
+  block: 0
   player: {fileID: 0}
+  NPC: {fileID: 0}
+  ekwipunek: {fileID: 0}
+  MEnu1: {fileID: 0}
+  characterController: {fileID: 0}
 --- !u!95 &1956316618093041725
 Animator:
   serializedVersion: 5
@@ -1788,9 +1793,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956316618093041670}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 1.75
   m_Radius: 0.2
   m_SlopeLimit: 45
@@ -1811,7 +1824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: -4367853057774921916, guid: a55cf54ee91121f489e82b1200a7cfb1, type: 3}
-  magma: {fileID: -2635076263177861998, guid: 397445956744af2458c7c8302fa3f466, type: 3}
+  magma: {fileID: 149795099066526914, guid: 397445956744af2458c7c8302fa3f466, type: 3}
   meteor: {fileID: 8084112092840439376, guid: 9782972d5624dad438765c23c501037a, type: 3}
   spawnPoint: {fileID: 1956316616885415808}
   player: {fileID: 1956316616513795525}
@@ -1843,10 +1856,13 @@ MonoBehaviour:
   Pmana: 100
   exp: 7
   alreadyattack: 0
+  alreadyblock: 0
   Activequest: 0
   damageboost: 0
   lvl: 1
   currentexp: 0
+  PcurrentHealth: 0
+  Armor: 0
   PcurrentMana: 1
   HealthRegeneration: 2
   ManaRegeneration: 1
@@ -1855,6 +1871,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   visible: 0
+  skill1: 0
 --- !u!114 &1956316618093041721
 MonoBehaviour:
   m_ObjectHideFlags: 0

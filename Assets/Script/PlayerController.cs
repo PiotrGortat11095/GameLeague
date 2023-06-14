@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Grounded", false);
             }
+           
             if (!inventoryManager.IsOpen)
             {
                 if (Input.GetButton("Ultimate") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)

@@ -29,6 +29,7 @@ public class ball : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out _, maxMeteorDistance, ThisLayers))
         {
+            
             Enemy = true;
         }
         else
