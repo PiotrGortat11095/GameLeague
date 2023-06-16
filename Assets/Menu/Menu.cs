@@ -77,12 +77,12 @@ public class Menu : MonoBehaviour
                 questactive = false;
             }
         }
-        if (inventoryManager.IsOpen)
+        if (inventoryManager.IsOpen || inventoryManager.IsOpenS)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        if (!inventoryManager.IsOpen && !visible && !npc.InteractNow)
+        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !npc.InteractNow)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

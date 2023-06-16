@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public bool alreadyattack = false;
     public bool alreadyblock = false;
     public bool Activequest = false;
-    [HideInInspector]public int damageboost = 0;
+    [HideInInspector]public int damage = 0;
     [HideInInspector]public float lvl = 1;
     private float expp;
     [HideInInspector]public float currentexp = 0;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        damage = 10;
         PcurrentHealth = Phealth;
         PcurrentMana = Pmana;
         InvokeRepeating("RegenerateMana", ManaRegeneration, ManaRegeneration);
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
             i++;
             PcurrentHealth = Phealth;
             PcurrentMana = Pmana;
-            damageboost += 1;
+            damage += 1;
         }
         exp = Mathf.Round(exp * 100f) / 100f;
         if (!Input.GetMouseButton(1) || PcurrentMana < 1)

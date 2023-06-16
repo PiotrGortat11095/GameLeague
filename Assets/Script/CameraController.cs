@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
             distance = distance2;
         }
 
-        if (!interactable.InteractNow && !inventoryManager.IsOpen)
+        if (!interactable.InteractNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS)
         {
             
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);

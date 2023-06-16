@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     public bool Triggernow = false;
-    public int damage = 7;
+    private int damage;
     private Player playerScript;
     public CapsuleCollider capsuleCollider;
     public void Start()
@@ -14,7 +14,7 @@ public class Sword : MonoBehaviour
     }
     public void Update()
     {
-        damage = 10 + playerScript.damageboost * 2;
+        damage = playerScript.damage;
         if (playerScript.alreadyattack)
         {
             capsuleCollider.enabled = true;

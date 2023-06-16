@@ -32,7 +32,7 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             
             player.Phealth -= currentItemInSlot.GetComponent<ItemPrefab>().item.strength;
             player.PcurrentHealth -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
-            player.damageboost -= currentItemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
+            player.damage -= currentItemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
             player.Armor -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
 
 
@@ -87,7 +87,7 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             currentItemInSlot = ItemPrefab.itemInSlot;
             player.Phealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
             player.PcurrentHealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
-            player.damageboost += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
+            player.damage += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
             player.Armor += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
         }
 

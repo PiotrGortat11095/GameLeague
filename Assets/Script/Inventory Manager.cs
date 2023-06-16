@@ -8,12 +8,20 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     private GameObject inventory;
+    private GameObject stats;
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject button4;
     public Slot[] slotyEkwipunku;
     public Eq[] eq;
     public PlayerController pc;
     CharacterController characterController;
     public Transform Player;
+    public Player playerscript;
     public bool IsOpen;
+    public bool IsOpenS;
+    private float dodanepunkty = 1;
 
 
     private void Start()
@@ -21,6 +29,9 @@ public class InventoryManager : MonoBehaviour
         eq = GetComponentsInChildren<Eq>();
         slotyEkwipunku = GetComponentsInChildren<Slot>();
         inventory = transform.Find("Inventory").gameObject;
+        stats = transform.Find("Stats").gameObject;
+        stats.SetActive(false);
+        IsOpenS = false;
         IsOpen = false;
         inventory.SetActive(false);
     }
@@ -31,7 +42,21 @@ public class InventoryManager : MonoBehaviour
         {
             pc = Player.GetComponent<PlayerController>();
             characterController = Player.GetComponent<CharacterController>();
-
+            playerscript = Player.GetComponent<Player>();
+            if (playerscript.lvl > dodanepunkty)
+            {
+                button1.SetActive(true);
+                button2.SetActive(true);
+                button3.SetActive(true);
+                button4.SetActive(true);
+            }
+            else
+            {
+                button1.SetActive(false);
+                button2.SetActive(false);
+                button3.SetActive(false);
+                button4.SetActive(false);
+            }
             if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
                 inventory.SetActive(!inventory.activeInHierarchy);
@@ -71,7 +96,59 @@ public class InventoryManager : MonoBehaviour
 
 
             }
+            if (Input.GetKeyDown(KeyCode.G) && pc.characterController.isGrounded)
+            {
+                stats.SetActive(!stats.activeInHierarchy);
+                IsOpenS = !IsOpenS;
+            }
+            TextMeshProUGUI tekstComponent4 = stats.transform.Find("HP").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI tekstComponent5 = stats.transform.Find("Mana").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI tekstComponent6 = stats.transform.Find("Damage").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI tekstComponent7 = stats.transform.Find("Armor").GetComponentInChildren<TextMeshProUGUI>();
+
+            if (tekstComponent4 != null)
+            {
+                tekstComponent4.text = "HP: " + playerscript.PcurrentHealth.ToString() + "/" + playerscript.Phealth.ToString();
+
+            }
+            if (tekstComponent5 != null)
+            {
+                tekstComponent5.text = "Mana: " + playerscript.PcurrentMana.ToString() + "/" + playerscript.Pmana.ToString();
+            }
+            if (tekstComponent6 != null)
+            {
+                tekstComponent6.text = "Damage: " + playerscript.damage.ToString();
+
+            }
+            if (tekstComponent7 != null)
+            {
+                tekstComponent7.text = "Armor: " + playerscript.Armor.ToString();
+            }
         }
+    }
+    public void Click1()
+    {
+        playerscript = Player.GetComponent<Player>();
+        playerscript.Phealth += 5;
+        dodanepunkty++;
+    }
+    public void Click2()
+    {
+        playerscript = Player.GetComponent<Player>();
+        playerscript.Pmana += 3;
+        dodanepunkty++;
+    }
+    public void Click3()
+    {
+        playerscript = Player.GetComponent<Player>();
+        playerscript.damage += 2;
+        dodanepunkty++;
+    }
+    public void Click4()
+    {
+        playerscript = Player.GetComponent<Player>();
+        playerscript.Armor += 2;
+        dodanepunkty++;
     }
     public void DodajPrzedmiot(Item przedmiot)
     {

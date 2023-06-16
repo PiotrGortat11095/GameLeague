@@ -103,12 +103,10 @@ public class ball : MonoBehaviour
 public class FireDestroyer : MonoBehaviour
 {
     private Player playerScript;
-    private int damage;
 
     private void Start()
     {
         playerScript = FindObjectOfType<Player>();
-        damage = 10 + playerScript.damageboost * 2;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -116,7 +114,7 @@ public class FireDestroyer : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(playerScript.damage);
             Destroy(gameObject);
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
@@ -129,11 +127,11 @@ public class FireDestroyer : MonoBehaviour
 public class FireDestroyer2 : MonoBehaviour
 {
     private Player playerScript;
-    private int damage;
+    public int ultimatedamage;
     private void Start()
     {
         playerScript = FindObjectOfType<Player>();
-        damage = 25 + playerScript.damageboost * 4;
+        ultimatedamage = 25 * playerScript.damage/2;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -141,7 +139,7 @@ public class FireDestroyer2 : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(ultimatedamage);
         }
     }
 }
