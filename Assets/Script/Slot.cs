@@ -33,24 +33,17 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
 
         Target.color = EnterColor;
-        if(przedmiotWslocie != null)
-        {
-            Transform ramkaTransform = przedmiotWslocie.transform.Find("Ramka");
-            ramkaTransform.gameObject.SetActive(true);
 
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
 
         Target.color = NormalColor;
-        if (przedmiotWslocie != null)
-        {
-            Transform ramkaTransform = przedmiotWslocie.transform.Find("Ramka");
-            ramkaTransform.gameObject.SetActive(false);
 
-        }
+           
+
+        
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
     {

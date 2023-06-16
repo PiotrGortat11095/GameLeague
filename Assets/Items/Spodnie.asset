@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spodnie
   m_EditorClassIdentifier: 
   Name: Stalowe spodnie
-  Description: 'Typ przedmiotu: Spodnie <br>Dodatkowe Bonusy:<br> Armor +2'
+  Description: 'Typ przedmiotu: <br>Spodnie <br>Dodatkowe Bonusy:<br> Armor +2'
   ID: 2
   Type: 3
   Icon: {fileID: 21300000, guid: bb4a949d85c56944b8535941aba26210, type: 3}
