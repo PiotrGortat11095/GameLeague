@@ -21,7 +21,7 @@ public class ItemPicker : MonoBehaviour
         {
             if (hit.transform.TryGetComponent<ThisItem>(out ThisItem item))
             {
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetKeyDown(KeyCode.Z)&& !ekwipunek.IsOpen)
                 {
                     ekwipunek.DodajPrzedmiot(hit.transform.GetComponent<ThisItem>().przedmiotDoDodania);
                     Destroy(item.gameObject);

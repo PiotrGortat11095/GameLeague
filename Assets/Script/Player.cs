@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         }
         if(i < lvl)
         {
-            Phealth += 5;
+            Phealth += 3;
             Pmana += 2;
             i++;
             PcurrentHealth = Phealth;

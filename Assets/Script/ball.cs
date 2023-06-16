@@ -131,7 +131,7 @@ public class FireDestroyer2 : MonoBehaviour
     private void Start()
     {
         playerScript = FindObjectOfType<Player>();
-        ultimatedamage = 25 * playerScript.damage/2;
+        ultimatedamage = 25 * playerScript.damage/10;
     }
 
     private void OnTriggerEnter(Collider other)

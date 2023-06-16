@@ -129,19 +129,19 @@ public class InventoryManager : MonoBehaviour
     public void Click1()
     {
         playerscript = Player.GetComponent<Player>();
-        playerscript.Phealth += 5;
+        playerscript.Phealth += 4;
         dodanepunkty++;
     }
     public void Click2()
     {
         playerscript = Player.GetComponent<Player>();
-        playerscript.Pmana += 3;
+        playerscript.Pmana += 2;
         dodanepunkty++;
     }
     public void Click3()
     {
         playerscript = Player.GetComponent<Player>();
-        playerscript.damage += 2;
+        playerscript.damage += 1;
         dodanepunkty++;
     }
     public void Click4()
