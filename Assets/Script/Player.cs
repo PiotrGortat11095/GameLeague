@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public float exp = 5;
     public bool alreadyattack = false;
     public bool alreadyblock = false;
-    public bool Activequest = false;
     [HideInInspector]public float damage = 0;
     [HideInInspector]public float lvl = 1;
     private float expp;

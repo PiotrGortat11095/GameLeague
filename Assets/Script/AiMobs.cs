@@ -24,7 +24,6 @@ public class AiMobs : MonoBehaviour
 
     private AiCloning aicloning;
     public float walkPointRange;
-    private NPCInteractable interactable;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public bool Triggernow = false;
@@ -34,16 +33,15 @@ public class AiMobs : MonoBehaviour
     public float health = 2;
     private float currentHealth;
     public bool Boss;
-
+    private NPCInteractable currentNPC;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     Animator animator;
     private Player player1;
-    public Transform NPC;
     public Transform maincamera;
     private Menu menu;
     public Transform MEnu1;
-
+    List<string> monsterNames = new List<string>();
 
 
     public static int Monster = 0;
@@ -82,8 +80,12 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
-        NPC = GameObject.Find("Ch34_nonPBR").transform;
-        interactable = NPC.GetComponent<NPCInteractable>();
+        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
+        foreach (var singleNPC in npc)
+        {
+            monsterNames.Add(singleNPC.MonsterName);
+            currentNPC = singleNPC;
+        }
         player1 = player.GetComponent<Player>();
         if (Boss && player1.visible)
         {
@@ -248,11 +250,11 @@ public class AiMobs : MonoBehaviour
             player1.currentexp += exp;
             animator.SetBool("Death", true);
             agent.SetDestination(transform.position);
-            if (player1.Activequest && MonsterName == interactable.MonsterName)
+            if (currentNPC.Activequest && MonsterName == currentNPC.MonsterName)
             {
                 AiMobs.Monster++;     
             }
-            if (!player1.Activequest)
+            if (!currentNPC.Activequest)
             {
                 AiMobs.Monster = 0;
             }

@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Miecz
   m_EditorClassIdentifier: 
   Name: Miecz
-  Description: 'Typ przedmiotu: <br>Bron <br>Dodatkowe Bonusy:<br> Damage +5'
+  Description: 'Typ przedmiotu: <br>Bron <br>Dodatkowe Bonusy:<br> Damage +5<br>
+    Critical Strength +10%'
   ID: 0
   Type: 0
   Icon: {fileID: 21300000, guid: ea3f41956b43f0b4585e65125c7906f0, type: 3}
   weaponType: 0
   AttackDamage: 5
+  CriticalHitStrength: 10
   NutritionValue: 0
   armorType: 0
   ArmorValue: 0
   accessoryType: 0
   strength: 0
   intellect: 0
+  CriticalHitChance: 0

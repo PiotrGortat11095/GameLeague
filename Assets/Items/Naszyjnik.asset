@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Naszyjnik
   m_EditorClassIdentifier: 
   Name: Naszyjnik
-  Description: 'Typ przedmiotu: <br>Naszyjnik <br>Dodatkowe Bonusy:<br> HP +5'
+  Description: 'Typ przedmiotu: <br>Naszyjnik <br>Dodatkowe Bonusy:<br> HP +5<br>
+    Crtitical Chance +10%'
   ID: 7
   Type: 8
   Icon: {fileID: 21300000, guid: e604493f1d7ebc84ca8207a245118bd6, type: 3}
   weaponType: 0
   AttackDamage: 0
+  CriticalHitStrength: 0
   NutritionValue: 0
   armorType: 0
   ArmorValue: 0
   accessoryType: 1
   strength: 5
   intellect: 0
+  CriticalHitChance: 10

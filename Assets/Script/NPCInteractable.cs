@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,9 @@ public class NPCInteractable : MonoBehaviour
     private bool questended = false;
     public Transform playerTransform;
     public Transform Ai;
+    public bool Activequest;
+    Menu menu;
+    Transform Menu1;
 
     public bool InteractNow = false;
     public Transform target;
@@ -39,14 +43,13 @@ public class NPCInteractable : MonoBehaviour
     {
         target = newTarget;
     }
-    public void Awake()
-    {
-        NPC.SetActive(false);
-    }
     public void Start()
     {
-        aimobs = Ai.GetComponent<AiMobs>();
-        player = playerTransform.GetComponent<Player>();
+        if (Ai != null)
+        {
+            aimobs = Ai.GetComponent<AiMobs>();
+        }
+        
         quest1.SetActive(true);
         questDescription.text = questDescription1;
         questDescriptionActive.text = questDescription1;
@@ -55,13 +58,25 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Update()
     {
-        
-        QuestText.text = questDescriptionList1 + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
-        if (AiMobs.Monster >= Int32.Parse(questDescriptionList2))
+        if (playerTransform != null)
         {
-            quest2.SetActive(true);
+            player = playerTransform.GetComponent<Player>();
         }
-    
+        if (aimobs != null)
+        {
+            QuestText.text = questDescriptionList1 + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
+            if (AiMobs.Monster >= Int32.Parse(questDescriptionList2))
+            {
+                quest2.SetActive(true);
+            }
+        }
+        Menu1 = GameObject.Find("Player").transform;
+        menu = Menu1.GetComponent<Menu>();
+        if (Activequest && !menu.visible)
+        {
+            questlist.SetActive(true);
+        }
+
     }
 
     public void YesButton()
@@ -70,39 +85,31 @@ public class NPCInteractable : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         InteractNow = false;
-        player.Activequest = true;
-        if (player.Activequest)
+        Activequest = true;
+        if (Activequest)
         {
             quest1.SetActive(false);
             questlist.SetActive(true);
         }
     }
-    public void NoButton()
-    {
-        questWindow.SetActive(false);
-        questend.SetActive(false);
-        questactive.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        InteractNow = false;
-    }
+
     public void Interact()
     {
-        if (!player.Activequest && !questended)
+        if (!Activequest && !questended)
         {
             questWindow.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (player.Activequest && AiMobs.Monster < Int32.Parse(questDescriptionList2) && !questended)
+        else if (Activequest && AiMobs.Monster < Int32.Parse(questDescriptionList2) && !questended)
         {
             questactive.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (player.Activequest && AiMobs.Monster >= Int32.Parse(questDescriptionList2) && !questended)
+        else if (Activequest && AiMobs.Monster >= Int32.Parse(questDescriptionList2) && !questended)
         {
             questcomplete.SetActive(true);
             Cursor.visible = true;
@@ -125,10 +132,10 @@ public class NPCInteractable : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         InteractNow = false;
         AiMobs.Monster = 0;
-        player.Activequest = false;
+        Activequest = false;
         player.currentexp += 100;
         questended = true;
-        if (!player.Activequest)
+        if (!Activequest)
         {
             questlist.SetActive(false);
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class Menu : MonoBehaviour
     private bool firstEsc = false;
     public GameObject questlist;
     public GameObject Allquest;
-    public bool questactive;
+    bool anyNPCInteractingNow = false;
 
     private void Awake()
     {
@@ -49,40 +50,35 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
+        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
         if (wizardInstance != null)
         {
             inventoryManager.Player = wizardInstance.transform;
             Player player = wizardInstance.GetComponentInChildren<Player>();
-            if (player.Activequest)
-            {
-                questactive = true;
-            }
-            else
-            {
-                questactive= false;
-            }
 
         }
         if (warriorInstance != null)
         {
             inventoryManager.Player = warriorInstance.transform;
             Player player = warriorInstance.GetComponentInChildren<Player>();
-            if (player.Activequest)
-            {
-                questactive = true;
-            }
-            else
-            {
-                questactive = false;
-            }
+
         }
         if (inventoryManager.IsOpen || inventoryManager.IsOpenS)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !npc.InteractNow)
+        anyNPCInteractingNow = false;
+        foreach (NPCInteractable singleNPC in npc)
+        {
+            if (singleNPC.InteractNow)
+            {
+                anyNPCInteractingNow = true;
+                break;
+            }
+        }
+
+        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -103,14 +99,6 @@ public class Menu : MonoBehaviour
                 else if (!visible)
                 {
                     Allquest.SetActive(true);
-                    if (questactive)
-                    {
-                        questlist.SetActive(true);
-                    }
-                    else if (!questactive)
-                    {
-                        questlist.SetActive(false);
-                    }
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
 
@@ -134,7 +122,6 @@ public class Menu : MonoBehaviour
             warrior1 = false;
             WarriorIMG.SetActive(false);
             Player player = warriorInstance.GetComponentInChildren<Player>();
-            player.Activequest = false;
         }
         if (!wizard1)
         {
@@ -147,20 +134,12 @@ public class Menu : MonoBehaviour
             AiCloning.SetActive(true);
             Mutant.SetActive(true);
             MutantBoss.SetActive(true);
-            NPC.SetActive(true);
+            NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
             ball Ball = wizardInstance.GetComponentInChildren<ball>();
             Player player = wizardInstance.GetComponentInChildren<Player>();
             player.Phealthbar = Phealthbar;
             player.Pmanabar = Pmanabar;
             player.Pexpbar = Pexpbar;
-            if (player.Activequest)
-            {
-                questactive = true;
-            }
-            else if (!player.Activequest)
-            {
-                questactive = false;
-            }
             animator = wizardInstance.GetComponent<Animator>();
             animator.enabled = true;
             PlayerController controller = wizardInstance.GetComponentInChildren<PlayerController>();
@@ -171,8 +150,10 @@ public class Menu : MonoBehaviour
             HP.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
-            npc.playerTransform = wizardInstance.transform;
+            foreach (NPCInteractable npc2 in npc)
+            {
+                npc2.playerTransform = warriorInstance.transform;
+            }
         }
         else
         {
@@ -190,7 +171,6 @@ public class Menu : MonoBehaviour
             wizard1 = false;
             WizardIMG.SetActive(false);
             Player player = wizardInstance.GetComponentInChildren<Player>();
-            player.Activequest = false;
         }
         if (!warrior1)
         {
@@ -201,21 +181,14 @@ public class Menu : MonoBehaviour
             AiCloning.SetActive(true);
             Mutant.SetActive(true);
             MutantBoss.SetActive(true);
-            NPC.SetActive(true);
+            NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
             warriorInstance = Instantiate(Warrior, transform.position, Quaternion.identity);
             gameObject.transform.SetParent(warriorInstance.transform);
             Player player = warriorInstance.GetComponentInChildren<Player>();
             player.Phealthbar = Phealthbar;
             player.Pmanabar = Pmanabar;
             player.Pexpbar = Pexpbar;
-            if (player.Activequest)
-            {
-                questactive = true;
-            }
-            else if (!player.Activequest)
-            {
-                questactive = false;
-            }
+
             animator = warriorInstance.GetComponent<Animator>();
             animator.enabled = true;
             PlayerController controller = warriorInstance.GetComponentInChildren<PlayerController>();
@@ -226,8 +199,10 @@ public class Menu : MonoBehaviour
             HP.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            NPCInteractable npc = NPC.GetComponent<NPCInteractable>();
-            npc.playerTransform = warriorInstance.transform;
+            foreach (NPCInteractable npc2 in npc)
+            {
+                npc2.playerTransform = warriorInstance.transform;
+            }
 
         }
         else

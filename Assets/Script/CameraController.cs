@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertX;
     [SerializeField] bool invertY;
     [SerializeField] LayerMask obstacleMask;
-    private NPCInteractable interactable;
     InventoryManager inventoryManager;
     public Transform NPC;
 
@@ -24,7 +23,8 @@ public class CameraController : MonoBehaviour
 
     float invertXVal;
     float invertYVal;
-    
+    bool anyNPCInteractingNow;
+
     public void SetTarget(Transform newTarget)
     {
         followTarget = newTarget;
@@ -32,11 +32,20 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
-        interactable = NPC.GetComponent<NPCInteractable>();
+        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
     }
     private void Update()
     {
-        
+        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
+        anyNPCInteractingNow = false;
+        foreach (NPCInteractable singleNPC in npc)
+        {
+            if (singleNPC.InteractNow)
+            {
+                anyNPCInteractingNow = true;
+                break;
+            }
+        }
         invertXVal = (invertX) ? -1 : 1;
         invertYVal = (invertY) ? -1 : 1;
 
@@ -67,7 +76,7 @@ public class CameraController : MonoBehaviour
             distance = distance2;
         }
 
-        if (!interactable.InteractNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS)
+        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS)
         {
             
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);

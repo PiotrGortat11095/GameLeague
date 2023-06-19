@@ -23,12 +23,11 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     public Transform player;
     Quaternion targetRotation;
-    public Transform NPC;
     private InventoryManager inventoryManager;
-    private NPCInteractable npcInteractable;
     public Transform ekwipunek;
     public Transform MEnu1;
     Menu menu;
+    bool anyNPCInteractingNow;
 
     CameraController cameraController;
     Animator animator;
@@ -36,23 +35,36 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        ekwipunek = GameObject.Find("Canvas").transform;
-        inventoryManager = ekwipunek.GetComponent<InventoryManager>();
-        NPC = GameObject.Find("Ch34_nonPBR").transform;
-        npcInteractable = NPC.GetComponentInChildren<NPCInteractable>();
-        playerScript = player.GetComponent<Player>();
-        skillScript = player.GetComponent<ball>();
+        if (player != null)
+        {
+            ekwipunek = GameObject.Find("Canvas").transform;
+            inventoryManager = ekwipunek.GetComponent<InventoryManager>();
 
-        cameraController = Camera.main.GetComponent<CameraController>();
-        animator = GetComponent<Animator>();
-        characterController = GetComponent<CharacterController>();
-        MEnu1 = GameObject.Find("Player").transform;
-        menu = MEnu1.GetComponent<Menu>();
+            NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
+
+            playerScript = player.GetComponent<Player>();
+            skillScript = player.GetComponent<ball>();
+
+            cameraController = Camera.main.GetComponent<CameraController>();
+            animator = GetComponent<Animator>();
+            characterController = GetComponent<CharacterController>();
+            MEnu1 = GameObject.Find("Player").transform;
+            menu = MEnu1.GetComponent<Menu>();
+        }
     }
     private void Update()
     {
-
-        if (!npcInteractable.InteractNow)
+        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
+        anyNPCInteractingNow = false;
+        foreach (NPCInteractable singleNPC in npc)
+        {
+            if (singleNPC.InteractNow)
+            {
+                anyNPCInteractingNow = true;
+                break;
+            }
+        }
+        if (!anyNPCInteractingNow)
         {
 
             float h = Input.GetAxis("Horizontal");
