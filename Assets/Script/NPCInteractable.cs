@@ -23,15 +23,12 @@ public class NPCInteractable : MonoBehaviour
     public string questDescription1;
     public string questDescriptionComplete1;
     public string questDescriptionEnd1;
-    public string questDescriptionList1;
     public string questDescriptionList2;
     public string MonsterName;
     [SerializeField] private Text QuestText;
     private Player player;
-    private AiMobs aimobs;
     private bool questended = false;
     public Transform playerTransform;
-    public Transform Ai;
     public bool Activequest;
     Menu menu;
     Transform Menu1;
@@ -45,10 +42,6 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Start()
     {
-        if (Ai != null)
-        {
-            aimobs = Ai.GetComponent<AiMobs>();
-        }
         
         quest1.SetActive(true);
         questDescription.text = questDescription1;
@@ -58,18 +51,19 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Update()
     {
+
         if (playerTransform != null)
         {
             player = playerTransform.GetComponent<Player>();
         }
-        if (aimobs != null)
-        {
-            QuestText.text = questDescriptionList1 + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
+
+            if (Activequest)
+            QuestText.text = "Pokonaj " + MonsterName + " " + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
             if (AiMobs.Monster >= Int32.Parse(questDescriptionList2))
             {
                 quest2.SetActive(true);
             }
-        }
+        
         Menu1 = GameObject.Find("Player").transform;
         menu = Menu1.GetComponent<Menu>();
         if (Activequest && !menu.visible)
@@ -79,19 +73,6 @@ public class NPCInteractable : MonoBehaviour
 
     }
 
-    public void YesButton()
-    {
-        questWindow.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        InteractNow = false;
-        Activequest = true;
-        if (Activequest)
-        {
-            quest1.SetActive(false);
-            questlist.SetActive(true);
-        }
-    }
 
     public void Interact()
     {

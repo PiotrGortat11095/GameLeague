@@ -81,10 +81,14 @@ public class AiMobs : MonoBehaviour
     private void Update()
     {
         NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
-        foreach (var singleNPC in npc)
+        foreach (NPCInteractable singleNPC in npc)
         {
-            monsterNames.Add(singleNPC.MonsterName);
-            currentNPC = singleNPC;
+            if (singleNPC.Activequest)
+            {
+                monsterNames.Add(singleNPC.MonsterName);
+                currentNPC = singleNPC;
+                break;
+            }
         }
         player1 = player.GetComponent<Player>();
         if (Boss && player1.visible)
@@ -252,6 +256,8 @@ public class AiMobs : MonoBehaviour
             agent.SetDestination(transform.position);
             if (currentNPC.Activequest && MonsterName == currentNPC.MonsterName)
             {
+                Debug.Log(currentNPC.Activequest);
+                Debug.Log(currentNPC.MonsterName);
                 AiMobs.Monster++;     
             }
             if (!currentNPC.Activequest)
