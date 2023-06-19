@@ -25,6 +25,7 @@ public class Item : ScriptableObject
     }
     public WeaponType weaponType;
     public int AttackDamage;
+    public float CriticalHitStrength;
 
 
     public int NutritionValue;
@@ -45,6 +46,7 @@ public class Item : ScriptableObject
     public AccessoryType accessoryType;
     public int strength;
     public int intellect;
+    public float CriticalHitChance;
 
 }
 

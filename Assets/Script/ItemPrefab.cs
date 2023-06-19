@@ -10,8 +10,6 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public Item item;
     Vector2 startPosition;
     Transform startParent;
-    Vector2 startPositionR;
-    Transform startParentR;
 
     public void OnBeginDrag(PointerEventData eventData)
     {

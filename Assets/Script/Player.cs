@@ -13,12 +13,14 @@ public class Player : MonoBehaviour
     public bool alreadyattack = false;
     public bool alreadyblock = false;
     public bool Activequest = false;
-    [HideInInspector]public int damage = 0;
+    [HideInInspector]public float damage = 0;
     [HideInInspector]public float lvl = 1;
     private float expp;
     [HideInInspector]public float currentexp = 0;
     public float PcurrentHealth;
     public int Armor = 0;
+    public float CriticalHitChance = 0;
+    public float CriticalHitStrength = 2;
     private int i = 1;
     public float PcurrentMana;
     [HideInInspector]public float HealthRegeneration = 2f;

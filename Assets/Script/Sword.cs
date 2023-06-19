@@ -5,7 +5,8 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     public bool Triggernow = false;
-    private int damage;
+    private float damage;
+    private float skilldamage;
     private Player playerScript;
     public CapsuleCollider capsuleCollider;
     public void Start()
@@ -15,6 +16,7 @@ public class Sword : MonoBehaviour
     public void Update()
     {
         damage = playerScript.damage;
+        skilldamage = Mathf.Round(playerScript.damage *13/10);
         if (playerScript.alreadyattack)
         {
             capsuleCollider.enabled = true;
@@ -31,11 +33,25 @@ public class Sword : MonoBehaviour
         {
             if (!playerScript.skill1)
             {
-                enemy.TakeDamage(damage);
+                if (Random.value <= playerScript.CriticalHitChance)
+                {
+                    enemy.TakeDamage(Mathf.Round(damage * playerScript.CriticalHitStrength));
+                }
+                else
+                {
+                    enemy.TakeDamage(damage);
+                }
             }
             else if (playerScript.skill1)
             {
-                enemy.TakeDamage(damage+damage/2);
+                if (Random.value <= playerScript.CriticalHitChance)
+                {
+                    enemy.TakeDamage(Mathf.Round(skilldamage * playerScript.CriticalHitStrength));
+                }
+                else
+                {
+                    enemy.TakeDamage(skilldamage);
+                }
             }
 
         }

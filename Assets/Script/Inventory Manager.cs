@@ -105,6 +105,8 @@ public class InventoryManager : MonoBehaviour
             TextMeshProUGUI tekstComponent5 = stats.transform.Find("Mana").GetComponentInChildren<TextMeshProUGUI>();
             TextMeshProUGUI tekstComponent6 = stats.transform.Find("Damage").GetComponentInChildren<TextMeshProUGUI>();
             TextMeshProUGUI tekstComponent7 = stats.transform.Find("Armor").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI tekstComponent8 = stats.transform.Find("CriticalHitChance").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI tekstComponent9 = stats.transform.Find("CriticalHitStrength").GetComponentInChildren<TextMeshProUGUI>();
 
             if (tekstComponent4 != null)
             {
@@ -123,6 +125,15 @@ public class InventoryManager : MonoBehaviour
             if (tekstComponent7 != null)
             {
                 tekstComponent7.text = "Armor: " + playerscript.Armor.ToString();
+            }
+            if (tekstComponent8 != null)
+            {
+                tekstComponent8.text = "Critical Chance: " + (playerscript.CriticalHitChance *100).ToString() + "%";
+
+            }
+            if (tekstComponent9 != null)
+            {
+                tekstComponent9.text = "Critical Strength: " + (playerscript.CriticalHitStrength *100).ToString() + "%";
             }
         }
     }

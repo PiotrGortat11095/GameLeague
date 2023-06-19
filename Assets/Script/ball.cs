@@ -114,8 +114,18 @@ public class FireDestroyer : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
-            enemy.TakeDamage(playerScript.damage);
-            Destroy(gameObject);
+            if (Random.value <= playerScript.CriticalHitChance)
+            {
+                enemy.TakeDamage(Mathf.Round(playerScript.damage * playerScript.CriticalHitStrength));
+                Destroy(gameObject);
+            }
+            else
+            {
+                enemy.TakeDamage(playerScript.damage);
+                Destroy(gameObject);
+            }
+
+            
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
@@ -127,7 +137,7 @@ public class FireDestroyer : MonoBehaviour
 public class FireDestroyer2 : MonoBehaviour
 {
     private Player playerScript;
-    public int ultimatedamage;
+    public float ultimatedamage;
     private void Start()
     {
         playerScript = FindObjectOfType<Player>();
@@ -139,7 +149,17 @@ public class FireDestroyer2 : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
-            enemy.TakeDamage(ultimatedamage);
+
+            if (Random.value <= playerScript.CriticalHitChance)
+            {
+                enemy.TakeDamage(Mathf.Round(ultimatedamage * playerScript.CriticalHitStrength));
+
+            }
+            else
+            {
+                enemy.TakeDamage(ultimatedamage);
+
+            }
         }
     }
 }

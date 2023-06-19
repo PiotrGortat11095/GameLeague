@@ -14,31 +14,36 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
     public Player player;
     public Transform playerT;
     public Item item;
-    private GameObject currentItemInSlot;
+    public GameObject currentItemInSlot;
 
     void Start()
     {
         Target = GetComponent<Image>();
         Target.color = NormalColor;
         playerT = GameObject.Find("Player").transform;
-        player = playerT.GetComponentInParent<Player>();
+        if (playerT != null)
+        {
+            player = playerT.GetComponentInParent<Player>();
+        }
     }
     void Update()
     {
         playerT = GameObject.Find("Player").transform;
-        player = playerT.GetComponentInParent<Player>();
-        if (currentItemInSlot != null && przedmiotWslocie == null)
+        if (playerT != null)
         {
-            
-            player.Phealth -= currentItemInSlot.GetComponent<ItemPrefab>().item.strength;
-            player.PcurrentHealth -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
-            player.damage -= currentItemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
-            player.Armor -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
+            player = playerT.GetComponentInParent<Player>();
+            if (currentItemInSlot != null && przedmiotWslocie == null)
+            {
 
-
-            currentItemInSlot = null;
+                player.Phealth -= currentItemInSlot.GetComponent<ItemPrefab>().item.strength;
+                player.PcurrentHealth -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
+                player.damage -= currentItemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
+                player.Armor -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
+                player.CriticalHitChance -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance/100;
+                player.CriticalHitStrength -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength/100;
+                currentItemInSlot = null;
+            }
         }
-
     }
 
     public GameObject przedmiotWslocie
@@ -89,6 +94,8 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             player.PcurrentHealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
             player.damage += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
             player.Armor += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
+            player.CriticalHitChance += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance /100;
+            player.CriticalHitStrength += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength /100;
         }
 
     }
