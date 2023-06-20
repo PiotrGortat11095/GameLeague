@@ -14,6 +14,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public string Name;
     public Player player;
     public Transform playerT;
+    public int slotNumber;
 
     public GameObject przedmiotWslocie
     {

@@ -25,9 +25,10 @@ public class NPCInteractable : MonoBehaviour
     public string questDescriptionEnd1;
     public string questDescriptionList2;
     public string MonsterName;
+    public int Monster = 0;
     [SerializeField] private Text QuestText;
-    private Player player;
-    private bool questended = false;
+    public Player player;
+    public bool questended = false;
     public Transform playerTransform;
     public bool Activequest;
     Menu menu;
@@ -51,15 +52,25 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Update()
     {
-
+        AiMobs[] aimobs = GameObject.FindObjectsOfType<AiMobs>();
+        foreach (AiMobs mob in aimobs)
+        {
+            if (Activequest && mob.MonsterName == MonsterName && mob.death == true && !mob.zliczony)
+            {
+                mob.zliczony = true;
+                Monster++;
+                break;
+            }        
+        }
+        Debug.Log(Monster);
         if (playerTransform != null)
         {
             player = playerTransform.GetComponent<Player>();
         }
 
             if (Activequest)
-            QuestText.text = "Pokonaj " + MonsterName + " " + "Pokonano: " + AiMobs.Monster + "/" + questDescriptionList2;
-            if (AiMobs.Monster >= Int32.Parse(questDescriptionList2))
+            QuestText.text = "Pokonaj " + MonsterName + " " + "Pokonano: " + Monster + "/" + questDescriptionList2;
+            if (Monster >= Int32.Parse(questDescriptionList2))
             {
                 quest2.SetActive(true);
             }
@@ -83,14 +94,14 @@ public class NPCInteractable : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (Activequest && AiMobs.Monster < Int32.Parse(questDescriptionList2) && !questended)
+        else if (Activequest && Monster < Int32.Parse(questDescriptionList2) && !questended)
         {
             questactive.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (Activequest && AiMobs.Monster >= Int32.Parse(questDescriptionList2) && !questended)
+        else if (Activequest && Monster >= Int32.Parse(questDescriptionList2) && !questended)
         {
             questcomplete.SetActive(true);
             Cursor.visible = true;
@@ -103,22 +114,6 @@ public class NPCInteractable : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
-        }
-    }
-    public void Rewards()
-    {
-        quest2.SetActive(false);
-        questcomplete.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        InteractNow = false;
-        AiMobs.Monster = 0;
-        Activequest = false;
-        player.currentexp += 100;
-        questended = true;
-        if (!Activequest)
-        {
-            questlist.SetActive(false);
         }
     }
 

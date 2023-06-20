@@ -28,12 +28,11 @@ public class AiMobs : MonoBehaviour
     bool alreadyAttacked;
     public bool Triggernow = false;
     public GameObject projectile;
-    private bool death;
+    public bool death;
     private float DeathTime = 1f;
     public float health = 2;
     private float currentHealth;
     public bool Boss;
-    private NPCInteractable currentNPC;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     Animator animator;
@@ -41,7 +40,7 @@ public class AiMobs : MonoBehaviour
     public Transform maincamera;
     private Menu menu;
     public Transform MEnu1;
-    List<string> monsterNames = new List<string>();
+    public bool zliczony = false;
 
 
     public static int Monster = 0;
@@ -80,16 +79,6 @@ public class AiMobs : MonoBehaviour
     }
     private void Update()
     {
-        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
-        foreach (NPCInteractable singleNPC in npc)
-        {
-            if (singleNPC.Activequest)
-            {
-                monsterNames.Add(singleNPC.MonsterName);
-                currentNPC = singleNPC;
-                break;
-            }
-        }
         player1 = player.GetComponent<Player>();
         if (Boss && player1.visible)
         {
@@ -254,16 +243,6 @@ public class AiMobs : MonoBehaviour
             player1.currentexp += exp;
             animator.SetBool("Death", true);
             agent.SetDestination(transform.position);
-            if (currentNPC.Activequest && MonsterName == currentNPC.MonsterName)
-            {
-                Debug.Log(currentNPC.Activequest);
-                Debug.Log(currentNPC.MonsterName);
-                AiMobs.Monster++;     
-            }
-            if (!currentNPC.Activequest)
-            {
-                AiMobs.Monster = 0;
-            }
         }
     }
 

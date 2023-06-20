@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 
 public class InventoryManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class InventoryManager : MonoBehaviour
     public bool IsOpen;
     public bool IsOpenS;
     private float dodanepunkty = 1;
+    Menu menu;
+    Transform Menu1;
 
 
     private void Start()
@@ -57,9 +60,36 @@ public class InventoryManager : MonoBehaviour
                 button3.SetActive(false);
                 button4.SetActive(false);
             }
+            Menu1 = GameObject.Find("Player").transform;
+            menu = Menu1.GetComponent<Menu>();
+            if(IsOpen && menu.visible)
+            {
+                inventory.SetActive(false);
+            }
+            else if (IsOpen && !menu.visible) 
+            {
+                inventory.SetActive(true);
+                
+            }
+            else if (!IsOpen) 
+            {
+                inventory.SetActive(false);
+            }
+            if (IsOpenS && menu.visible)
+            {
+                stats.SetActive(false);
+            }
+            else if (IsOpenS && !menu.visible)
+            {
+                stats.SetActive(true);
+
+            }
+            else if (!IsOpenS)
+            {
+                stats.SetActive(false);
+            }
             if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
-                inventory.SetActive(!inventory.activeInHierarchy);
                 IsOpen = !IsOpen;
 
                 foreach (Slot slot in slotyEkwipunku)
@@ -98,7 +128,6 @@ public class InventoryManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.G) && pc.characterController.isGrounded)
             {
-                stats.SetActive(!stats.activeInHierarchy);
                 IsOpenS = !IsOpenS;
             }
             TextMeshProUGUI tekstComponent4 = stats.transform.Find("HP").GetComponentInChildren<TextMeshProUGUI>();
@@ -128,8 +157,7 @@ public class InventoryManager : MonoBehaviour
             }
             if (tekstComponent8 != null)
             {
-                tekstComponent8.text = "Critical Chance: " + (playerscript.CriticalHitChance *100).ToString() + "%";
-
+                tekstComponent8.text = "Critical Chance: " + (playerscript.CriticalHitChance * 100).ToString() + "%";
             }
             if (tekstComponent9 != null)
             {

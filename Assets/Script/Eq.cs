@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,11 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
     public GameObject prefabItem;
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (przedmiotWslocie != null)
+        {
+            ItemPrefab.itemInSlot = przedmiotWslocie.gameObject;
+        }
+        UseItem();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -98,6 +104,23 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             player.CriticalHitStrength += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength /100;
         }
 
+    }
+    public void UseItem()
+    {
+        if (przedmiotWslocie != null)
+        {
+            Slot[] slotObjects = GameObject.FindObjectsOfType<Slot>();
+            Array.Sort(slotObjects, (x, y) => x.slotNumber.CompareTo(y.slotNumber));
+            foreach (Slot slotObject in slotObjects)
+            {
+                if (slotObject.przedmiotWslocie == null)
+                {
+                    przedmiotWslocie.transform.SetParent(slotObject.transform, false);
+                    break;
+                }
+            }
+
+        }
     }
 
 }
