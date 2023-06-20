@@ -22,7 +22,7 @@ public class NPCInteractable : MonoBehaviour
     public string questDescriptionList2;
     public string MonsterName;
     public int Monster = 0;
-    [SerializeField] private Text QuestText;
+    [SerializeField] public Text QuestText;
     public Player player;
     public bool questended = false;
     public Transform playerTransform;

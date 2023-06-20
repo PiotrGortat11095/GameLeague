@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Transform player;
     Quaternion targetRotation;
     private InventoryManager inventoryManager;
+    private QuestManager questManager;
     public Transform ekwipunek;
     public Transform MEnu1;
     Menu menu;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         {
             ekwipunek = GameObject.Find("Canvas").transform;
             inventoryManager = ekwipunek.GetComponent<InventoryManager>();
-
+            questManager = ekwipunek.GetComponent<QuestManager>();
             NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
 
             playerScript = player.GetComponent<Player>();
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            if (inventoryManager.IsOpen || inventoryManager.IsOpenS)
+            if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen)
             {
                 h = 0;
                 v = 0;
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Grounded", false);
             }
            
-            if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS)
+            if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen)
             {
                 if (Input.GetButton("Ultimate") && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)
                 {
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 lastGroundedTime = Time.time;
             }
 
-            if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen && !inventoryManager.IsOpenS)
+            if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen)
             {
                 jumpButtonPressedTime = Time.time;
             }

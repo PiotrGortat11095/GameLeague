@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertY;
     [SerializeField] LayerMask obstacleMask;
     InventoryManager inventoryManager;
+    QuestManager questManager;
     public Transform NPC;
 
     float distance2 = 4;
@@ -32,6 +33,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
     }
     private void Update()
@@ -76,7 +78,7 @@ public class CameraController : MonoBehaviour
             distance = distance2;
         }
 
-        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS)
+        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen)
         {
             
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);

@@ -24,6 +24,7 @@ public class Menu : MonoBehaviour
     private GameObject wizardInstance;
     private GameObject warriorInstance;
     InventoryManager inventoryManager;
+    QuestManager questManager;
 
     public bool wizard1;
     public bool warrior1;
@@ -44,6 +45,7 @@ public class Menu : MonoBehaviour
     private void Start()
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         visible = true;
         
     }
@@ -54,16 +56,18 @@ public class Menu : MonoBehaviour
         if (wizardInstance != null)
         {
             inventoryManager.Player = wizardInstance.transform;
+            questManager.Player = wizardInstance.transform;
             Player player = wizardInstance.GetComponentInChildren<Player>();
 
         }
         if (warriorInstance != null)
         {
             inventoryManager.Player = warriorInstance.transform;
+            questManager.Player=warriorInstance.transform;
             Player player = warriorInstance.GetComponentInChildren<Player>();
 
         }
-        if (inventoryManager.IsOpen || inventoryManager.IsOpenS)
+        if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -78,7 +82,7 @@ public class Menu : MonoBehaviour
             }
         }
 
-        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow)
+        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow && !questManager.IsOpen)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
