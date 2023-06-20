@@ -596,15 +596,16 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   Triggernow: 0
   projectile: {fileID: 0}
+  death: 0
   health: 500
   Boss: 1
   sightRange: 30
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
-  NPC: {fileID: 6447961078831995095, guid: 6fd24939cd2c6d24790e696d716cb2a7, type: 3}
   maincamera: {fileID: 0}
   MEnu1: {fileID: 0}
+  zliczony: 0
 --- !u!1001 &240154412497772606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -721,7 +722,7 @@ PrefabInstance:
     - target: {fileID: -4728426434207774260, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4332706925441422008, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
@@ -840,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 3948933247560734027, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4237274458221626025, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
@@ -860,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 8817898888258712963, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8953972740105248388, guid: 74f0dce88055b3e42a79bd8a5b125db0,
         type: 3}

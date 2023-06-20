@@ -52,15 +52,19 @@ public class NPCInteractable : MonoBehaviour
     }
     public void Update()
     {
+        
         AiMobs[] aimobs = GameObject.FindObjectsOfType<AiMobs>();
-        foreach (AiMobs mob in aimobs)
+        if (aimobs != null)
         {
-            if (Activequest && mob.MonsterName == MonsterName && mob.death == true && !mob.zliczony)
+            foreach (AiMobs mob in aimobs)
             {
-                mob.zliczony = true;
-                Monster++;
-                break;
-            }        
+                if (Activequest && mob.MonsterName == MonsterName && mob.death == true && !mob.zliczony)
+                {
+                    mob.zliczony = true;
+                    Monster++;
+                    break;
+                }
+            }
         }
         if (playerTransform != null)
         {
