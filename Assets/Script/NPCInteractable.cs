@@ -62,7 +62,6 @@ public class NPCInteractable : MonoBehaviour
                 break;
             }        
         }
-        Debug.Log(Monster);
         if (playerTransform != null)
         {
             player = playerTransform.GetComponent<Player>();

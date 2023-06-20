@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject button4;
     public Slot[] slotyEkwipunku;
     public Eq[] eq;
+    float epsilon = 1E-08f;
     public PlayerController pc;
     CharacterController characterController;
     public Transform Player;
@@ -157,6 +158,10 @@ public class InventoryManager : MonoBehaviour
             }
             if (tekstComponent8 != null)
             {
+                if (Mathf.Abs(playerscript.CriticalHitChance) < epsilon)
+                {
+                    playerscript.CriticalHitChance = 0f;
+                }
                 tekstComponent8.text = "Critical Chance: " + (playerscript.CriticalHitChance * 100).ToString() + "%";
             }
             if (tekstComponent9 != null)

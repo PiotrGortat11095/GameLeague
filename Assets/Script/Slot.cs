@@ -66,9 +66,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         Target.color = NormalColor;
 
     }
-    void Update()
-    {
-    }
 
     public void OnDrop(PointerEventData eventData)
     {

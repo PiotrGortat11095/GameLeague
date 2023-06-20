@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        CriticalHitChance = 0;
         damage = 10;
         PcurrentHealth = Phealth;
         PcurrentMana = Pmana;
