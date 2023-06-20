@@ -97,6 +97,10 @@ MonoBehaviour:
   EnterColor:
     serializedVersion: 2
     rgba: 4282006074
+  Name: 
+  player: {fileID: 0}
+  playerT: {fileID: 0}
+  slotNumber: 0
   prefabItem: {fileID: 6293211858709583142, guid: a769cd6b4147d494fa6251c7ca92387b,
     type: 3}
 --- !u!114 &7437687972043746534

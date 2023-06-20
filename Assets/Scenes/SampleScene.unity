@@ -10354,14 +10354,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questWindow: {fileID: 1907434505}
-  questDescription: {fileID: 146305902}
   questactive: {fileID: 930272807}
-  questDescriptionActive: {fileID: 2091634026}
   questcomplete: {fileID: 1366321884}
-  questDescriptionComplete: {fileID: 535166823}
   questlist: {fileID: 1621888407}
   questend: {fileID: 12168781}
-  questDescriptionend: {fileID: 13098548}
   quest1: {fileID: 999497367}
   quest2: {fileID: 1755775423}
   NPC: {fileID: 1610464155}
@@ -14469,6 +14465,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 446144270}
+  questDescription: {fileID: 146305902}
+  questDescriptionActive: {fileID: 2091634026}
+  questDescriptionComplete: {fileID: 535166823}
+  questDescriptionend: {fileID: 13098548}
 --- !u!4 &1998264075
 Transform:
   m_ObjectHideFlags: 0

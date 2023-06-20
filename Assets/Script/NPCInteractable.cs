@@ -9,14 +9,10 @@ using UnityEngine.UI;
 public class NPCInteractable : MonoBehaviour
 {
     public GameObject questWindow;
-    public Text questDescription;
     public GameObject questactive;
-    public Text questDescriptionActive;
     public GameObject questcomplete;
-    public Text questDescriptionComplete;
     public GameObject questlist;
     public GameObject questend;
-    public Text questDescriptionend;
     public GameObject quest1;
     public GameObject quest2;
     public GameObject NPC;
@@ -45,14 +41,9 @@ public class NPCInteractable : MonoBehaviour
     {
         
         quest1.SetActive(true);
-        questDescription.text = questDescription1;
-        questDescriptionActive.text = questDescription1;
-        questDescriptionComplete.text = questDescriptionComplete1;
-        questDescriptionend.text = questDescriptionEnd1;
     }
     public void Update()
     {
-        
         AiMobs[] aimobs = GameObject.FindObjectsOfType<AiMobs>();
         if (aimobs != null)
         {

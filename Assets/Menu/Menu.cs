@@ -99,8 +99,11 @@ public class Menu : MonoBehaviour
                 else if (!visible)
                 {
                     Allquest.SetActive(true);
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
+                    if (!anyNPCInteractingNow)
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                    }
 
                 }
                 Menu1.SetActive(visible); 
@@ -152,7 +155,7 @@ public class Menu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             foreach (NPCInteractable npc2 in npc)
             {
-                npc2.playerTransform = warriorInstance.transform;
+                npc2.playerTransform = wizardInstance.transform;
             }
         }
         else

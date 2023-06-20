@@ -582,7 +582,7 @@ MonoBehaviour:
   FloatingTextPrefab: {fileID: 8083161676229528290, guid: 87e0a8cd6611a46408f42a3bde30c4dd,
     type: 3}
   agent: {fileID: 240154412596656381}
-  AIdamage: 50
+  AIdamage: 70
   player: {fileID: 0}
   exp: 100
   whatIsGround:
@@ -597,7 +597,7 @@ MonoBehaviour:
   Triggernow: 0
   projectile: {fileID: 0}
   death: 0
-  health: 500
+  health: 1000
   Boss: 1
   sightRange: 30
   attackRange: 5
