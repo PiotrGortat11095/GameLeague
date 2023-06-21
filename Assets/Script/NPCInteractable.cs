@@ -11,7 +11,6 @@ public class NPCInteractable : MonoBehaviour
     public GameObject questWindow;
     public GameObject questactive;
     public GameObject questcomplete;
-    public GameObject questlist;
     public GameObject questend;
     public GameObject quest1;
     public GameObject quest2;
@@ -21,8 +20,9 @@ public class NPCInteractable : MonoBehaviour
     public string questDescriptionEnd1;
     public string questDescriptionList2;
     public string MonsterName;
+    public string Dane;
     public int Monster = 0;
-    [SerializeField] public Text QuestText;
+    public bool QuestAct = false;
     public Player player;
     public bool questended = false;
     public Transform playerTransform;
@@ -63,7 +63,7 @@ public class NPCInteractable : MonoBehaviour
         }
 
             if (Activequest)
-            QuestText.text = "Pokonaj " + MonsterName + " " + "Pokonano: " + Monster + "/" + questDescriptionList2;
+            Dane = "Pokonaj " + MonsterName + " " + "Pokonano: " + Monster + "/" + questDescriptionList2;
             if (Monster >= Int32.Parse(questDescriptionList2))
             {
                 quest2.SetActive(true);
@@ -71,10 +71,6 @@ public class NPCInteractable : MonoBehaviour
         
         Menu1 = GameObject.Find("Player").transform;
         menu = Menu1.GetComponent<Menu>();
-        if (Activequest && !menu.visible)
-        {
-            questlist.SetActive(true);
-        }
 
     }
 

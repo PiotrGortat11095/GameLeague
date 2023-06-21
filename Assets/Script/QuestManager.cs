@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,6 @@ public class QuestManager : MonoBehaviour
     public GameObject QuestList;
     public bool IsOpen;
     Menu menu;
-    bool foundMatchingNPC = false;
     Transform Menu1;
 
     private void Start()
@@ -41,34 +41,40 @@ public class QuestManager : MonoBehaviour
             {
                 QuestList.SetActive(false);
             }
-            Quest[] quest = GameObject.FindObjectsOfType<Quest>();
-            Debug.Log(quest.Length);
-            foreach (Quest quest1 in quest)
+            Quest[] quests = GameObject.FindObjectsOfType<Quest>();
+            Array.Sort(quests, (x, y) => x.questNumber.CompareTo(y.questNumber));
+            NPCInteractable[] npcs = GameObject.FindObjectsOfType<NPCInteractable>();
+
+            foreach (NPCInteractable npc in npcs)
             {
-                Debug.Log(quest1);
-                    if (quest1.fullslot == false) { }
-                    TextMeshProUGUI tekstComponent = quest1.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
-                    if (tekstComponent.text != null && string.IsNullOrEmpty(tekstComponent.text))
+                if (npc.Activequest && !npc.QuestAct)
+                {
+                    foreach (Quest quest in quests)
                     {
-                        NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
-                        foreach (NPCInteractable npc1 in npc)
+                        if (!quest.fullslot)
                         {
-                            if (npc1.Activequest && !foundMatchingNPC)
+                            TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
+                            if (tekstComponent.text != null && string.IsNullOrEmpty(tekstComponent.text))
                             {
-                                tekstComponent.text = npc1.QuestText.text;
-                                foundMatchingNPC = true;
-                            quest1.fullslot = true;
-                            break;
+                                tekstComponent.text = npc.Dane;
+                                quest.fullslot = true;
+                                npc.QuestAct = true;
+                                break;
                             }
                         }
                     }
-                break;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Q) && pc.characterController.isGrounded)
-            {
+
+        }
+
+
+    
+        if (Input.GetKeyDown(KeyCode.Q) && pc.characterController.isGrounded)
+        {
                 IsOpen = !IsOpen;
                
-            }
         }
     }
 }
+

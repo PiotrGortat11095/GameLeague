@@ -31,7 +31,6 @@ public class Menu : MonoBehaviour
     public bool visible;
     Animator animator;
     private bool firstEsc = false;
-    public GameObject questlist;
     public GameObject Allquest;
     bool anyNPCInteractingNow = false;
 
@@ -97,7 +96,7 @@ public class Menu : MonoBehaviour
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
-                    questlist.SetActive(false);
+
                     Allquest.SetActive(false);
                 }
                 else if (!visible)
@@ -120,7 +119,7 @@ public class Menu : MonoBehaviour
     }
     public void wizard ()
     {
-        questlist.SetActive(false);
+
         Allquest.SetActive(true);
         firstEsc = true;
         if (warriorInstance != null)
@@ -169,7 +168,6 @@ public class Menu : MonoBehaviour
     }
     public void warrior()
     {
-        questlist.SetActive(false);
         Allquest.SetActive(true);
         firstEsc = true;
         if (wizardInstance != null)

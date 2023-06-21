@@ -24,7 +24,6 @@ public class ClickY : MonoBehaviour, IPointerClickHandler
                 GameObject quest1 = singleNPC.transform.Find("Canvas/quest1").gameObject;
                 singleNPC.Activequest = true;
                 quest1.SetActive(false);
-                questlist.SetActive(true);
                 singleNPC.InteractNow = false;
                 break;
             }
