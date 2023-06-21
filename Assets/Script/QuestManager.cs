@@ -59,6 +59,40 @@ public class QuestManager : MonoBehaviour
                                 tekstComponent.text = npc.Dane;
                                 quest.fullslot = true;
                                 npc.QuestAct = true;
+                                npc.QuestN = quest.questNumber;
+                                npc.Change = true;
+
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (!npc.Activequest && npc.QuestAct)
+                {
+                    foreach (Quest quest in quests)
+                    {
+                        if (quest.fullslot)
+                        {
+                            TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
+                            if (!string.IsNullOrEmpty(tekstComponent.text) && npc.QuestN == quest.questNumber)
+                            {
+                                tekstComponent.text = null;
+                                quest.fullslot = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (npc.Activequest && npc.Change && npc.QuestAct)
+                {
+                    foreach (Quest quest in quests)
+                    {
+                        if (quest.fullslot)
+                        {
+                            TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
+                            if (!string.IsNullOrEmpty(tekstComponent.text) && npc.QuestN == quest.questNumber)
+                            {
+                                tekstComponent.text = npc.Dane;
                                 break;
                             }
                         }

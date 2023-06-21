@@ -21,8 +21,10 @@ public class NPCInteractable : MonoBehaviour
     public string questDescriptionList2;
     public string MonsterName;
     public string Dane;
+    public int QuestN;
     public int Monster = 0;
     public bool QuestAct = false;
+    public bool Change = false;
     public Player player;
     public bool questended = false;
     public Transform playerTransform;

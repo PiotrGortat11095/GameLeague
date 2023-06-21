@@ -29,7 +29,6 @@ public class ClickReward : MonoBehaviour, IPointerClickHandler
                 singleNPC.Activequest = false;
                 singleNPC.player.currentexp += 100;
                 singleNPC.questended = true;
-                questlist.SetActive(false);
                 
                 break;
             }
