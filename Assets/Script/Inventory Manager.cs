@@ -31,14 +31,19 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         eq = GetComponentsInChildren<Eq>();
-        slotyEkwipunku = GetComponentsInChildren<Slot>();
         inventory = transform.Find("Inventory").gameObject;
+        inventory.SetActive(true);
+        slotyEkwipunku = GetComponentsInChildren<Slot>();
         stats = transform.Find("Stats").gameObject;
         stats.SetActive(false);
         IsOpenS = false;
         IsOpen = false;
-        inventory.SetActive(false);
+        if (slotyEkwipunku.Length > 0)
+        {
+            inventory.SetActive(false);
+        }
     }
+
 
     private void Update()
     {
@@ -89,10 +94,11 @@ public class InventoryManager : MonoBehaviour
             {
                 stats.SetActive(false);
             }
+
             if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
                 IsOpen = !IsOpen;
-
+                Debug.Log(slotyEkwipunku.Length);
                 foreach (Slot slot in slotyEkwipunku)
                 {
                     if (slot != null && slot.Target != null)
