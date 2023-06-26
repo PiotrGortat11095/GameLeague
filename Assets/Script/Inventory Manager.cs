@@ -22,7 +22,9 @@ public class InventoryManager : MonoBehaviour
     public Transform Player;
     public Player playerscript;
     public bool IsOpen;
+    public bool first = false;
     public bool IsOpenS;
+    public bool firstopen = false;
     private float dodanepunkty = 1;
     Menu menu;
     Transform Menu1;
@@ -30,25 +32,28 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        eq = GetComponentsInChildren<Eq>();
         inventory = transform.Find("Inventory").gameObject;
         inventory.SetActive(true);
+        eq = GetComponentsInChildren<Eq>();
         slotyEkwipunku = GetComponentsInChildren<Slot>();
         stats = transform.Find("Stats").gameObject;
         stats.SetActive(false);
         IsOpenS = false;
         IsOpen = false;
-        if (slotyEkwipunku.Length > 0)
-        {
-            inventory.SetActive(false);
-        }
+        first = true;
     }
 
 
     private void Update()
     {
+        if (first)
+        {
+            inventory.SetActive(false);
+            first = false;
+        }
         if (Player != null)
         {
+            
             pc = Player.GetComponent<PlayerController>();
             characterController = Player.GetComponent<CharacterController>();
             playerscript = Player.GetComponent<Player>();
@@ -94,11 +99,10 @@ public class InventoryManager : MonoBehaviour
             {
                 stats.SetActive(false);
             }
-
             if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
+
                 IsOpen = !IsOpen;
-                Debug.Log(slotyEkwipunku.Length);
                 foreach (Slot slot in slotyEkwipunku)
                 {
                     if (slot != null && slot.Target != null)
@@ -107,7 +111,6 @@ public class InventoryManager : MonoBehaviour
                         if (slot.przedmiotWslocie != null)
                         {
                             Transform ramkaTransform = slot.przedmiotWslocie.transform.Find("Ramka");
-                            ramkaTransform.gameObject.SetActive(false);
                             TextMeshProUGUI tekstComponent = ramkaTransform.transform.Find("Nazwa").GetComponentInChildren<TextMeshProUGUI>();
                             TextMeshProUGUI tekstComponent2 = ramkaTransform.transform.Find("Opis").GetComponentInChildren<TextMeshProUGUI>();
 
@@ -120,6 +123,7 @@ public class InventoryManager : MonoBehaviour
                             {
                                 tekstComponent2.text = slot.przedmiotWslocie.GetComponent<ItemPrefab>().item.Description;
                             }
+                            ramkaTransform.gameObject.SetActive(false);
                         }
                     }
                 }
@@ -128,6 +132,11 @@ public class InventoryManager : MonoBehaviour
                     if (eq1 != null && eq1.Target != null)
                     {
                         eq1.Target.color = eq1.NormalColor;
+                        if (eq1.przedmiotWslocie != null)
+                        {
+                            Transform ramkaTransform = eq1.przedmiotWslocie.transform.Find("Ramka");
+                            ramkaTransform.gameObject.SetActive(false);
+                        }
                     }
                 }
 

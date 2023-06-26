@@ -12,6 +12,7 @@ public class QuestManager : MonoBehaviour
     CharacterController characterController;
     public GameObject QuestList;
     public bool IsOpen;
+    public bool up = false;
     Menu menu;
     Transform Menu1;
 
@@ -49,6 +50,7 @@ public class QuestManager : MonoBehaviour
             {
                 if (npc.Activequest && !npc.QuestAct)
                 {
+
                     foreach (Quest quest in quests)
                     {
                         if (!quest.fullslot)
@@ -59,7 +61,7 @@ public class QuestManager : MonoBehaviour
                                 tekstComponent.text = npc.Dane;
                                 quest.fullslot = true;
                                 npc.QuestAct = true;
-                                npc.QuestN = quest.questNumber;
+                                quest.questNumber = npc.QuestN;
                                 npc.Change = true;
 
                                 break;
@@ -71,15 +73,11 @@ public class QuestManager : MonoBehaviour
                 {
                     foreach (Quest quest in quests)
                     {
-                        if (quest.fullslot)
+                        if (quest.fullslot && npc.QuestN == quest.questNumber)
                         {
-                            TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
-                            if (!string.IsNullOrEmpty(tekstComponent.text) && npc.QuestN == quest.questNumber)
-                            {
-                                tekstComponent.text = null;
-                                quest.fullslot = false;
-                                break;
-                            }
+                            Destroy(quest.gameObject);
+                            break;
+
                         }
                     }
                 }
@@ -95,19 +93,24 @@ public class QuestManager : MonoBehaviour
                                 tekstComponent.text = npc.Dane;
                                 break;
                             }
+
                         }
                     }
+
+
                 }
+
             }
 
-        }
 
 
-    
-        if (Input.GetKeyDown(KeyCode.Q) && pc.characterController.isGrounded)
-        {
+
+
+            if (Input.GetKeyDown(KeyCode.Q) && pc.characterController.isGrounded)
+            {
                 IsOpen = !IsOpen;
-               
+
+            }
         }
     }
 }

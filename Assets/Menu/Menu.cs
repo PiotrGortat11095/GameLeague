@@ -33,6 +33,7 @@ public class Menu : MonoBehaviour
     private bool firstEsc = false;
     public GameObject Allquest;
     bool anyNPCInteractingNow = false;
+    private GameObject inventory;
 
     private void Awake()
     {
@@ -46,7 +47,8 @@ public class Menu : MonoBehaviour
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         visible = true;
-        
+
+
     }
 
     void Update()
@@ -119,7 +121,7 @@ public class Menu : MonoBehaviour
     }
     public void wizard ()
     {
-
+        
         Allquest.SetActive(true);
         firstEsc = true;
         if (warriorInstance != null)
