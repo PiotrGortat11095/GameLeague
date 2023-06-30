@@ -5,7 +5,7 @@ using UnityEngine;
 public class DodajPrzedmiot : MonoBehaviour
 {
     public bool czyDodac;
-    public Item przedmiotDoDodania;
+    private Item przedmiotDoDodania;
     public InventoryManager ekwipunek;
 
     void PodniesPrzedmiot()

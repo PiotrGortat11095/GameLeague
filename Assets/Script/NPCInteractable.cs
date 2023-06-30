@@ -64,8 +64,14 @@ public class NPCInteractable : MonoBehaviour
             player = playerTransform.GetComponent<Player>();
         }
 
-            if (Activequest)
+        if (Activequest)
+        {
+            if(Monster > Int32.Parse(questDescriptionList2))
+            {
+                Monster = Int32.Parse(questDescriptionList2);
+            }
             Dane = "Pokonaj " + MonsterName + " " + "Pokonano: " + Monster + "/" + questDescriptionList2;
+        }
             if (Monster >= Int32.Parse(questDescriptionList2))
             {
                 quest2.SetActive(true);

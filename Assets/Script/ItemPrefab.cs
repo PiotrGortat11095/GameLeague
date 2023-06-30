@@ -41,7 +41,7 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         Transform ramkaTransform = transform.Find("Ramka");
 
         Transform inventory = GameObject.Find("Inventory").transform;
-        ramkaTransform.position = new Vector2(inventory.position.x - 600, inventory.position.y - 200);
+        ramkaTransform.position = new Vector2(inventory.position.x - 660, inventory.position.y - 200);
         ramkaTransform.gameObject.SetActive(true);
     }
 

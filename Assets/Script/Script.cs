@@ -12,8 +12,11 @@ public class Script : MonoBehaviour
     public Text questDescriptionComplete;
     public Text questDescriptionend;
     private Menu menu;
+    private ItemPicker itemPicker;
     void Update()
     {
+        itemPicker = Player.GetComponent<ItemPicker>();
+        itemPicker.enabled = true;
         menu = Player.GetComponent<Menu>();
         menu.enabled = true;
         NPCInteractable[] npcs = GameObject.FindObjectsOfType<NPCInteractable>();

@@ -584,7 +584,7 @@ MonoBehaviour:
   agent: {fileID: 240154412596656381}
   AIdamage: 70
   player: {fileID: 0}
-  exp: 100
+  exp: 1000000
   whatIsGround:
     serializedVersion: 2
     m_Bits: 32768
