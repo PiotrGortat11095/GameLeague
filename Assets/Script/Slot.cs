@@ -77,23 +77,36 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
 
         }
+        if(przedmiotWslocie != null && przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 10)
+        {
+
+        }
     }
     public void UseItem()
     {
         if (przedmiotWslocie != null)
         {
-            
-            if(przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food)
-            {
-                Debug.Log("Dodano statystyki");
-                Destroy(przedmiotWslocie);
-            }
-            Eq[] eqObjects = GameObject.FindObjectsOfType<Eq>();
             playerT = GameObject.Find("Player").transform;
             if (playerT != null)
             {
                 player = playerT.GetComponentInParent<Player>();
             }
+            if (przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food)
+            {
+                if (player.PcurrentHealth < player.Phealth && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc > 1)
+                {
+                    player.PcurrentHealth += 10;
+                    przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc--;
+                }
+                else if(player.PcurrentHealth < player.Phealth && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc == 1)
+                {
+                    player.PcurrentHealth += 10;
+                    Destroy(przedmiotWslocie);
+                }
+                
+            }
+            Eq[] eqObjects = GameObject.FindObjectsOfType<Eq>();
+           
 
 
                 foreach (Eq eqObject in eqObjects)

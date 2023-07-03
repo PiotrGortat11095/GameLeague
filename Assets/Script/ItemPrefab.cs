@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,7 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     static public GameObject itemInSlot;
     static public bool ifDrop;
     public Item item;
+    public int Ilosc;
     Vector2 startPosition;
     Transform startParent;
 
@@ -35,7 +37,28 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
     }
-
+    public void Start()
+    {
+        if (item.Type == Item.ItemType.Food)
+        {
+            Transform Illosc = transform.Find("Ilosc");
+            Illosc.gameObject.SetActive(true);
+            Ilosc = 1;
+        }
+        else
+        {
+            Transform Illosc = transform.Find("Ilosc");
+            Illosc.gameObject.SetActive(false);
+        }
+    }
+    public void Update()
+    {
+        if (item.Type == Item.ItemType.Food)
+        {
+            TextMeshProUGUI tekstComponent = transform.Find("Ilosc").GetComponentInChildren<TextMeshProUGUI>();
+            tekstComponent.text = Ilosc.ToString();
+        }
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         Transform ramkaTransform = transform.Find("Ramka");

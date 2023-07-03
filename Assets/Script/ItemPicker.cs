@@ -24,7 +24,6 @@ public class ItemPicker : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Z)&& !ekwipunek.IsOpen)
                 {
                     ekwipunek.DodajPrzedmiot(hit.transform.GetComponent<ThisItem>().przedmiotDoDodania);
-                    Destroy(item.gameObject);
                 }
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 
 public class InventoryManager : MonoBehaviour
@@ -217,6 +218,14 @@ public class InventoryManager : MonoBehaviour
             {
                 slotyEkwipunku[i].DodajPrzedmiotDoSlotu(przedmiot);
                 break;
+            }
+            if (slotyEkwipunku[i].przedmiotWslocie != null && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 10)
+            {
+                if (przedmiot.Type == Item.ItemType.Food) 
+                {
+                    slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc++;
+                    break;
+                }
             }
         }
     }

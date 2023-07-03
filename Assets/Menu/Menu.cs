@@ -158,7 +158,7 @@ public class Menu : MonoBehaviour
             HP.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            foreach (NPCInteractable npc2 in npc)
+                foreach (NPCInteractable npc2 in npc)
             {
                 npc2.playerTransform = wizardInstance.transform;
             }

@@ -89,6 +89,10 @@ public class Player : MonoBehaviour
         {
             alreadyblock = false;
         }
+        if (PcurrentHealth > Phealth)
+        {
+            PcurrentHealth = Phealth;
+        }
     }
     public void AttackStart()
     {
