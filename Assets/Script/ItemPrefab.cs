@@ -43,20 +43,11 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             Transform Illosc = transform.Find("Ilosc");
             Illosc.gameObject.SetActive(true);
-            Ilosc = 1;
         }
         else
         {
             Transform Illosc = transform.Find("Ilosc");
             Illosc.gameObject.SetActive(false);
-        }
-    }
-    public void Update()
-    {
-        if (item.Type == Item.ItemType.Food)
-        {
-            TextMeshProUGUI tekstComponent = transform.Find("Ilosc").GetComponentInChildren<TextMeshProUGUI>();
-            tekstComponent.text = Ilosc.ToString();
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

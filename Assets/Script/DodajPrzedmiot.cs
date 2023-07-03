@@ -11,6 +11,7 @@ public class DodajPrzedmiot : MonoBehaviour
     void PodniesPrzedmiot()
     {
         ekwipunek.DodajPrzedmiot(przedmiotDoDodania);
+        
         czyDodac = false;
     }
     private void Update()

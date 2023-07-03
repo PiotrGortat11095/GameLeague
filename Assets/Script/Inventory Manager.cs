@@ -54,7 +54,7 @@ public class InventoryManager : MonoBehaviour
         }
         if (Player != null)
         {
-            
+
             pc = Player.GetComponent<PlayerController>();
             characterController = Player.GetComponent<CharacterController>();
             playerscript = Player.GetComponent<Player>();
@@ -217,13 +217,17 @@ public class InventoryManager : MonoBehaviour
             if (slotyEkwipunku[i].przedmiotWslocie == null)
             {
                 slotyEkwipunku[i].DodajPrzedmiotDoSlotu(przedmiot);
+                Debug.Log("Dodano: " + przedmiot.Name);
                 break;
             }
-            if (slotyEkwipunku[i].przedmiotWslocie != null && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 10)
+            if (slotyEkwipunku[i].przedmiotWslocie != null && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 100)
             {
                 if (przedmiot.Type == Item.ItemType.Food) 
                 {
                     slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc++;
+                    TextMeshProUGUI tekstComponent00 = slotyEkwipunku[i].przedmiotWslocie.transform.Find("Ilosc").GetComponentInChildren<TextMeshProUGUI>();
+                    tekstComponent00.text = slotyEkwipunku[i].przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc.ToString();
+                    Debug.Log("Dodano: " + przedmiot.Name);
                     break;
                 }
             }

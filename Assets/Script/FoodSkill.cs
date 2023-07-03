@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDropHandler
+public class FoodSkill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler
 {
     [HideInInspector] public Image Target;
     public Color32 NormalColor;
     public Color32 EnterColor;
     public string Name;
     public Player player;
+    public bool use = false;
     public Transform playerT;
     public int slotNumber;
 
@@ -21,22 +20,14 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         get
         {
-            if(transform.childCount>0)
+            if (transform.childCount > 0)
             {
                 return transform.GetChild(0).gameObject;
-            }return null;
+            }
+            return null;
         }
     }
     public GameObject prefabItem;
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (przedmiotWslocie != null)
-        {
-            ItemPrefab.itemInSlot = przedmiotWslocie.gameObject;
-        }
-        UseItem();
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
 
@@ -49,9 +40,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
         Target.color = NormalColor;
 
-           
 
-        
+
+
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
     {
@@ -61,7 +52,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         newItem.GetComponent<Image>().sprite = przedmiot.Icon;
     }
 
-    void Start() 
+    void Start()
     {
         Target = GetComponent<Image>();
         Target.color = NormalColor;
@@ -73,6 +64,15 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         {
             TextMeshProUGUI tekstComponent = przedmiotWslocie.transform.Find("Ilosc").GetComponentInChildren<TextMeshProUGUI>();
             tekstComponent.text = przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc.ToString();
+            if (Input.GetButton(Name) && !use)
+            {
+                UseItem();
+                use = true;
+            }
+            if (!Input.GetButton(Name))
+            {
+                use = false;
+            }
         }
     }
 
@@ -86,16 +86,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
 
         }
-        else if(przedmiotWslocie != null && przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 100)
+        else if (przedmiotWslocie != null && przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 100)
         {
-            if (ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food) 
+            if (ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food)
             {
                 if (przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc + ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc <= 100)
                 {
                     przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc += ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc;
                     Destroy(ItemPrefab.itemInSlot);
                 }
-                else if(przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc + ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc > 100)
+                else if (przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc + ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc > 100)
                 {
                     ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc = przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc + ItemPrefab.itemInSlot.gameObject.GetComponent<ItemPrefab>().Ilosc - 100;
                     przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc = 100;
@@ -120,7 +120,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                     player.PcurrentHealth += 10;
                     przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc--;
                 }
-                else if(player.PcurrentHealth < player.Phealth && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc == 1)
+                else if (player.PcurrentHealth < player.Phealth && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc == 1)
                 {
                     player.PcurrentHealth += 10;
                     Destroy(przedmiotWslocie);
@@ -128,26 +128,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
 
             }
-            Eq[] eqObjects = GameObject.FindObjectsOfType<Eq>();
-           
 
-
-                foreach (Eq eqObject in eqObjects)
-                {
-                    if (eqObject.Item == przedmiotWslocie.GetComponent<ItemPrefab>().item.Type && eqObject.przedmiotWslocie == null)
-                    {
-                        przedmiotWslocie.transform.SetParent(eqObject.transform, false);
-                        eqObject.currentItemInSlot = ItemPrefab.itemInSlot;
-                        player.Phealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
-                        player.PcurrentHealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
-                        player.damage += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
-                        player.Armor += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
-                        player.CriticalHitChance += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance / 100;
-                        player.CriticalHitStrength += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength / 100;
-                        break;
-                    }
-                }
-            
         }
     }
 }
+
