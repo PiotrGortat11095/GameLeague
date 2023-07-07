@@ -85,7 +85,6 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
         newItem.GetComponent<Image>().sprite = przedmiot.Icon;
     }
 
-
     public void OnDrop(PointerEventData eventData)
     {
         if (przedmiotWslocie == null && ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.Type == Item)
@@ -116,8 +115,6 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
                     break;
                 }
             }
-
         }
     }
-
 }
