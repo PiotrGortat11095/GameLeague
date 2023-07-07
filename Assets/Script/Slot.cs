@@ -39,19 +39,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
         Target.color = EnterColor;
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
-        Target.color = NormalColor;
-
-           
-
-        
+        Target.color = NormalColor;  
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
     {
@@ -65,7 +58,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         Target = GetComponent<Image>();
         Target.color = NormalColor;
-
     }
     void Update()
     {
@@ -83,8 +75,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             ItemPrefab.itemInSlot.transform.SetParent(this.transform, false);
             ItemPrefab.ifDrop = true;
             ItemPrefab.itemInSlot.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-
         }
         else if(przedmiotWslocie != null && przedmiotWslocie.GetComponent<ItemPrefab>().item.Type == Item.ItemType.Food && przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc < 100)
         {
@@ -125,12 +115,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                     player.PcurrentHealth += 10;
                     Destroy(przedmiotWslocie);
                 }
-
-
             }
             Eq[] eqObjects = GameObject.FindObjectsOfType<Eq>();
-           
-
 
                 foreach (Eq eqObject in eqObjects)
                 {
@@ -146,8 +132,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                         player.CriticalHitStrength += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength / 100;
                         break;
                     }
-                }
-            
+                } 
         }
     }
 }

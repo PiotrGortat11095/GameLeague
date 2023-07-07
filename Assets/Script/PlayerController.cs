@@ -156,18 +156,14 @@ public class PlayerController : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
                 }
             }
-
-
             if (characterController.isGrounded)
             {
                 lastGroundedTime = Time.time;
             }
-
             if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
             {
                 jumpButtonPressedTime = Time.time;
             }
-
             if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
             {
                 characterController.stepOffset = originalStepOffset;
@@ -220,10 +216,7 @@ public class PlayerController : MonoBehaviour
                 targetRotation = Quaternion.LookRotation(moveDir);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-
             animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
         }
-
-
     }
 }

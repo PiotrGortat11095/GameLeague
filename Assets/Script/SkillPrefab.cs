@@ -15,15 +15,12 @@ public class SkillPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         Transform Skillposition = GameObject.Find("Canvas").transform;
         ThisSkill.transform.SetParent(Skillposition, false);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
-
         ifDrop = false;
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = Input.mousePosition;
     }
-
     public void OnEndDrag(PointerEventData eventData)
     {
         if (ifDrop == false)
@@ -31,7 +28,6 @@ public class SkillPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             Destroy(this.gameObject);
         }
     }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
 

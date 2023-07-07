@@ -29,19 +29,14 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Target.color = NormalColor;
     }
 
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-
         Target.color = EnterColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
         Target.color = NormalColor;
     }
-
 
 }

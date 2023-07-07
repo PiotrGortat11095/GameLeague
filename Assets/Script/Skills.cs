@@ -33,8 +33,6 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             playerController = playerT.GetComponentInParent<PlayerController>();
         }
     }
-
-
     public GameObject przedmiotWslocie
     {
         get
@@ -55,16 +53,12 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         }
         UseItem();
     }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-
         Target.color = EnterColor;
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
-
         Target.color = NormalColor;
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
@@ -74,8 +68,6 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         newItem.GetComponent<ItemPrefab>().item = przedmiot;
         newItem.GetComponent<Image>().sprite = przedmiot.Icon;
     }
-
-
     public void OnDrop(PointerEventData eventData)
     {
         if (ItemPrefab.itemInSlot != null && !ItemPrefab.ifDrop)
@@ -98,8 +90,6 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 currentItemInSlot = SkillPrefab.ThisSkill;
             }
         }
-
-
     }
     void Update()
     {
@@ -110,17 +100,16 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 TextMeshProUGUI tekstComponent = przedmiotWslocie.transform.Find("Ilosc").GetComponentInChildren<TextMeshProUGUI>();
                 tekstComponent.text = przedmiotWslocie.GetComponent<ItemPrefab>().Ilosc.ToString();
             }
-                if (Input.GetButton(Name) && !use)
-                {
-                    UseItem();
-                    use = true;
-                }
-                if (!Input.GetButton(Name))
-                {
+            if (Input.GetButton(Name) && !use)
+            {
+                UseItem();
+                use = true;
+            }
+            if (!Input.GetButton(Name))
+            {
                 playerController.ultimate = false;
                 use = false;
-                }
-            
+            }  
         }
     }
     public void UseItem()
@@ -144,15 +133,11 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                     player.PcurrentHealth += 10;
                     Destroy(przedmiotWslocie);
                 }
-
-
             }
-
         }
         if (przedmiotWslocie != null && przedmiotWslocie.ToString() == "Meteor(Clone) (UnityEngine.GameObject)" && !use)
         {
             playerController.ultimate = true;
         }
     }
-
 }

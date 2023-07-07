@@ -70,13 +70,11 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
         Target.color = EnterColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
         Target.color = NormalColor;
     }
     public void DodajPrzedmiotDoSlotu(Item przedmiot)
@@ -103,7 +101,6 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             player.CriticalHitChance += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance /100;
             player.CriticalHitStrength += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitStrength /100;
         }
-
     }
     public void UseItem()
     {

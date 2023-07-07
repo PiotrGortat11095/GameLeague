@@ -48,8 +48,6 @@ public class Menu : MonoBehaviour
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         visible = true;
-
-
     }
 
     void Update()
@@ -60,14 +58,12 @@ public class Menu : MonoBehaviour
             inventoryManager.Player = wizardInstance.transform;
             questManager.Player = wizardInstance.transform;
             Player player = wizardInstance.GetComponentInChildren<Player>();
-
         }
         if (warriorInstance != null)
         {
             inventoryManager.Player = warriorInstance.transform;
             questManager.Player=warriorInstance.transform;
             Player player = warriorInstance.GetComponentInChildren<Player>();
-
         }
         if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
         {
@@ -94,7 +90,6 @@ public class Menu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 visible = !visible;
-
                 if (visible)
                 {
                     Cursor.visible = true;
@@ -110,19 +105,13 @@ public class Menu : MonoBehaviour
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;
                     }
-
                 }
-                Menu1.SetActive(visible); 
-                
+                Menu1.SetActive(visible);     
             }
         }
-
-
-
     }
     public void wizard ()
-    {
-        
+    {    
         Allquest.SetActive(true);
         firstEsc = true;
         if (warriorInstance != null)
@@ -197,12 +186,10 @@ public class Menu : MonoBehaviour
             player.Phealthbar = Phealthbar;
             player.Pmanabar = Pmanabar;
             player.Pexpbar = Pexpbar;
-
             animator = warriorInstance.GetComponent<Animator>();
             animator.enabled = true;
             PlayerController controller = warriorInstance.GetComponentInChildren<PlayerController>();
             controller.player = warriorInstance.transform;
-
             player.mainCamera = maincamera;
             Crosshair.SetActive(true);
             HP.SetActive(true);
@@ -212,7 +199,6 @@ public class Menu : MonoBehaviour
             {
                 npc2.playerTransform = warriorInstance.transform;
             }
-
         }
         else
         {

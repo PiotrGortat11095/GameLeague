@@ -36,7 +36,6 @@ public class ball : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out _, maxMeteorDistance, ThisLayers))
         {
-            
             Enemy = true;
         }
         else
@@ -96,37 +95,29 @@ public class ball : MonoBehaviour
         }
     }
 
-
     public void Meteor()
     {
         if (playerScript.PcurrentMana >= 30)
         {
-
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
             if (Physics.Raycast(ray, out hit, maxMeteorDistance, ThisLayers))
             {
                 mana = 30;
                 playerScript.Mana(mana);
                 Vector3 targetPosition = hit.point;
                 targetPosition.y += 11f;
-
                 if (Vector3.Distance(targetPosition, player.position) > maxMeteorDistance)
                 {
                     targetPosition = player.position + (targetPosition - player.position).normalized * maxMeteorDistance;
                 }
-
-
                 Rigidbody meteorInstance;
                 meteorInstance = Instantiate(meteor, targetPosition, meteor.transform.rotation) as Rigidbody;
                 meteorInstance.gameObject.AddComponent<FireDestroyer2>();
                 meteorInstance.AddForce(0, -1500000000, 0);
                 Destroy(meteorInstance.gameObject, magmaLifetime);
             }
-
         }
-
     }
 }
 
@@ -154,8 +145,6 @@ public class FireDestroyer : MonoBehaviour
                 enemy.TakeDamage(playerScript.damage);
                 Destroy(gameObject);
             }
-
-            
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
@@ -179,7 +168,6 @@ public class FireDestroyer2 : MonoBehaviour
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
         if (enemy != null)
         {
-
             if (Random.value <= playerScript.CriticalHitChance)
             {
                 enemy.TakeDamage(Mathf.Round(ultimatedamage * playerScript.CriticalHitStrength));
