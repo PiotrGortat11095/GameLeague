@@ -1760,7 +1760,6 @@ MonoBehaviour:
   jumpSpeed: 8
   block: 0
   player: {fileID: 0}
-  NPC: {fileID: 0}
   ekwipunek: {fileID: 0}
   MEnu1: {fileID: 0}
   characterController: {fileID: 0}
@@ -1828,12 +1827,17 @@ MonoBehaviour:
   meteor: {fileID: 8084112092840439376, guid: 9782972d5624dad438765c23c501037a, type: 3}
   spawnPoint: {fileID: 1956316616885415808}
   player: {fileID: 1956316616513795525}
+  Skill: {fileID: 7977067654078296304, guid: 2ec71bb4a0982fc4b806234ca6b9f13a, type: 3}
+  MeteorIcon: {fileID: 3514895442931906015, guid: dbcb2928fdfd10b46b752fc675385edd,
+    type: 3}
   mainCamera: {fileID: 0}
   magmaLifetime: 5
   ThisLayers:
     serializedVersion: 2
     m_Bits: 64
   Enemy: 0
+  Dodano: 0
+  Skills: {fileID: 0}
   multipiler: 3000
   maxMeteorDistance: 30
   mana: 0
@@ -1857,12 +1861,13 @@ MonoBehaviour:
   exp: 7
   alreadyattack: 0
   alreadyblock: 0
-  Activequest: 0
-  damageboost: 0
+  damage: 0
   lvl: 1
   currentexp: 0
   PcurrentHealth: 0
   Armor: 0
+  CriticalHitChance: 0
+  CriticalHitStrength: 2
   PcurrentMana: 1
   HealthRegeneration: 2
   ManaRegeneration: 1

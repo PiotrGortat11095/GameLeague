@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
     public GameObject Mutant;
     public GameObject MutantBoss;
     private GameObject wizardInstance;
+    public GameObject Skills;
     private GameObject warriorInstance;
     InventoryManager inventoryManager;
     QuestManager questManager;
@@ -68,7 +69,7 @@ public class Menu : MonoBehaviour
             Player player = warriorInstance.GetComponentInChildren<Player>();
 
         }
-        if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen)
+        if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -83,7 +84,7 @@ public class Menu : MonoBehaviour
             }
         }
 
-        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow && !questManager.IsOpen)
+        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -153,6 +154,7 @@ public class Menu : MonoBehaviour
             PlayerController controller = wizardInstance.GetComponentInChildren<PlayerController>();
             controller.player = wizardInstance.transform;
             Ball.mainCamera = maincamera;
+            Ball.Skills = Skills;
             player.mainCamera = maincamera;
             Crosshair.SetActive(true);
             HP.SetActive(true);

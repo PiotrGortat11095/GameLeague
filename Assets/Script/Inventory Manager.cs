@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
 {
     private GameObject inventory;
     private GameObject stats;
+    private GameObject skills;
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
@@ -25,6 +26,7 @@ public class InventoryManager : MonoBehaviour
     public bool IsOpen;
     public bool first = false;
     public bool IsOpenS;
+    public bool IsOpenSkills;
     public bool firstopen = false;
     private float dodanepunkty = 1;
     Menu menu;
@@ -34,6 +36,8 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         inventory = transform.Find("Inventory").gameObject;
+        skills = transform.Find("Skills").gameObject;
+        skills.SetActive(false);
         inventory.SetActive(true);
         eq = GetComponentsInChildren<Eq>();
         slotyEkwipunku = GetComponentsInChildren<Slot>();
@@ -99,6 +103,19 @@ public class InventoryManager : MonoBehaviour
             else if (!IsOpenS)
             {
                 stats.SetActive(false);
+            }
+            if (IsOpenSkills && menu.visible)
+            {
+                skills.SetActive(false);
+            }
+            else if (IsOpenSkills && !menu.visible)
+            {
+                skills.SetActive(true);
+
+            }
+            else if (!IsOpenSkills)
+            {
+                skills.SetActive(false);
             }
             if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
             {
@@ -183,6 +200,10 @@ public class InventoryManager : MonoBehaviour
             if (tekstComponent9 != null)
             {
                 tekstComponent9.text = "Critical Strength: " + (playerscript.CriticalHitStrength *100).ToString() + "%";
+            }
+            if (Input.GetKeyDown(KeyCode.U) && pc.characterController.isGrounded)
+            {
+                IsOpenSkills = !IsOpenSkills;
             }
         }
     }

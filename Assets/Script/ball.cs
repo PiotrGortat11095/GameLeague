@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using TMPro;
 using UnityEditor.Build;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class ball : MonoBehaviour
@@ -11,11 +13,16 @@ public class ball : MonoBehaviour
     public Rigidbody meteor;
     public Transform spawnPoint;
     public Transform player;
+    public GameObject Skill;
+    public GameObject MeteorIcon;
     public Camera mainCamera;
     public float magmaLifetime = 5f;
     private Player playerScript;
     public LayerMask ThisLayers;
     public bool Enemy;
+    public bool Dodano = false;
+    public GameObject Skills;
+    Skill skills;
 
     public int multipiler;
     public float maxMeteorDistance = 30f;
@@ -35,6 +42,29 @@ public class ball : MonoBehaviour
         else
         {
             Enemy = false;
+        }
+        if(playerScript.lvl >= 2 && !Dodano)
+        {
+            GameObject newSkill = Instantiate(Skill);
+            Transform Skillposition = Skills.transform.Find("Image1/Image/Scroll/Panel");
+            newSkill.transform.SetParent(Skillposition, false);
+            GameObject SkillIcon = Instantiate(MeteorIcon);
+            Transform SkillIconposition = Skills.transform.Find("Image1/Image/Scroll/Panel/Skill(Clone)/SkillIcon");
+            SkillIcon.transform.SetParent(SkillIconposition, false);
+            TextMeshProUGUI tekstComponent = Skills.transform.Find("Image1/Image/Scroll/Panel/Skill(Clone)/Text").GetComponentInChildren<TextMeshProUGUI>();
+            tekstComponent.text = "Przywo³anie Meteorytu";
+            Dodano = true;
+        }
+        if(playerScript.lvl >= 2 && Dodano)
+        {
+            GameObject skill = Skills.transform.Find("Image1/Image/Scroll/Panel/Skill(Clone)/SkillIcon").gameObject;
+            skills = skill.GetComponent<Skill>();
+            if(skills.przedmiotWslocie == null)
+            {
+                GameObject SkillIcon = Instantiate(MeteorIcon);
+                Transform SkillIconposition = Skills.transform.Find("Image1/Image/Scroll/Panel/Skill(Clone)/SkillIcon");
+                SkillIcon.transform.SetParent(SkillIconposition, false);
+            }
         }
     }
     public void FireBall()
