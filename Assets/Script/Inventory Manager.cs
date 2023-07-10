@@ -81,6 +81,7 @@ public class InventoryManager : MonoBehaviour
             if(IsOpen && menu.visible)
             {
                 inventory.SetActive(false);
+                IsOpen = false;
             }
             else if (IsOpen && !menu.visible) 
             {
@@ -94,6 +95,7 @@ public class InventoryManager : MonoBehaviour
             if (IsOpenS && menu.visible)
             {
                 stats.SetActive(false);
+                IsOpenS = false;
             }
             else if (IsOpenS && !menu.visible)
             {
@@ -107,6 +109,7 @@ public class InventoryManager : MonoBehaviour
             if (IsOpenSkills && menu.visible)
             {
                 skills.SetActive(false);
+                IsOpenSkills = false;
             }
             else if (IsOpenSkills && !menu.visible)
             {

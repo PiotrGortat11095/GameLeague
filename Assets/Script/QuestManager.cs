@@ -32,6 +32,7 @@ public class QuestManager : MonoBehaviour
             if (IsOpen && menu.visible)
             {
                 QuestList.SetActive(false);
+                IsOpen=false;
             }
             else if (IsOpen && !menu.visible)
             {

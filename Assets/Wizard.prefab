@@ -1759,6 +1759,7 @@ MonoBehaviour:
   jumpButtonGracePeriod: 300
   jumpSpeed: 8
   block: 0
+  ultimate: 0
   player: {fileID: 0}
   ekwipunek: {fileID: 0}
   MEnu1: {fileID: 0}
@@ -1858,7 +1859,7 @@ MonoBehaviour:
   Pexpbar: {fileID: 0}
   Phealth: 100
   Pmana: 100
-  exp: 7
+  exp: 5
   alreadyattack: 0
   alreadyblock: 0
   damage: 0

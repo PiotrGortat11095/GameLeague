@@ -79,32 +79,51 @@ public class Menu : MonoBehaviour
                 break;
             }
         }
-
         if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        if (!visible && anyNPCInteractingNow)
+        {
+            Allquest.SetActive(true);
+        }
         if (firstEsc)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                visible = !visible;
+                if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+                {
+                    visible = !visible;
+                }
+                if (inventoryManager.IsOpen || inventoryManager.IsOpenS || anyNPCInteractingNow || questManager.IsOpen || inventoryManager.IsOpenSkills)
+                {
+                    inventoryManager.IsOpen = false;
+                    inventoryManager.IsOpenS = false;
+                    questManager.IsOpen = false;
+                    inventoryManager.IsOpenSkills = false;
+                    foreach (NPCInteractable singleNPC in npc)
+                    {
+                        if (singleNPC.InteractNow)
+                        {
+                            singleNPC.InteractNow = false;
+                            anyNPCInteractingNow = false;
+                        }
+                    }
+                    Allquest.SetActive(false);
+                }
+
                 if (visible)
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
-
                     Allquest.SetActive(false);
                 }
-                else if (!visible)
+                else
                 {
-                    Allquest.SetActive(true);
-                    if (!anyNPCInteractingNow)
-                    {
-                        Cursor.lockState = CursorLockMode.Locked;
-                        Cursor.visible = false;
-                    }
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                 }
                 Menu1.SetActive(visible);     
             }
