@@ -34,7 +34,6 @@ public class Menu : MonoBehaviour
     private bool firstEsc = false;
     public GameObject Allquest;
     bool anyNPCInteractingNow = false;
-    private GameObject inventory;
 
     private void Awake()
     {
