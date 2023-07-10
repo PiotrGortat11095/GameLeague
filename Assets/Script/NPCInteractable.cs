@@ -87,7 +87,6 @@ public class NPCInteractable : MonoBehaviour
     {
         if (!Activequest && !questended)
         {
-            Debug.Log("e");
             questWindow.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
