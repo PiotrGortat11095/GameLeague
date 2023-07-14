@@ -135,8 +135,9 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 }
             }
         }
-        if (przedmiotWslocie != null && przedmiotWslocie.ToString() == "Meteor(Clone) (UnityEngine.GameObject)" && !use)
+        if (przedmiotWslocie != null && przedmiotWslocie.GetComponent<SkillPrefab>() != null && !use && SkillPrefab.skillbool)
         {
+            Debug.Log("Ult1");
             playerController.ultimate = true;
         }
     }

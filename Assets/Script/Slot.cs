@@ -122,6 +122,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 {
                     if (eqObject.Item == przedmiotWslocie.GetComponent<ItemPrefab>().item.Type && eqObject.przedmiotWslocie == null)
                     {
+                    ItemPrefab.ifDrop = true;
                         przedmiotWslocie.transform.SetParent(eqObject.transform, false);
                         eqObject.currentItemInSlot = ItemPrefab.itemInSlot;
                         player.Phealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;

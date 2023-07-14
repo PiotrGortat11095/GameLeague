@@ -42,7 +42,7 @@ public class ball : MonoBehaviour
         {
             Enemy = false;
         }
-        if(playerScript.lvl >= 2 && !Dodano)
+        if(playerScript.lvl >= 1 && !Dodano)
         {
             GameObject newSkill = Instantiate(Skill);
             Transform Skillposition = Skills.transform.Find("Image1/Image/Scroll/Panel");
@@ -54,7 +54,7 @@ public class ball : MonoBehaviour
             tekstComponent.text = "Przywo³anie Meteorytu";
             Dodano = true;
         }
-        if(playerScript.lvl >= 2 && Dodano)
+        if(playerScript.lvl >= 1 && Dodano)
         {
             GameObject skill = Skills.transform.Find("Image1/Image/Scroll/Panel/Skill(Clone)/SkillIcon").gameObject;
             skills = skill.GetComponent<Skill>();
@@ -118,6 +118,7 @@ public class ball : MonoBehaviour
                 Destroy(meteorInstance.gameObject, magmaLifetime);
             }
         }
+
     }
 }
 
