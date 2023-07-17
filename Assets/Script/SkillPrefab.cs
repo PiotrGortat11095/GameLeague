@@ -64,7 +64,6 @@ public class SkillPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -49,7 +49,7 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         if (przedmiotWslocie != null)
         {
-            ItemPrefab.itemInSlot = przedmiotWslocie.gameObject;
+            ItemPrefab.itemInSlot = przedmiotWslocie;
         }
         UseItem();
     }
