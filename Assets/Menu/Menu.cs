@@ -223,5 +223,4 @@ public class Menu : MonoBehaviour
             Debug.Log("Aktualnie grasz t¹ klas¹");
         }
     }
-
 }
