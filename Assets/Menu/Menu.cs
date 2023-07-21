@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using Unity.VisualScripting.InputSystem;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class Menu : MonoBehaviour
 {
@@ -64,6 +69,7 @@ public class Menu : MonoBehaviour
             questManager.Player=warriorInstance.transform;
             Player player = warriorInstance.GetComponentInChildren<Player>();
         }
+
         if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.None;

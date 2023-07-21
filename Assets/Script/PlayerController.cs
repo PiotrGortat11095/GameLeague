@@ -43,10 +43,8 @@ public class PlayerController : MonoBehaviour
             inventoryManager = ekwipunek.GetComponent<InventoryManager>();
             questManager = ekwipunek.GetComponent<QuestManager>();
             NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
-
             playerScript = player.GetComponent<Player>();
             skillScript = player.GetComponent<ball>();
-
             cameraController = Camera.main.GetComponent<CameraController>();
             animator = GetComponent<Animator>();
             characterController = GetComponent<CharacterController>();
@@ -68,7 +66,6 @@ public class PlayerController : MonoBehaviour
         }
         if (!anyNPCInteractingNow)
         {
-
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
             if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
@@ -77,13 +74,8 @@ public class PlayerController : MonoBehaviour
                 v = 0;
             }
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
-
-
             var moveInput = (new Vector3(h, 0, v)).normalized;
             var moveDir = cameraController.PlanarRotation * moveInput;
-
-
-
             ySpeed += Physics.gravity.y * Time.deltaTime;
             if (moveAmount <= 0)
             {
@@ -97,7 +89,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Grounded", false);
             }
-           
             if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
             {
                 if (ultimate && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)
@@ -173,7 +164,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Jump", false);
                 isJumping = false;
                 animator.SetBool("FreeFall", false);
-
                 if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
                 {
                     if (!isJumping)
@@ -201,7 +191,6 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("FreeFall", true);
                 }
             }
-
             if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 var velocity = moveDir * moveSpeed;
@@ -212,7 +201,6 @@ public class PlayerController : MonoBehaviour
             {
                 characterController.Move(Vector3.zero);
             }
-
             if (moveAmount > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 targetRotation = Quaternion.LookRotation(moveDir);
