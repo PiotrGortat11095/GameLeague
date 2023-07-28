@@ -143,7 +143,6 @@ public class Menu : MonoBehaviour
             Destroy(warriorInstance) ;
             warrior1 = false;
             WarriorIMG.SetActive(false);
-            Player player = warriorInstance.GetComponentInChildren<Player>();
         }
         if (!wizard1)
         {
@@ -192,7 +191,6 @@ public class Menu : MonoBehaviour
             Destroy(wizardInstance);
             wizard1 = false;
             WizardIMG.SetActive(false);
-            Player player = wizardInstance.GetComponentInChildren<Player>();
         }
         if (!warrior1)
         {
