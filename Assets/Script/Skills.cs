@@ -93,6 +93,12 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     }
     void Update()
     {
+        playerT = GameObject.Find("Player").transform;
+        if (playerT != null)
+        {
+            player = playerT.GetComponentInParent<Player>();
+            playerController = playerT.GetComponentInParent<PlayerController>();
+        }
         if (przedmiotWslocie != null)
         {
             if (przedmiotWslocie.transform.Find("Ilosc") != null)
@@ -137,7 +143,6 @@ public class Skills : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         }
         if (przedmiotWslocie != null && przedmiotWslocie.GetComponent<SkillPrefab>() != null && !use && SkillPrefab.skillbool)
         {
-            Debug.Log("Ult1");
             playerController.ultimate = true;
         }
     }

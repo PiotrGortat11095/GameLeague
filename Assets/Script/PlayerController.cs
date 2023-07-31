@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (skillScript.Enemy)
                     {
-                        Debug.Log("Ult2");
                         animator.SetBool("Ultimate", true);
                         isAttacking = true;
                         SkillPrefab.currentCDTime = SkillPrefab.CDTime;
