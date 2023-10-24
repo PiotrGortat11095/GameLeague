@@ -16,12 +16,14 @@ MonoBehaviour:
   Description: 'Typ przedmiotu: <br>Helm <br>Dodatkowe Bonusy:<br> Armor +3'
   ID: 4
   Type: 4
-  Icon: {fileID: 21300000, guid: 46cb12d6407f24245b73a5eb6d58b55f, type: 3}
+  Icon: {fileID: 21300000, guid: 92fb5e9bbd8853a4b954347a7d39b462, type: 3}
   weaponType: 0
   AttackDamage: 0
+  CriticalHitStrength: 0
   NutritionValue: 0
   armorType: 2
   ArmorValue: 3
   accessoryType: 0
   strength: 0
   intellect: 0
+  CriticalHitChance: 0

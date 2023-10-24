@@ -16,12 +16,14 @@ MonoBehaviour:
   Description: 'Typ przedmiotu: <br>Zbroja <br>Dodatkowe Bonusy:<br> Armor +4'
   ID: 1
   Type: 2
-  Icon: {fileID: 21300000, guid: bf7a2be994b9b44458207b018d0846ee, type: 3}
+  Icon: {fileID: 21300000, guid: bbc909eaf24463c4f9858751d08dfed8, type: 3}
   weaponType: 0
   AttackDamage: 0
+  CriticalHitStrength: 0
   NutritionValue: 0
   armorType: 0
   ArmorValue: 4
   accessoryType: 0
   strength: 0
   intellect: 0
+  CriticalHitChance: 0

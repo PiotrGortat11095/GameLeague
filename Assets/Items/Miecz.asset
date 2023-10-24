@@ -17,7 +17,7 @@ MonoBehaviour:
     Critical Strength +10%'
   ID: 0
   Type: 0
-  Icon: {fileID: 21300000, guid: ea3f41956b43f0b4585e65125c7906f0, type: 3}
+  Icon: {fileID: 21300000, guid: aadec82a9b685de49a4f17b345b421af, type: 3}
   weaponType: 0
   AttackDamage: 5
   CriticalHitStrength: 10
