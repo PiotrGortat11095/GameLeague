@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         Pexpbar.UpdateLevel(lvl);
         if (currentexp == exp)
         {
-            exp = exp * 4 / 3;
+            exp = exp + 5;
             currentexp = 0;
             lvl++;
         }
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         {
             expp = currentexp - exp;
             expp = Mathf.Round(expp * 100f) / 100f;
-            exp = exp * 4 / 3;
+            exp = exp + 5;
             currentexp = Mathf.Round(expp * 100f) / 100f;
             lvl++;
         }

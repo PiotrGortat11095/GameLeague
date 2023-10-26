@@ -115,6 +115,10 @@ public class AiMobs : MonoBehaviour
             AttackPlayer();
             animator.SetFloat("Speed", 0f);
         }
+        if (currentHealth < health)
+        {
+            sightRange = 3 * sightRange;
+        }
         healthbar.UpdateHealthBar(health, currentHealth);
 
     }
