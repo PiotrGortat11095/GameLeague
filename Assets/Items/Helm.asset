@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Helm
   m_EditorClassIdentifier: 
   Name: Stalowy helm
-  Description: 'Typ przedmiotu: <br>Helm <br>Dodatkowe Bonusy:<br> Armor +3'
+  Description: {fileID: 21300000, guid: 5482490b493ff704da269ea01cbf2f56, type: 3}
   ID: 4
   Type: 4
   Icon: {fileID: 21300000, guid: 92fb5e9bbd8853a4b954347a7d39b462, type: 3}
@@ -22,8 +22,8 @@ MonoBehaviour:
   CriticalHitStrength: 0
   NutritionValue: 0
   armorType: 2
-  ArmorValue: 3
+  ArmorValue: 10
   accessoryType: 0
-  strength: 0
+  strength: 50
   intellect: 0
   CriticalHitChance: 0

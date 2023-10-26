@@ -73,7 +73,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &240154411273078099
@@ -582,7 +582,7 @@ MonoBehaviour:
   FloatingTextPrefab: {fileID: 8083161676229528290, guid: 87e0a8cd6611a46408f42a3bde30c4dd,
     type: 3}
   agent: {fileID: 240154412596656381}
-  AIdamage: 70
+  AIdamage: 170
   player: {fileID: 0}
   exp: 1000000
   whatIsGround:

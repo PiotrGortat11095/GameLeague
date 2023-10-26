@@ -12,9 +12,8 @@ public class Item : ScriptableObject
     {
         Weapon, Food, Chest_armor, Leg_armor, Helmet, Boots, Gloves, Ring, Necklace
     }
-
     public string Name;
-    public string Description;
+    public Sprite Description;
     public int ID;
     public ItemType Type;
     public Sprite Icon;

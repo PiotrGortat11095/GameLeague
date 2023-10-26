@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Buty
   m_EditorClassIdentifier: 
   Name: Stalowe buty
-  Description: 'Typ przedmiotu: <br>Buty <br>Dodatkowe Bonusy:<br> Armor +2'
+  Description: {fileID: 21300000, guid: c360b596249f73941878c27363d8ca47, type: 3}
   ID: 3
   Type: 5
   Icon: {fileID: 21300000, guid: 91d6563feda5e704cb9852249bc59efd, type: 3}
@@ -22,8 +22,8 @@ MonoBehaviour:
   CriticalHitStrength: 0
   NutritionValue: 0
   armorType: 3
-  ArmorValue: 2
+  ArmorValue: 10
   accessoryType: 0
-  strength: 0
+  strength: 50
   intellect: 0
   CriticalHitChance: 0

@@ -132,18 +132,7 @@ public class InventoryManager : MonoBehaviour
                         if (slot.przedmiotWslocie != null)
                         {
                             Transform ramkaTransform = slot.przedmiotWslocie.transform.Find("Ramka");
-                            TextMeshProUGUI tekstComponent = ramkaTransform.transform.Find("Nazwa").GetComponentInChildren<TextMeshProUGUI>();
-                            TextMeshProUGUI tekstComponent2 = ramkaTransform.transform.Find("Opis").GetComponentInChildren<TextMeshProUGUI>();
-
-                            if (tekstComponent != null)
-                            {
-                                tekstComponent.text = slot.przedmiotWslocie.GetComponent<ItemPrefab>().item.Name;
-                               
-                            }
-                            if (tekstComponent2 != null)
-                            {
-                                tekstComponent2.text = slot.przedmiotWslocie.GetComponent<ItemPrefab>().item.Description;
-                            }
+                            ramkaTransform.GetComponent<Image>().sprite = slot.przedmiotWslocie.GetComponent<ItemPrefab>().item.Description;
                             ramkaTransform.gameObject.SetActive(false);
                         }
                     }
