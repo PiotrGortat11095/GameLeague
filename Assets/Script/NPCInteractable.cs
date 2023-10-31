@@ -15,6 +15,10 @@ public class NPCInteractable : MonoBehaviour
     public GameObject quest1;
     public GameObject quest2;
     public GameObject NPC;
+    public GameObject RewardMage;
+    public GameObject RewardWarrior;
+    public Item ItemsMage;
+    public Item ItemsWarrior;
     public string questDescription1;
     public string questDescriptionComplete1;
     public string questDescriptionEnd1;

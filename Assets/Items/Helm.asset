@@ -13,17 +13,14 @@ MonoBehaviour:
   m_Name: Helm
   m_EditorClassIdentifier: 
   Name: Stalowy helm
-  Description: {fileID: 21300000, guid: 5482490b493ff704da269ea01cbf2f56, type: 3}
+  Description: {fileID: 21300000, guid: 495a1da2ab404ec4187cc2a5d93ae30f, type: 3}
   ID: 4
   Type: 4
   Icon: {fileID: 21300000, guid: 92fb5e9bbd8853a4b954347a7d39b462, type: 3}
-  weaponType: 0
   AttackDamage: 0
   CriticalHitStrength: 0
   NutritionValue: 0
-  armorType: 2
   ArmorValue: 10
-  accessoryType: 0
   strength: 50
   intellect: 0
   CriticalHitChance: 0

@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 public class Menu : MonoBehaviour
 {
     public GameObject Menu1;
+    public GameObject Esc;
     public GameObject WizardIMG;
     public GameObject WarriorIMG;
     public GameObject Wizard;
@@ -33,6 +34,7 @@ public class Menu : MonoBehaviour
     QuestManager questManager;
 
     public bool wizard1;
+    public bool resume = false;
     public bool warrior1;
     public bool visible;
     Animator animator;
@@ -45,6 +47,7 @@ public class Menu : MonoBehaviour
         Crosshair.SetActive(false);
         HP.SetActive(false);
         Menu1.SetActive(true);
+        Esc.SetActive(false);
         Allquest.SetActive(false);
     }
     private void Start()
@@ -56,6 +59,7 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
+
         NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
         if (wizardInstance != null)
         {
@@ -96,7 +100,7 @@ public class Menu : MonoBehaviour
         }
         if (firstEsc)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || resume)
             {
                 if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
                 {
@@ -130,9 +134,27 @@ public class Menu : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                 }
-                Menu1.SetActive(visible);     
+                Esc.SetActive(visible);
+                resume = false;
             }
         }
+        if(visible)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else if (!visible)
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
+    public void ResumeGame()
+    {
+        resume = true;
+        Time.timeScale = 1.0f;
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
     public void wizard ()
     {    
@@ -177,10 +199,6 @@ public class Menu : MonoBehaviour
                 npc2.playerTransform = wizardInstance.transform;
             }
         }
-        else
-        {
-            Debug.Log("Aktualnie grasz t¹ klas¹");
-        }
     }
     public void warrior()
     {
@@ -222,9 +240,6 @@ public class Menu : MonoBehaviour
                 npc2.playerTransform = warriorInstance.transform;
             }
         }
-        else
-        {
-            Debug.Log("Aktualnie grasz t¹ klas¹");
-        }
+
     }
 }

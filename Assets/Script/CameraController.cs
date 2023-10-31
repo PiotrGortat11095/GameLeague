@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -15,6 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertY;
     [SerializeField] LayerMask obstacleMask;
     InventoryManager inventoryManager;
+    Menu menu;
     QuestManager questManager;
     public Transform NPC;
 
@@ -34,6 +36,7 @@ public class CameraController : MonoBehaviour
     {
         inventoryManager = GameObject.Find("Canvas").GetComponent<InventoryManager>();
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        menu = GameObject.Find("Player").GetComponent<Menu>();
         NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
     }
     private void Update()
@@ -77,10 +80,8 @@ public class CameraController : MonoBehaviour
         {
             distance = distance2;
         }
-
-        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills && !menu.visible)
         {
-            
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
             transform.rotation = targetRotation;
 
