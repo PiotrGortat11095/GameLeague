@@ -165,21 +165,21 @@ public class InventoryManager : MonoBehaviour
 
             if (tekstComponent4 != null)
             {
-                tekstComponent4.text = "HP: " + playerscript.PcurrentHealth.ToString() + "/" + playerscript.Phealth.ToString();
+                tekstComponent4.text = playerscript.PcurrentHealth.ToString() + "/" + playerscript.Phealth.ToString();
 
             }
             if (tekstComponent5 != null)
             {
-                tekstComponent5.text = "Mana: " + playerscript.PcurrentMana.ToString() + "/" + playerscript.Pmana.ToString();
+                tekstComponent5.text = playerscript.PcurrentMana.ToString() + "/" + playerscript.Pmana.ToString();
             }
             if (tekstComponent6 != null)
             {
-                tekstComponent6.text = "Damage: " + playerscript.damage.ToString();
+                tekstComponent6.text = playerscript.damage.ToString();
 
             }
             if (tekstComponent7 != null)
             {
-                tekstComponent7.text = "Armor: " + playerscript.Armor.ToString();
+                tekstComponent7.text = playerscript.Armor.ToString();
             }
             if (tekstComponent8 != null)
             {
@@ -187,11 +187,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     playerscript.CriticalHitChance = 0f;
                 }
-                tekstComponent8.text = "Critical Chance: " + (playerscript.CriticalHitChance * 100).ToString() + "%";
+                tekstComponent8.text = (playerscript.CriticalHitChance * 100).ToString() + "%";
             }
             if (tekstComponent9 != null)
             {
-                tekstComponent9.text = "Critical Strength: " + (playerscript.CriticalHitStrength *100).ToString() + "%";
+                tekstComponent9.text = (playerscript.CriticalHitStrength *100).ToString() + "%";
             }
             if (Input.GetKeyDown(KeyCode.U) && pc.characterController.isGrounded)
             {
