@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: {fileID: 21300000, guid: 022798db0f105804481bad46f0ba1f17, type: 3}
   ID: 7
   Type: 8
-  Icon: {fileID: 21300000, guid: ffe24c48459011344a87a07c2cc72fc8, type: 3}
+  Icon: {fileID: 21300000, guid: db55ebf727daacd46899b1ded896b6f8, type: 3}
   AttackDamage: 0
   CriticalHitStrength: 0
   NutritionValue: 0
