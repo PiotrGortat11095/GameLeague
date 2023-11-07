@@ -964,12 +964,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -1194,12 +1194,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -1700,10 +1700,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -1729,12 +1729,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -2038,12 +2038,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -2851,10 +2851,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -3388,12 +3388,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -3537,12 +3537,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -4046,12 +4046,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -4287,10 +4287,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -4327,10 +4327,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -5496,10 +5496,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -5525,12 +5525,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -5819,10 +5819,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -5848,12 +5848,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -6398,12 +6398,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -7428,10 +7428,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -7943,12 +7943,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -8103,10 +8103,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 3
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -8347,10 +8347,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 4
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -8667,10 +8667,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 7
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -9023,12 +9023,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -9854,12 +9854,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -10173,12 +10173,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -10461,10 +10461,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 2
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -10488,12 +10488,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -11018,12 +11018,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -11808,12 +11808,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -12582,12 +12582,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -12736,10 +12736,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 6
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -12839,12 +12839,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -12988,12 +12988,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -13346,12 +13346,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -14394,10 +14394,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -14920,7 +14920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15538,10 +15538,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 0
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -15769,6 +15769,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724, type: 3}
     m_RemovedGameObjects: []
@@ -15800,10 +15815,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 5
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -16132,10 +16147,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4282927176
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4286743170
+    rgba: 4294967295
   Item: 8
   player: {fileID: 0}
   playerT: {fileID: 0}
@@ -16814,12 +16829,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -17252,12 +17267,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -18058,10 +18073,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4287401100
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
   Item: 1
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -18088,12 +18103,12 @@ PrefabInstance:
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: EnterColor.rgba
-      value: 4287664272
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 349948058183325121, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: NormalColor.rgba
-      value: 4282927176
+      value: 4287401100
       objectReference: {fileID: 0}
     - target: {fileID: 3325644317338149018, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
