@@ -18,7 +18,7 @@ public class ItemPrefab : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         itemInSlot = this.gameObject;
         startPosition = transform.position;
         startParent = transform.parent;
-        transform.SetParent(transform.parent.parent.parent,false);
+        transform.SetParent(GameObject.Find("Canvas").transform);
         ifDrop = false;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }

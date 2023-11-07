@@ -38,6 +38,8 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
 
                 player.Phealth -= currentItemInSlot.GetComponent<ItemPrefab>().item.strength;
                 player.PcurrentHealth -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
+                player.Pmana -= currentItemInSlot.GetComponent <ItemPrefab>().item.intellect;
+                player.PcurrentMana -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.intellect;
                 player.damage -= currentItemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
                 player.Armor -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
                 player.CriticalHitChance -= ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance/100;
@@ -95,6 +97,8 @@ public class Eq : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPo
             currentItemInSlot = ItemPrefab.itemInSlot;
             player.Phealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
             player.PcurrentHealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
+            player.Pmana += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.intellect;
+            player.PcurrentMana += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.intellect;
             player.damage += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
             player.Armor += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
             player.CriticalHitChance += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance /100;

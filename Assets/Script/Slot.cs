@@ -127,6 +127,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                         eqObject.currentItemInSlot = ItemPrefab.itemInSlot;
                         player.Phealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
                         player.PcurrentHealth += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.strength;
+                        player.Pmana += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.intellect;
+                        player.PcurrentMana += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.intellect;
                         player.damage += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.AttackDamage;
                         player.Armor += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.ArmorValue;
                         player.CriticalHitChance += ItemPrefab.itemInSlot.GetComponent<ItemPrefab>().item.CriticalHitChance / 100;

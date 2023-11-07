@@ -21,6 +21,6 @@ MonoBehaviour:
   CriticalHitStrength: 0
   NutritionValue: 0
   ArmorValue: 0
-  strength: 5
-  intellect: 0
-  CriticalHitChance: 10
+  strength: 50
+  intellect: 50
+  CriticalHitChance: 0
