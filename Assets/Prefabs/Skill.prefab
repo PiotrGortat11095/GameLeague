@@ -172,8 +172,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1337, y: -610}
-  m_SizeDelta: {x: 171, y: 70}
+  m_AnchoredPosition: {x: -1337, y: -610.55133}
+  m_SizeDelta: {x: 171, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1197121646892117627
 CanvasRenderer:
@@ -264,12 +264,12 @@ PrefabInstance:
     - target: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -34.999985
+      value: -27.5
       objectReference: {fileID: 0}
     - target: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
@@ -334,6 +334,21 @@ PrefabInstance:
     - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.98490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.98490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244776717637816792, guid: cdcffd6b8625452409f3e259a2669724,
+        type: 3}
+      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -367,10 +382,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   NormalColor:
     serializedVersion: 2
-    rgba: 4280032285
+    rgba: 4288322202
   EnterColor:
     serializedVersion: 2
-    rgba: 4282006074
+    rgba: 4294967295
 --- !u!224 &6531443656402559077 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6138236930776572676, guid: cdcffd6b8625452409f3e259a2669724,
