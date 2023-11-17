@@ -74,7 +74,7 @@ public class NPCInteractable : MonoBehaviour
             {
                 Monster = Int32.Parse(questDescriptionList2);
             }
-            Dane = "Pokonaj " + MonsterName + " " + "Pokonano: " + Monster + "/" + questDescriptionList2;
+            Dane = "Defeat " + MonsterName + " " + "Defeated: " + Monster + "/" + questDescriptionList2;
         }
             if (Monster >= Int32.Parse(questDescriptionList2))
             {

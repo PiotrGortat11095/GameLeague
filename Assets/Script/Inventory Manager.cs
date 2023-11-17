@@ -120,7 +120,7 @@ public class InventoryManager : MonoBehaviour
             {
                 skills.SetActive(false);
             }
-            if (Input.GetKeyDown(KeyCode.E) && pc.characterController.isGrounded)
+            if (Input.GetKeyDown(KeyCode.I) && pc.characterController.isGrounded)
             {
 
                 IsOpen = !IsOpen;
@@ -152,7 +152,7 @@ public class InventoryManager : MonoBehaviour
 
 
             }
-            if (Input.GetKeyDown(KeyCode.G) && pc.characterController.isGrounded)
+            if (Input.GetKeyDown(KeyCode.C) && pc.characterController.isGrounded)
             {
                 IsOpenS = !IsOpenS;
             }

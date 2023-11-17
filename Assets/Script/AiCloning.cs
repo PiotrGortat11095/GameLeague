@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AiCloning : MonoBehaviour
 {
     public GameObject aiPrefab;
+    public float spawnRadius = 10f;
     private int numberOfAIs = 1;
     private float spawnInterval = 0.1f;
     public int max = 0;
@@ -26,7 +27,7 @@ public class AiCloning : MonoBehaviour
             if (ile < max)
             {
                 Vector3 spawnPosition = GetRandomSpawnPosition();
-                GameObject aiInstance = Instantiate(aiPrefab, spawnPosition, Quaternion.identity);
+                GameObject aiInstance = Instantiate(aiPrefab, spawnPosition, transform.rotation);
 
 
                 Healthbar healthbar = aiInstance.GetComponentInChildren<Healthbar>();

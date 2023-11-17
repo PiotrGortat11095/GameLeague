@@ -872,7 +872,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  MonsterName: Bandyta
+  MonsterName: Bandit
   walkPointRange: 10
   timeBetweenAttacks: 1
   Triggernow: 0
