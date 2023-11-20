@@ -22,8 +22,11 @@ public class NPCInteractable : MonoBehaviour
     public string questDescription1;
     public string questDescriptionComplete1;
     public string questDescriptionEnd1;
-    public string questDescriptionList2;
+    public int questDescriptionList2;
+    public int questDescriptionList3;
     public string MonsterName;
+    public string ItemName;
+    public int Items = 0;
     public string Dane;
     public int QuestN;
     public int Monster = 0;
@@ -63,24 +66,41 @@ public class NPCInteractable : MonoBehaviour
                 }
             }
         }
+
         if (playerTransform != null)
         {
             player = playerTransform.GetComponent<Player>();
         }
-
-        if (Activequest)
+        if (questDescriptionList2 > 0)
         {
-            if(Monster > Int32.Parse(questDescriptionList2))
+            if (Activequest)
             {
-                Monster = Int32.Parse(questDescriptionList2);
+                if (Monster > questDescriptionList2)
+                {
+                    Monster = questDescriptionList2;
+                }
+                Dane = "Defeat " + MonsterName + " " + "Defeated: " + Monster + "/" + questDescriptionList2;
             }
-            Dane = "Defeat " + MonsterName + " " + "Defeated: " + Monster + "/" + questDescriptionList2;
-        }
-            if (Monster >= Int32.Parse(questDescriptionList2))
+            if (Monster >= questDescriptionList2)
             {
                 quest2.SetActive(true);
             }
-        
+        }
+        if (questDescriptionList3 > 0)
+        {
+            if (Activequest)
+            {
+                if (Items > questDescriptionList3)
+                {
+                    Items = questDescriptionList3;
+                }
+                Dane = "Collect " + ItemName + " " + "Collecteded: " + Items + "/" + questDescriptionList3;
+                if (Items >= questDescriptionList3)
+                {
+                    quest2.SetActive(true);
+                }
+            }
+        }
         Menu1 = GameObject.Find("Player").transform;
         menu = Menu1.GetComponent<Menu>();
 
@@ -96,20 +116,40 @@ public class NPCInteractable : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             InteractNow = true;
         }
-        else if (Activequest && Monster < Int32.Parse(questDescriptionList2) && !questended)
-        {
-            questactive.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            InteractNow = true;
+        if (questDescriptionList2 > 0) {
+            if (Activequest && Monster < questDescriptionList2 && !questended)
+            {
+                questactive.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                InteractNow = true;
+            }
+            if (Activequest && Monster >= questDescriptionList2 && !questended)
+            {
+                questcomplete.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                InteractNow = true;
+            }
         }
-        else if (Activequest && Monster >= Int32.Parse(questDescriptionList2) && !questended)
+        if (questDescriptionList3 > 0)
         {
-            questcomplete.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            InteractNow = true;
+            if (Activequest && Items < questDescriptionList2 && !questended)
+            {
+                questactive.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                InteractNow = true;
+            }
+            if (Activequest && Items >= questDescriptionList2 && !questended)
+            {
+                questcomplete.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                InteractNow = true;
+            }
         }
+
         else if (questended)
         {
             questend.SetActive(true);

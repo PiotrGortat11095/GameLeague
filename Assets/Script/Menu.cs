@@ -23,7 +23,6 @@ public class Menu : MonoBehaviour
     public ManabarPp Pmanabar;
     public Expbar Pexpbar;
     public Camera maincamera;
-    public GameObject NPC;
     public GameObject AiCloning;
     public GameObject Mutant;
     public GameObject MutantBoss;
@@ -74,7 +73,7 @@ public class Menu : MonoBehaviour
             Player player = warriorInstance.GetComponentInChildren<Player>();
         }
 
-        if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
+        if (inventoryManager.IsOpen || inventoryManager.IsOpenS || inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -88,7 +87,7 @@ public class Menu : MonoBehaviour
                 break;
             }
         }
-        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+        if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !visible && !anyNPCInteractingNow  && !inventoryManager.IsOpenSkills)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -102,15 +101,14 @@ public class Menu : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) || resume)
             {
-                if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !anyNPCInteractingNow && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+                if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !anyNPCInteractingNow && !inventoryManager.IsOpenSkills)
                 {
                     visible = !visible;
                 }
-                if (inventoryManager.IsOpen || inventoryManager.IsOpenS || anyNPCInteractingNow || questManager.IsOpen || inventoryManager.IsOpenSkills)
+                if (inventoryManager.IsOpen || inventoryManager.IsOpenS || anyNPCInteractingNow || inventoryManager.IsOpenSkills)
                 {
                     inventoryManager.IsOpen = false;
                     inventoryManager.IsOpenS = false;
-                    questManager.IsOpen = false;
                     inventoryManager.IsOpenSkills = false;
                     foreach (NPCInteractable singleNPC in npc)
                     {

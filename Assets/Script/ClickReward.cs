@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class ClickReward : MonoBehaviour, IPointerClickHandler
     public GameObject questlist;
     public GameObject questcomplete;
     public GameObject Canvas;
+    InventoryManager inventoryManager;
     Menu menu;
     public void Start()
     {
@@ -22,8 +24,10 @@ public class ClickReward : MonoBehaviour, IPointerClickHandler
         {
             if (singleNPC.InteractNow)
             {
-                GameObject quest2 = singleNPC.transform.Find("Canvas/quest2").gameObject;
+                GameObject quest2 = singleNPC.quest2;
                 quest2.SetActive(false);
+
+
                 questcomplete.SetActive(false);
                 if (menu.warrior1)
                 {

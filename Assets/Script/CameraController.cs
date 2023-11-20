@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
         {
             distance = distance2;
         }
-        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills && !menu.visible)
+        if (!anyNPCInteractingNow && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !inventoryManager.IsOpenSkills && !menu.visible)
         {
             transform.position = focusPosition - targetRotation * new Vector3(0, 0, distance);
             transform.rotation = targetRotation;

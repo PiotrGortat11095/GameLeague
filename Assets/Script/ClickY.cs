@@ -21,7 +21,7 @@ public class ClickY : MonoBehaviour, IPointerClickHandler
         {
             if (singleNPC.InteractNow)
             {
-                GameObject quest1 = singleNPC.transform.Find("Canvas/quest1").gameObject;
+                GameObject quest1 = singleNPC.transform.Find("Mark/quest1").gameObject;
                 singleNPC.Activequest = true;
                 GameObject newQuest = Instantiate(Quest);
                 Transform Questposition = questlist.transform.Find("Image/Image/Scroll/Panel");

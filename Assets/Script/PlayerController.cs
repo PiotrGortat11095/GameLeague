@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            if (inventoryManager.IsOpen || inventoryManager.IsOpenS || questManager.IsOpen || inventoryManager.IsOpenSkills)
+            if (inventoryManager.IsOpen || inventoryManager.IsOpenS || inventoryManager.IsOpenSkills)
             {
                 h = 0;
                 v = 0;
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("Grounded", false);
             }
-            if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+            if (!inventoryManager.IsOpen && !inventoryManager.IsOpenS && !inventoryManager.IsOpenSkills)
             {
                 if (ultimate && characterController.isGrounded && !animator.GetCurrentAnimatorStateInfo(0).IsName("JumpLand") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Idle") && playerScript.PcurrentMana >= 30)
                 {
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastGroundedTime = Time.time;
             }
-            if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !questManager.IsOpen && !inventoryManager.IsOpenSkills)
+            if (Input.GetButtonDown("Jump") && !isJumping && !inventoryManager.IsOpen && !inventoryManager.IsOpenS && !inventoryManager.IsOpenSkills)
             {
                 jumpButtonPressedTime = Time.time;
             }
