@@ -34,6 +34,7 @@ public class ItemPicker : MonoBehaviour
                             break;
                         }
                     }
+                    
                     if (Itemek != hit.transform.GetComponent<ThisItem>().przedmiotDoDodania.Name)
                     {
                         ekwipunek.DodajPrzedmiot(hit.transform.GetComponent<ThisItem>().przedmiotDoDodania);

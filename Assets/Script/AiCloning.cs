@@ -12,12 +12,28 @@ public class AiCloning : MonoBehaviour
     public int max = 0;
     public float RespawnTime;
     [HideInInspector] public int ile = 0;
+    public bool activequest = false;
     public Transform maincamera;
 
-    private void Start()
+
+    public void Update()
     {
-        // Rozpocznij tworzenie klonów po starcie
-        InvokeRepeating("SpawnAi", 0f, spawnInterval);
+        if (!activequest)
+            InvokeRepeating("SpawnAi", 0f, spawnInterval);
+        NPCInteractable[] npcs = GameObject.FindObjectsOfType<NPCInteractable>();
+        foreach(NPCInteractable npc in npcs)
+        {
+            if(npc.Activequest && npc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
+            {
+                activequest = false;
+            }
+
+            if (npc.questended && npc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
+            {
+                activequest = true;
+            }
+            break;
+        }
     }
     public void SpawnAi()
     {

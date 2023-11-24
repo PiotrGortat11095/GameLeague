@@ -29,12 +29,7 @@ public class QuestManager : MonoBehaviour
             menu = Menu1.GetComponent<Menu>();
             pc = Player.GetComponent<PlayerController>();
             characterController = Player.GetComponent<CharacterController>();
-            if (IsOpen && menu.visible)
-            {
-                QuestList.SetActive(false);
-                IsOpen=false;
-            }
-            else if (IsOpen && !menu.visible)
+            if (IsOpen)
             {
                 QuestList.SetActive(true);
 
@@ -57,16 +52,14 @@ public class QuestManager : MonoBehaviour
                         if (!quest.fullslot)
                         {
                             TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
-                            if (tekstComponent.text != null && string.IsNullOrEmpty(tekstComponent.text))
-                            {
+                           
                                 tekstComponent.text = npc.Dane;
                                 quest.fullslot = true;
                                 npc.QuestAct = true;
                                 quest.questNumber = npc.QuestN;
                                 npc.Change = true;
-
                                 break;
-                            }
+                            
                         }
                     }
                 }
@@ -89,9 +82,23 @@ public class QuestManager : MonoBehaviour
                         if (quest.fullslot)
                         {
                             TextMeshProUGUI tekstComponent = quest.transform.Find("Text").GetComponentInChildren<TextMeshProUGUI>();
-                            if (!string.IsNullOrEmpty(tekstComponent.text) && npc.QuestN == quest.questNumber)
+                            if (npc.QuestN == quest.questNumber)
                             {
                                 tekstComponent.text = npc.Dane;
+                                if (npc.questDescriptionList2 > 0)
+                                {
+                                    if (npc.Monster == npc.questDescriptionList2)
+                                    {
+                                        tekstComponent.color = Color.green;
+                                    }
+                                }
+                                if(npc.questDescriptionList3 > 0)
+                                {
+                                    if(npc.Items == npc.questDescriptionList3)
+                                    {
+                                        tekstComponent.color = Color.green;
+                                    }
+                                }
                                 break;
                             }
 
@@ -107,7 +114,7 @@ public class QuestManager : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Q) && pc.characterController.isGrounded)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 IsOpen = !IsOpen;
 
