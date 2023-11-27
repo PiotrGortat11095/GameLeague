@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
             }
-            Debug.Log(ySpeed);
             if (characterController.isGrounded)
             {
                 animator.SetBool("Grounded", true);
