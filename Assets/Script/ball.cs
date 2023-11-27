@@ -77,6 +77,8 @@ public class ball : MonoBehaviour
 
         fireInstance.AddForce(direction.normalized * multipiler);
         fireInstance.gameObject.AddComponent<FireDestroyer>();
+        fireInstance.gameObject.AddComponent<FireDestroyer3>();
+
     }
     public int mana;
 
@@ -121,6 +123,17 @@ public class ball : MonoBehaviour
 
     }
 }
+public class FireDestroyer3 : MonoBehaviour
+{
+    public void Update()
+    {
+        Invoke(nameof(Timee), 5f);
+    }
+    public void Timee()
+    {
+        Destroy(gameObject);
+    }
+}
 
 public class FireDestroyer : MonoBehaviour
 {
@@ -130,7 +143,6 @@ public class FireDestroyer : MonoBehaviour
     {
         playerScript = FindObjectOfType<Player>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         AiMobs enemy = other.gameObject.GetComponent<AiMobs>();
