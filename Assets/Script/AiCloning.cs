@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class AiCloning : MonoBehaviour
 {
     public GameObject aiPrefab;
+    public GameObject npc;
     public float spawnRadius = 10f;
     private int numberOfAIs = 1;
-    private float spawnInterval = 0.1f;
+    private float spawnInterval = 1f;
     public int max = 0;
     public float RespawnTime;
     [HideInInspector] public int ile = 0;
@@ -18,22 +19,22 @@ public class AiCloning : MonoBehaviour
 
     public void Update()
     {
-        if (!activequest)
-            InvokeRepeating("SpawnAi", 0f, spawnInterval);
-        NPCInteractable[] npcs = GameObject.FindObjectsOfType<NPCInteractable>();
-        foreach(NPCInteractable npc in npcs)
+        if (npc != null)
         {
-            if(npc.Activequest && npc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
+            NPCInteractable npcc = npc.GetComponent<NPCInteractable>();
+            if (npcc.Activequest && npcc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
             {
                 activequest = false;
             }
 
-            if (npc.questended && npc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
+            if (npcc.questended && npcc.ItemName == aiPrefab.GetComponent<ThisItem>().przedmiotDoDodania.Name)
             {
                 activequest = true;
             }
-            break;
         }
+
+        if (!activequest)
+            InvokeRepeating("SpawnAi", 0f, spawnInterval);
     }
     public void SpawnAi()
     {
@@ -71,12 +72,12 @@ public class AiCloning : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        float spawnRadius = 10f;
+        float spawnRadius = 30f;
         Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
         Vector3 spawnPosition = new Vector3(randomCircle.x, 0f, randomCircle.y) + transform.position;
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(spawnPosition, out hit, spawnRadius, NavMesh.AllAreas))
         {
             spawnPosition = hit.position;
         }

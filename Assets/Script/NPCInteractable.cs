@@ -134,14 +134,14 @@ public class NPCInteractable : MonoBehaviour
         }
         if (questDescriptionList3 > 0)
         {
-            if (Activequest && Items < questDescriptionList2 && !questended)
+            if (Activequest && Items < questDescriptionList3 && !questended)
             {
                 questactive.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;
                 InteractNow = true;
             }
-            if (Activequest && Items >= questDescriptionList2 && !questended)
+            if (Activequest && Items >= questDescriptionList3 && !questended)
             {
                 questcomplete.SetActive(true);
                 Cursor.visible = true;

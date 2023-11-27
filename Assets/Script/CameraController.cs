@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     QuestManager questManager;
     public Transform NPC;
 
-    float distance2 = 4;
+    float distance2 = 2;
     float rotationY;
     float rotationX;
 
@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
         if (scrollInput != 0)
         {
             distance -= scrollInput * 5f;
-            distance = Mathf.Clamp(distance, 4f, 8f);
+            distance = Mathf.Clamp(distance, 2f, 8f);
             distance2 = distance;
 
         }

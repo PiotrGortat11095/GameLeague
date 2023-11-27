@@ -76,7 +76,10 @@ public class PlayerController : MonoBehaviour
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
             var moveInput = (new Vector3(h, 0, v)).normalized;
             var moveDir = cameraController.PlanarRotation * moveInput;
-            ySpeed += Physics.gravity.y * Time.deltaTime;
+            if (ySpeed >= Physics.gravity.y)
+            {
+                ySpeed += Physics.gravity.y * Time.deltaTime;
+            }
             if (moveAmount <= 0)
             {
                 transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
@@ -84,6 +87,7 @@ public class PlayerController : MonoBehaviour
             if (characterController.isGrounded)
             {
                 animator.SetBool("Grounded", true);
+                ySpeed = 0;
             }
             else
             {
@@ -184,12 +188,14 @@ public class PlayerController : MonoBehaviour
             {
                 characterController.stepOffset = 0;
                 animator.SetBool("Grounded", false);
-
+            }
                 if ((isJumping && ySpeed < 0) || ySpeed < -2)
                 {
-                    animator.SetBool("FreeFall", true);
+                animator.SetBool("Grounded", false);
+                animator.SetBool("FreeFall", true);
+
                 }
-            }
+            
             if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("MagmaWall") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Meteor") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Skill"))
             {
                 var velocity = moveDir * moveSpeed;
