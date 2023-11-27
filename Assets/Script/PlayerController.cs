@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             float moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
             var moveInput = (new Vector3(h, 0, v)).normalized;
             var moveDir = cameraController.PlanarRotation * moveInput;
-            if (ySpeed >= Physics.gravity.y)
+            if (ySpeed >= Physics.gravity.y && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attackk") && !isAttacking)
             {
                 ySpeed += Physics.gravity.y * Time.deltaTime;
             }
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, cameraController.transform.eulerAngles.y, 0);
             }
+            Debug.Log(ySpeed);
             if (characterController.isGrounded)
             {
                 animator.SetBool("Grounded", true);
