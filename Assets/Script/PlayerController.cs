@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpButtonGracePeriod;
     [SerializeField] private float jumpSpeed;
     private Player playerScript;
+    public GameObject Respawn;
     private ball skillScript;
     private bool isAttacking;
     float ySpeed;
@@ -52,8 +53,16 @@ public class PlayerController : MonoBehaviour
             menu = MEnu1.GetComponent<Menu>();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            transform.position = Respawn.transform.position;
+        }
+    }
     private void Update()
     {
+
         NPCInteractable[] npc = GameObject.FindObjectsOfType<NPCInteractable>();
         anyNPCInteractingNow = false;
         foreach (NPCInteractable singleNPC in npc)

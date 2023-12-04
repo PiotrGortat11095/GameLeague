@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fireball
   - ProjectileAI
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - UndergrowthLarge
   - GroundScatter
   - Item
-  - 
+  - Water
   - 
   - 
   - 

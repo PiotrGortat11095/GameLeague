@@ -129,7 +129,6 @@ public class Player : MonoBehaviour
         }
         if (PcurrentHealth <= 0)
         {
-            transform.position = new Vector3(454, 2, 684);
             PcurrentHealth = Phealth;
             PcurrentMana = Pmana;
         }

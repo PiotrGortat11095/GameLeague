@@ -1750,14 +1750,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d967e6e4401e69742871eaf7176b67ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
+  moveSpeed: 7
   rotationSpeed: 500
-  groundCheckOffset: {x: 0, y: 0.2, z: 0.07}
+  groundCheckOffset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 32768
   jumpButtonGracePeriod: 300
-  jumpSpeed: 8
+  jumpSpeed: 4
+  Respawn: {fileID: 7408954700602172585, guid: 3abe2e5ac4e9e1f4984a29a6ee1c0b7d, type: 3}
   block: 0
   ultimate: 0
   player: {fileID: 0}
@@ -1808,7 +1809,7 @@ CharacterController:
   m_Radius: 0.2
   m_SlopeLimit: 50
   m_StepOffset: 0
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.03
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &1956316618093041723

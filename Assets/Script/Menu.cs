@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 public class Menu : MonoBehaviour
 {
     public GameObject Menu1;
+    public GameObject Respawn;
     public GameObject Esc;
     public GameObject WizardIMG;
     public GameObject WarriorIMG;
@@ -185,6 +186,7 @@ public class Menu : MonoBehaviour
             animator.enabled = true;
             PlayerController controller = wizardInstance.GetComponentInChildren<PlayerController>();
             controller.player = wizardInstance.transform;
+            controller.Respawn = Respawn;
             Ball.mainCamera = maincamera;
             Ball.Skills = Skills;
             player.mainCamera = maincamera;
@@ -228,6 +230,7 @@ public class Menu : MonoBehaviour
             animator.enabled = true;
             PlayerController controller = warriorInstance.GetComponentInChildren<PlayerController>();
             controller.player = warriorInstance.transform;
+            controller.Respawn = Respawn;
             player.mainCamera = maincamera;
             Crosshair.SetActive(true);
             HP.SetActive(true);
